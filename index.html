@@ -48,8 +48,15 @@
 
   <style>
     :root { color-scheme: dark; }
+
+    /* CRITICAL: prevent any horizontal scroll */
+    html, body { overflow-x: hidden; }
+
     html { scroll-behavior: smooth; }
-    body { overflow-x: hidden; }
+    body { min-height: 100vh; }
+
+    /* CRITICAL: make all images responsive */
+    img { max-width: 100%; height: auto; }
 
     /* ====== Dark matter background + depth layers ====== */
     .bg-animated {
@@ -60,12 +67,14 @@
         linear-gradient(180deg, #060510 0%, #04030c 55%, #03020a 100%);
     }
 
-    /* ====== HERO ORB (image) ====== */
+    /* ====== HERO ORB (image) ======
+       Uses clamp + max-width so it can never force layout overflow. */
     .orb-img {
       position: absolute;
-      right: -160px;
-      top: 40px;
-      width: 560px;
+      right: -10vw;
+      top: 34px;
+      width: clamp(300px, 56vw, 560px);
+      max-width: 92vw;
       height: auto;
       opacity: .68;
       pointer-events: none;
@@ -84,17 +93,15 @@
     }
     @media (max-width: 1024px) {
       .orb-img {
-        right: -220px;
-        top: 18px;
-        width: 520px;
+        right: -16vw;
+        top: 10px;
         opacity: .62;
       }
     }
     @media (max-width: 768px) {
       .orb-img {
-        right: -220px;
-        top: -40px;
-        width: 420px;
+        right: -26vw;
+        top: -44px;
         opacity: .52;
       }
     }
@@ -403,14 +410,13 @@
   <header id="siteNav" class="sticky top-0 z-50 nav-base">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
-        <a href="#top" class="flex items-center gap-3">
-          <!-- TOP NAV LOGO (increased) -->
-          <div class="h-14 w-14 md:h-14 md:w-14 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden">
-            <img src="./logo.png" alt="My AI Discovery Lab logo" class="h-11 w-11 md:h-11 md:w-11 object-contain" />
+        <a href="#top" class="flex items-center gap-3 min-w-0">
+          <div class="h-14 w-14 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden shrink-0">
+            <img src="./logo.png" alt="My AI Discovery Lab logo" class="h-11 w-11 object-contain" />
           </div>
-          <div class="leading-tight">
-            <div class="text-sm font-semibold tracking-tight">My AI Discovery Lab</div>
-            <div class="text-[11px] text-zinc-300/80">AI discovery infrastructure for commerce</div>
+          <div class="leading-tight min-w-0">
+            <div class="text-sm font-semibold tracking-tight truncate">My AI Discovery Lab</div>
+            <div class="text-[11px] text-zinc-300/80 truncate">AI discovery infrastructure for commerce</div>
           </div>
         </a>
 
@@ -422,11 +428,11 @@
           <a href="#faq" class="hover:text-white transition">FAQ</a>
         </nav>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 shrink-0">
           <a href="#pricing" class="hidden sm:inline-flex rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition focus-ring">
             See pricing
           </a>
-          <a href="#pricing" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary btn-pulse transition focus-ring">
+          <a href="#pricing" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary btn-pulse transition focus-ring whitespace-nowrap">
             Book $149 Audit
           </a>
         </div>
@@ -437,22 +443,23 @@
   <!-- HERO -->
   <main id="top">
     <section class="relative overflow-hidden">
-      <!-- HERO ORB FILE UPDATE (orb.svg) -->
       <img src="./orb.svg" alt="" class="orb-img" aria-hidden="true" />
 
       <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-16 sm:pt-20 pb-14 sm:pb-18 relative z-10">
-        <div class="grid lg:grid-cols-12 gap-10 items-start">
-          <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
+        <!-- CRITICAL: mobile stacks by default; desktop unchanged -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-7 min-w-0">
+            <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass max-w-full">
               <span class="h-2 w-2 rounded-full" style="background: #C026D3;"></span>
               <span class="text-xs text-zinc-200/90">AI Discovery Audit • $149 one-time • No contract</span>
             </div>
 
-            <h1 class="mt-6 text-4xl sm:text-5xl leading-[1.05] font-semibold tracking-tight">
+            <!-- Typography: scales naturally; wraps on small screens -->
+            <h1 class="mt-6 text-4xl sm:text-5xl leading-[1.08] font-semibold tracking-tight break-words">
               Most E-Commerce Stores Are Built for Humans. Not Machines.
             </h1>
 
-            <p class="mt-5 text-lg text-zinc-200/85 leading-relaxed max-w-2xl">
+            <p class="mt-5 text-base sm:text-lg text-zinc-200/85 leading-relaxed max-w-2xl">
               AI-driven product discovery is accelerating. If your products aren’t structured for AI systems, they become invisible.
               We audit your live product data + structured data and deliver an implementation-ready blueprint.
             </p>
@@ -464,16 +471,17 @@
               <span class="glass rounded-full px-3 py-1">Machine reasoning compatibility</span>
             </div>
 
-            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <!-- Buttons: stack vertically on mobile, never overflow -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-3 w-full">
               <a href="#pricing"
-                 class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
+                 class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
                 Book $149 Audit
                 <svg class="ml-2 h-4 w-4 opacity-90" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
                 </svg>
               </a>
               <a href="#what"
-                 class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
+                 class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
                 See What’s Inside
               </a>
             </div>
@@ -489,21 +497,20 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5">
-            <!-- Audit Output card (collapsed by default) -->
-            <div id="auditCard" class="glass-strong rounded-2xl p-6 shadow-glow reveal relative z-10">
-              <div class="flex items-start justify-between gap-4">
-                <div>
+          <div class="lg:col-span-5 min-w-0">
+            <div id="auditCard" class="glass-strong rounded-2xl p-6 shadow-glow reveal relative z-10 w-full">
+              <div class="flex items-start justify-between gap-4 flex-wrap">
+                <div class="min-w-0">
                   <div class="text-sm text-zinc-200/90">Audit Output (Example)</div>
                   <div class="mt-1 text-xl font-semibold tracking-tight">What the audit actually fixes</div>
                 </div>
 
                 <button id="auditExpandBtn"
-                        class="rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center gap-2 px-3 py-2"
+                        class="rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center gap-2 px-3 py-2 shrink-0"
                         aria-expanded="false"
                         aria-controls="auditAcc"
                         aria-label="Expand audit output example">
-                  <span class="text-xs text-zinc-200/85">Click to expand</span>
+                  <span class="text-xs text-zinc-200/85 whitespace-nowrap">Click to expand</span>
                   <svg id="auditChevron" class="h-4 w-4 text-zinc-200 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path d="M6 9l6 6 6-6"></path>
                   </svg>
@@ -518,17 +525,15 @@
                   </div>
                 </div>
 
-                <!-- (5) ALSO display JSON visual in hero under collapsed view -->
                 <button type="button"
-                        class="glass rounded-2xl p-4 border border-white/10 bg-black/25 shadow-glass text-left hover:bg-white/5 transition focus-ring"
+                        class="glass rounded-2xl p-4 border border-white/10 bg-black/25 shadow-glass text-left hover:bg-white/5 transition focus-ring w-full"
                         data-img-modal="./json-structured-visual.svg"
                         aria-label="Open validator-ready JSON-LD visual preview">
                   <div class="text-xs text-zinc-300/80 mb-2">Validator-ready JSON-LD example (visual)</div>
-                  <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl" />
+                  <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl block" />
                 </button>
               </div>
 
-              <!-- Inline accordion (desktop) -->
               <div id="auditAcc" class="acc-panel mt-4 md:block" aria-hidden="true">
                 <div class="divider my-4"></div>
 
@@ -609,16 +614,14 @@
                   </div>
                 </div>
 
-                <!-- Visual + optional raw JSON toggle -->
                 <div class="mt-5">
                   <div class="text-xs text-zinc-300/80 mb-2">Validator-ready JSON-LD example (visual)</div>
 
-                  <!-- (5) Clickable inside expanded accordion as well -->
                   <button type="button"
                           class="glass rounded-2xl p-4 border border-white/10 bg-black/25 shadow-glass w-full text-left hover:bg-white/5 transition focus-ring"
                           data-img-modal="./json-structured-visual.svg"
                           aria-label="Open validator-ready JSON-LD visual preview">
-                    <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl" />
+                    <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl block" />
                   </button>
 
                   <button id="rawJsonToggle"
@@ -646,7 +649,6 @@
 }</code></pre>
                   </div>
                 </div>
-
               </div>
 
               <div class="mt-4 text-xs text-zinc-300/75">
@@ -654,8 +656,8 @@
               </div>
             </div>
 
-            <div class="mt-4 glass rounded-2xl p-5 shadow-glass reveal">
-              <div class="flex items-center justify-between">
+            <div class="mt-4 glass rounded-2xl p-5 shadow-glass reveal w-full">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
                 <div class="text-sm font-semibold">Make your catalog interpretable</div>
                 <div class="text-xs text-zinc-300/80">Built for machine reasoning</div>
               </div>
@@ -667,9 +669,10 @@
         </div>
       </div>
 
-      <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-[48rem] rounded-full blur-3xl"
+      <!-- glow accents: use max-w/w-full (no fixed width utilities) -->
+      <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-full max-w-5xl rounded-full blur-3xl"
            style="background: rgba(192,38,211,.10);"></div>
-      <div class="pointer-events-none absolute -bottom-32 right-0 h-80 w-80 rounded-full blur-3xl"
+      <div class="pointer-events-none absolute -bottom-32 right-0 h-80 w-80 max-w-full rounded-full blur-3xl"
            style="background: rgba(138,43,226,.10);"></div>
     </section>
 
@@ -727,7 +730,8 @@
         </p>
       </div>
 
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
+      <!-- CRITICAL: grid-cols-1 mobile, lg:grid-cols-4 desktop -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
         <div class="glass rounded-2xl p-6 shadow-glass reveal text-center w-full max-w-sm lift-card">
           <div class="h-11 w-11 mx-auto rounded-xl border border-white/10 flex items-center justify-center" style="background: rgba(138,43,226,.16);">
             <img src="./structured-data.svg" alt="Structured product data icon" class="infra-icon" />
@@ -773,8 +777,9 @@
     <!-- WHY THIS MATTERS -->
     <section id="why" class="border-y border-white/10 bg-black/20">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-        <div class="grid lg:grid-cols-12 gap-10 items-start">
-          <div class="lg:col-span-7 reveal">
+        <!-- CRITICAL: stacks on mobile -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-7 reveal min-w-0">
             <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">SEO is indexing. AI is interpretation.</h2>
             <p class="mt-4 text-zinc-200/85 leading-relaxed">
               Traditional search finds pages. AI-driven discovery tries to understand products.
@@ -804,8 +809,7 @@
               </li>
             </ul>
 
-            <!-- (4B) Infrastructure, not hype: slightly larger + better spacing -->
-            <div class="mt-8 glass-strong rounded-2xl p-7 shadow-glow reveal">
+            <div class="mt-8 glass-strong rounded-2xl p-7 shadow-glow reveal w-full">
               <div class="text-lg font-semibold">Infrastructure, not hype</div>
               <p class="mt-3 text-base text-zinc-200/85 leading-relaxed">
                 This is the machine-readable layer your platform rarely ships well by default. We diagnose it and give you the blueprint to rebuild it cleanly —
@@ -814,13 +818,12 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5">
-            <!-- (4C) Diagram clickable + (4A) stronger "Indexing ≠ Interpretable" label -->
+          <div class="lg:col-span-5 min-w-0">
             <button type="button"
                     class="glass-strong rounded-2xl p-4 shadow-glow reveal w-full text-left hover:bg-white/5 transition focus-ring"
                     data-img-modal="./seo-vs-ai-interpretation.svg"
                     aria-label="Open indexing vs interpretable diagram">
-              <img src="./seo-vs-ai-interpretation.svg" alt="SEO indexing vs AI interpretation diagram" class="w-full h-auto rounded-xl" />
+              <img src="./seo-vs-ai-interpretation.svg" alt="SEO indexing vs AI interpretation diagram" class="w-full h-auto rounded-xl block" />
               <div class="mt-4 rounded-xl border border-white/10 bg-black/25 p-4 text-center">
                 <div class="text-lg font-bold tracking-tight text-zinc-100/95">
                   Indexing ≠ Interpretable
@@ -831,8 +834,7 @@
               </div>
             </button>
 
-            <!-- (4) Stronger centered banner/box -->
-            <div class="mt-4 glass-strong rounded-2xl p-6 shadow-glow reveal border border-white/15"
+            <div class="mt-4 glass-strong rounded-2xl p-6 shadow-glow reveal border border-white/15 w-full"
                  style="box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 24px 90px rgba(192,38,211,.18);">
               <div class="flex items-center justify-center text-center font-bold text-base sm:text-lg text-zinc-100/95">
                 AI discovery requires structured signals, not just indexed pages
@@ -852,10 +854,10 @@
         </p>
       </div>
 
-      <div class="mt-10 grid lg:grid-cols-3 gap-4">
-        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card">
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card w-full">
           <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold" style="background: rgba(138,43,226,.18);">1</div>
+            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold shrink-0" style="background: rgba(138,43,226,.18);">1</div>
             <h3 class="font-semibold">Purchase audit</h3>
           </div>
           <p class="mt-3 text-sm text-zinc-200/80 leading-relaxed">
@@ -863,9 +865,9 @@
           </p>
         </div>
 
-        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card">
+        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card w-full">
           <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold" style="background: rgba(192,38,211,.18);">2</div>
+            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold shrink-0" style="background: rgba(192,38,211,.18);">2</div>
             <h3 class="font-semibold">Site analysis (schema + structure)</h3>
           </div>
           <p class="mt-3 text-sm text-zinc-200/80 leading-relaxed">
@@ -873,9 +875,9 @@
           </p>
         </div>
 
-        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card">
+        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card w-full">
           <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold" style="background: rgba(147,51,234,.18);">3</div>
+            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold shrink-0" style="background: rgba(147,51,234,.18);">3</div>
             <h3 class="font-semibold">AI readiness score + rebuild blueprint</h3>
           </div>
           <p class="mt-3 text-sm text-zinc-200/80 leading-relaxed">
@@ -888,8 +890,8 @@
     <!-- WHAT YOU GET -->
     <section class="border-y border-white/10 bg-black/20">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-        <div class="grid lg:grid-cols-12 gap-10 items-start">
-          <div class="lg:col-span-6 reveal">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-6 reveal min-w-0">
             <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">What You Get ($149)</h2>
             <p class="mt-4 text-zinc-200/85 leading-relaxed">
               A technical audit pack built for execution — not generic recommendations.
@@ -905,15 +907,15 @@
             </ul>
           </div>
 
-          <div class="lg:col-span-6">
-            <div class="glass-strong rounded-2xl p-6 shadow-glow reveal">
+          <div class="lg:col-span-6 min-w-0">
+            <div class="glass-strong rounded-2xl p-6 shadow-glow reveal w-full">
               <div class="flex items-start justify-between gap-4">
-                <div>
+                <div class="min-w-0">
                   <div class="text-sm text-zinc-200/90">Interactive deliverables</div>
                   <div class="mt-1 text-xl font-semibold tracking-tight">What your team ships next</div>
                 </div>
                 <button id="deliverablesBtn"
-                        class="h-10 w-10 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center justify-center"
+                        class="h-10 w-10 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center justify-center shrink-0"
                         aria-expanded="false"
                         aria-controls="deliverablesPanel"
                         aria-label="Expand deliverables details">
@@ -976,7 +978,7 @@
               </div>
             </div>
 
-            <div class="mt-4 glass rounded-2xl p-6 shadow-glass reveal">
+            <div class="mt-4 glass rounded-2xl p-6 shadow-glass reveal w-full">
               <div class="text-sm font-semibold">Platform-agnostic</div>
               <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
                 Shopify, WooCommerce, headless, custom templates — the audit focuses on the structured layer AI systems can interpret, independent of your stack.
@@ -998,10 +1000,10 @@
 
       <div class="mt-10 flex justify-center">
         <div class="w-full max-w-xl glass-strong rounded-3xl p-8 shadow-glow reveal">
-          <div class="flex items-start justify-between gap-4">
-            <div>
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <div class="min-w-0">
               <div class="text-sm text-zinc-200/90">AI Discovery Audit</div>
-              <div class="mt-2 flex items-end gap-2">
+              <div class="mt-2 flex items-end gap-2 flex-wrap">
                 <div class="text-5xl font-semibold tracking-tight">$149</div>
                 <div class="text-sm text-zinc-300/80 pb-2">one-time</div>
               </div>
@@ -1024,6 +1026,7 @@
             <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>10–15 min Loom walkthrough</span></li>
           </ul>
 
+          <!-- Buttons never overflow: w-full on mobile -->
           <div class="mt-8 flex flex-col sm:flex-row gap-3">
             <button id="stripeBtn"
               class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
@@ -1035,7 +1038,7 @@
             </a>
           </div>
 
-          <div class="mt-4 text-xs text-zinc-300/70">
+          <div class="mt-4 text-xs text-zinc-300/70 break-words">
             Questions? <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
           </div>
         </div>
@@ -1049,7 +1052,7 @@
           <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">FAQ</h2>
         </div>
 
-        <div class="mt-10 grid lg:grid-cols-2 gap-4">
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <details class="glass rounded-2xl p-6 shadow-glass reveal">
             <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
               <span class="font-semibold">Is this SEO?</span>
@@ -1116,22 +1119,18 @@
     <!-- FINAL CTA (center aligned) -->
     <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
       <div class="glass-strong rounded-3xl p-10 sm:p-12 shadow-glow reveal text-center">
-        <div class="grid lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-12">
-            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">Be early. Not invisible.</h2>
-            <p class="mt-4 text-zinc-200/85 leading-relaxed max-w-2xl mx-auto">
-              AI discovery surfaces are forming now. If your product data isn’t interpretable, you get filtered out before the user even sees you.
-            </p>
-            <div class="mt-3 text-sm text-zinc-300/80">
-              Questions? <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
-            </div>
-          </div>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">Be early. Not invisible.</h2>
+        <p class="mt-4 text-zinc-200/85 leading-relaxed max-w-2xl mx-auto">
+          AI discovery surfaces are forming now. If your product data isn’t interpretable, you get filtered out before the user even sees you.
+        </p>
+        <div class="mt-3 text-sm text-zinc-300/80 break-words">
+          Questions? <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+        </div>
 
-          <div class="lg:col-span-12 flex justify-center">
-            <a href="#pricing" class="inline-flex items-center justify-center rounded-xl px-7 py-3 font-semibold text-white btn-primary transition focus-ring">
-              Book $149 Audit
-            </a>
-          </div>
+        <div class="mt-8 flex justify-center">
+          <a href="#pricing" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-7 py-3 font-semibold text-white btn-primary transition focus-ring">
+            Book $149 Audit
+          </a>
         </div>
       </div>
     </section>
@@ -1142,15 +1141,14 @@
     <footer class="border-t border-white/10 bg-black/30">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 py-12">
         <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
-          <div class="flex items-start gap-4">
-            <!-- FOOTER LOGO (increased) -->
-            <div class="h-12 w-12 md:h-12 md:w-12 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden">
-              <img src="./logo.png" alt="My AI Discovery Lab logo" class="h-10 w-10 md:h-10 md:w-10 object-contain" />
+          <div class="flex items-start gap-4 min-w-0">
+            <div class="h-12 w-12 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden shrink-0">
+              <img src="./logo.png" alt="My AI Discovery Lab logo" class="h-10 w-10 object-contain" />
             </div>
-            <div class="text-sm text-zinc-200/90">
-              <div class="font-semibold">My AI Discovery Lab</div>
-              <div class="mt-1 text-zinc-300/80">Machine-readable commerce infrastructure.</div>
-              <div class="mt-2 text-zinc-300/80">
+            <div class="text-sm text-zinc-200/90 min-w-0">
+              <div class="font-semibold break-words">My AI Discovery Lab</div>
+              <div class="mt-1 text-zinc-300/80 break-words">Machine-readable commerce infrastructure.</div>
+              <div class="mt-2 text-zinc-300/80 break-words">
                 <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
               </div>
             </div>
@@ -1220,7 +1218,7 @@
                 class="glass rounded-2xl p-4 border border-white/10 bg-black/25 shadow-glass w-full text-left hover:bg-white/5 transition focus-ring"
                 data-img-modal="./json-structured-visual.svg"
                 aria-label="Open validator-ready JSON-LD visual preview">
-          <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl" />
+          <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl block" />
         </button>
       </div>
     </div>
@@ -1239,7 +1237,7 @@
           </button>
         </div>
         <div class="mt-4">
-          <img id="imageModalImg" src="" alt="" class="w-full h-auto rounded-xl border border-white/10 bg-black/20" />
+          <img id="imageModalImg" src="" alt="" class="w-full h-auto rounded-xl border border-white/10 bg-black/20 block" />
         </div>
       </div>
     </div>
@@ -1359,7 +1357,6 @@
         btn.setAttribute("aria-expanded", String(!expanded));
         setPanel(panel, !expanded);
 
-        // Keep outer panel height accurate when inner panels open/close
         const outerExpanded = auditExpandBtn.getAttribute("aria-expanded") === "true";
         if (outerExpanded) auditAcc.style.height = auditAcc.scrollHeight + "px";
       });
@@ -1386,7 +1383,6 @@
     const imageModal = document.getElementById("imageModal");
     const imageModalImg = document.getElementById("imageModalImg");
     const imageModalClose = document.getElementById("imageModalClose");
-    const imageModalInner = document.getElementById("imageModalInner");
 
     function openImageModal(src, altText) {
       imageModalImg.src = src;
