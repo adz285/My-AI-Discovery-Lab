@@ -70,41 +70,41 @@
     /* ====== HERO ORB (image) ======
        Uses clamp + max-width so it can never force layout overflow. */
     .orb-img {
-      position: absolute;
-      right: -10vw;
-      top: 34px;
-      width: clamp(300px, 56vw, 560px);
-      max-width: 92vw;
-      height: auto;
-      opacity: .68;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      filter: saturate(1.15) brightness(1.05) contrast(1.05)
-              drop-shadow(0 0 26px rgba(192,38,211,.22))
-              drop-shadow(0 0 70px rgba(138,43,226,.18));
-      transform: translate3d(0,0,0);
-      animation: orbDrift 22s ease-in-out infinite;
-      z-index: 0;
-    }
+  position: absolute;
+  right: -18vw;
+  top: 10px;
+  width: clamp(240px, 42vw, 460px);
+  max-width: 78vw;
+  height: auto;
+  opacity: .58;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: saturate(1.15) brightness(1.05) contrast(1.05)
+          drop-shadow(0 0 26px rgba(192,38,211,.22))
+          drop-shadow(0 0 70px rgba(138,43,226,.18));
+  transform: translate3d(0,0,0);
+  animation: orbDrift 22s ease-in-out infinite;
+  z-index: 0;
+}
     @keyframes orbDrift {
       0%   { transform: translate(0px, 0px) scale(1); }
       50%  { transform: translate(-34px, 20px) scale(1.02); }
       100% { transform: translate(0px, 0px) scale(1); }
     }
     @media (max-width: 1024px) {
-      .orb-img {
-        right: -16vw;
-        top: 10px;
-        opacity: .62;
-      }
-    }
+  .orb-img {
+    right: -30vw;
+    top: -10px;
+    opacity: .46;
+  }
+}
     @media (max-width: 768px) {
-      .orb-img {
-        right: -26vw;
-        top: -44px;
-        opacity: .52;
-      }
-    }
+  .orb-img {
+    right: -44vw;
+    top: -70px;
+    opacity: .36;
+  }
+}
 
     /* ====== DNA faint curves overlay ====== */
     .dna {
