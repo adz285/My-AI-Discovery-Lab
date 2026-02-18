@@ -379,9 +379,63 @@
       requestAnimationFrame(drawStars);
     }
 
-    window.addEventListener("resize", resizeCanvas, { passive: true });
+   window.addEventListener("resize", resizeCanvas, { passive: true });
     resizeCanvas();
     drawStars();
+  </script>
+
+  <!-- URL normaliser + validation (add ONCE) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector("form");
+      const websiteField = document.getElementById("websiteUrl");
+      const productField = document.getElementById("productUrl");
+
+      if (!form || !websiteField || !productField) return;
+
+      function normalizeUrl(input) {
+        let value = (input.value || "").trim();
+
+        // If they type "www.domain.com" or "domain.com", auto-add https://
+        if (value && !/^https?:\/\//i.test(value)) value = "https://" + value;
+
+        input.value = value;
+      }
+
+      function isValidUrl(value) {
+        try {
+          const u = new URL(value);
+          // Optional: require a real hostname like example.com
+          return !!u.hostname && u.hostname.includes(".");
+        } catch {
+          return false;
+        }
+      }
+
+      // Clean up on blur (nice UX)
+      websiteField.addEventListener("blur", () => normalizeUrl(websiteField));
+      productField.addEventListener("blur", () => normalizeUrl(productField));
+
+      // Hard validation on submit
+      form.addEventListener("submit", (e) => {
+        normalizeUrl(websiteField);
+        normalizeUrl(productField);
+
+        const websiteValue = websiteField.value.trim();
+        const productValue = productField.value.trim();
+
+        if (!isValidUrl(websiteValue) || !isValidUrl(productValue)) {
+          e.preventDefault();
+          alert("Please enter valid full URLs (e.g. https://example.com).");
+          return;
+        }
+
+        if (websiteValue.length < 10 || productValue.length < 10) {
+          e.preventDefault();
+          alert("URL looks incomplete. Please check and try again.");
+        }
+      });
+    });
   </script>
 </body>
 </html>
