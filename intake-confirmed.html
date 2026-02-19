@@ -133,63 +133,19 @@
       html { scroll-behavior: auto; }
     }
   </style>
-
-  <!-- Lightweight Organization JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"My AI Discovery Lab",
-    "url":"https://myaidiscoverylab.com/",
-    "email":"audit@myaidiscoverylab.com"
-  }
-  </script>
 </head>
 
 <body class="min-h-screen bg-animated text-zinc-100 font-sans">
-  <!-- Background layers -->
+
   <div class="fixed inset-0 -z-10">
     <canvas id="particles"></canvas>
   </div>
-
-  <!-- Top nav (unchanged structure) -->
-  <header id="siteNav" class="sticky top-0 z-50 nav-base">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <div class="flex h-16 items-center justify-between">
-        <a href="/index.html#top" class="flex items-center gap-3 min-w-0">
-          <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden shrink-0 p-1.5">
-            <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
-          </div>
-          <div class="leading-tight min-w-0">
-            <div class="text-sm font-semibold tracking-tight truncate">My AI Discovery Lab</div>
-            <div class="text-[11px] text-zinc-300/80 truncate">AI discovery infrastructure for commerce</div>
-          </div>
-        </a>
-
-        <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-200/90">
-          <a href="/index.html#what" class="hover:text-white transition">What we do</a>
-          <a href="/index.html#why" class="hover:text-white transition">Why it matters</a>
-          <a href="/index.html#how" class="hover:text-white transition">How it works</a>
-          <a href="/index.html#pricing" class="hover:text-white transition">Pricing</a>
-          <a href="/index.html#faq" class="hover:text-white transition">FAQ</a>
-        </nav>
-
-        <div class="flex items-center gap-3 shrink-0">
-          <a href="/index.html#pricing" class="hidden sm:inline-flex rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition focus-ring">
-            See pricing
-          </a>
-          <a href="/index.html#pricing" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary transition focus-ring whitespace-nowrap">
-            Book $149 Audit
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
 
   <main class="relative">
     <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
       <div class="flex min-h-[70vh] items-center justify-center">
         <div class="w-full max-w-xl glass-strong rounded-3xl p-8 sm:p-10 shadow-glow">
+
           <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
             <span class="h-2 w-2 rounded-full" style="background:#C026D3;"></span>
             <span class="text-xs text-zinc-200/90">Audit intake received • We’re starting your audit</span>
@@ -220,96 +176,23 @@
               Back to site
             </a>
           </div>
+
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Conversion tracking -->
   <script>
-    // Nav blur/darken on scroll
-    const nav = document.getElementById("siteNav");
-    const onScroll = () => {
-      if (window.scrollY > 12) nav.classList.add("nav-scrolled");
-      else nav.classList.remove("nav-scrolled");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    // Starfield particles (same lightweight approach)
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d", { alpha: true });
-
-    let w, h, dpr, particles;
-    const PARTICLE_COUNT = 110;
-    const MAX_SPEED = 0.18;
-
-    function resizeCanvas() {
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      w = canvas.clientWidth = window.innerWidth;
-      h = canvas.clientHeight = window.innerHeight;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      particles = Array.from({ length: PARTICLE_COUNT }, () => spawnParticle(true));
-    }
-
-    function spawnParticle(randomY = false) {
-      const x = Math.random() * w;
-      const y = randomY ? Math.random() * h : -10;
-      const r = 0.5 + Math.random() * 1.5;
-      const vx = (Math.random() - 0.5) * MAX_SPEED;
-      const vy = (0.03 + Math.random() * 0.14);
-      const a = 0.14 + Math.random() * 0.32;
-      return { x, y, r, vx, vy, a };
-    }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, w, h);
-
-      const g = ctx.createRadialGradient(w * 0.55, h * 0.15, 0, w * 0.55, h * 0.15, Math.max(w, h));
-      g.addColorStop(0, "rgba(192,38,211,0.06)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.y > h + 12) particles[i] = spawnParticle(false);
-        if (p.x < -12) p.x = w + 12;
-        if (p.x > w + 12) p.x = -12;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.a})`;
-        ctx.fill();
+    window.addEventListener("load", function () {
+      if (typeof gtag === "function") {
+        gtag('event', 'intake_submitted', {
+          event_category: 'Lead',
+          event_label: 'AI Discovery Audit Intake'
+        });
       }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 110) {
-            const alpha = (1 - dist / 110) * 0.06;
-            ctx.strokeStyle = `rgba(138,43,226,${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(drawStars);
-    }
-
-    window.addEventListener("resize", resizeCanvas, { passive: true });
-    resizeCanvas();
-    drawStars();
+    });
   </script>
+
 </body>
 </html>
