@@ -2,6 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+
+    // OWNER PREVIEW MODE (for testing)
+    if (params.get("preview") === "1") return;
+
+    // "Paid" flag set after Stripe success redirect
+    const isPaid = localStorage.getItem("myaidl_paid_intake") === "1";
+
+    if (!isPaid) {
+      window.location.replace("/index.html#pricing");
+    }
+  })();
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -146,6 +161,9 @@
     .label {
       font-size: 12px;
       color: rgba(228,228,231,.80);
+      display: block;
+      min-height: 32px;
+      line-height: 16px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -209,9 +227,9 @@
     <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
       <div class="flex min-h-[70vh] items-center justify-center">
         <div class="w-full max-w-2xl glass-strong rounded-3xl p-8 sm:p-10 shadow-glow">
-          <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
+          <div class="flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass w-fit mx-auto">
             <span class="h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-            <span class="text-xs text-zinc-200/90">Audit intake • Required to begin • No contract</span>
+            <span class="text-xs text-zinc-200/90">Audit intake • Required to begin</span>
           </div>
 
           <h1 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight">Audit Intake</h1>
@@ -222,14 +240,18 @@
           <div class="mt-6 divider"></div>
 
           <form
-  class="mt-6 space-y-5"
-  action="https://formspree.io/f/xdaldprq"
-  method="POST"
->
-            <!-- After submission redirect (placeholder) -->
+            class="mt-6 space-y-5"
+            action="https://formspree.io/f/xdaldprq"
+            method="POST"
+          >
+            <!-- After submission redirect -->
             <input type="hidden" name="_next" value="https://myaidiscoverylab.com/success.html" />
-<input type="hidden" name="_subject" value="New AI Discovery Audit Intake" />
-<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_subject" value="New AI Discovery Audit Intake" />
+<input type="hidden" name="submission_source" value="intake_form" />
+            <input type="hidden" name="service_type" value="ai_discovery_audit" />
+            <input type="hidden" name="lead_stage" value="paid_intake" />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+<input type="hidden" id="payment_verified" name="payment_verified" value="false" />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -253,9 +275,13 @@
                 <label class="label" for="platform">Platform</label>
                 <select class="field mt-2 focus-ring" id="platform" name="platform">
                   <option value="Shopify">Shopify</option>
+                  <option value="Shopify Plus">Shopify Plus</option>
                   <option value="WooCommerce">WooCommerce</option>
-                  <option value="Headless">Headless</option>
-                  <option value="Other">Other</option>
+                  <option value="Headless (Hydrogen / Next / Custom)">Headless (Hydrogen / Next / Custom)</option>
+                  <option value="Magento">Magento</option>
+                  <option value="BigCommerce">BigCommerce</option>
+                  <option value="Custom Build">Custom Build</option>
+                  <option value="Not sure">Not sure</option>
                 </select>
               </div>
 
@@ -265,6 +291,52 @@
               </div>
             </div>
 
+            <!-- New grid block: Revenue + Primary Market -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="label" for="monthlyRevenue">Estimated Monthly Revenue (Optional but recommended)</label>
+                <select class="field mt-2 focus-ring" id="monthlyRevenue" name="monthlyRevenue">
+                  <option value="Pre-revenue">Pre-revenue</option>
+                  <option value="£0–£10K">£0–£10K</option>
+                  <option value="£10K–£50K">£10K–£50K</option>
+                  <option value="£50K–£250K">£50K–£250K</option>
+                  <option value="£250K+">£250K+</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="label" for="primaryMarket">Primary Market</label>
+                <select class="field mt-2 focus-ring" id="primaryMarket" name="primaryMarket">
+                  <option value="UK">UK</option>
+                  <option value="US">US</option>
+                  <option value="EU">EU</option>
+                  <option value="International">International</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+<!-- New operational fields -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="label" for="passwordProtected">Is your storefront password protected? <span class="text-pink-300/90">*</span></label>
+                <select class="field mt-2 focus-ring" id="passwordProtected" name="passwordProtected" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="label" for="liveProductsCount">Approximate number of live products <span class="text-pink-300/90">*</span></label>
+                <select class="field mt-2 focus-ring" id="liveProductsCount" name="liveProductsCount" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="1–10">1–10</option>
+                  <option value="10–50">10–50</option>
+                  <option value="50–200">50–200</option>
+                  <option value="200+">200+</option>
+                </select>
+              </div>
+            </div>
             <div>
               <label class="label" for="notes">Additional Notes</label>
               <textarea class="field mt-2 focus-ring min-h-[120px]" id="notes" name="notes" placeholder="Anything we should know (collections to prioritise, variants complexity, international pricing, etc.)"></textarea>
@@ -279,14 +351,15 @@
               </button>
 
               <a
-                href="/index.html#top"
+                href="https://myaidiscoverylab.com/"
                 class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring"
+              >
               >
                 Back to site
               </a>
             </div>
 
-            <div class="mt-2 text-xs text-zinc-300/70 break-words">
+            <div class="mt-4 text-xs text-zinc-300/70 break-words text-center">
               Questions? <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
               <span class="mx-2">•</span>
               One-time audit. No contract.
@@ -379,9 +452,26 @@
       requestAnimationFrame(drawStars);
     }
 
-   window.addEventListener("resize", resizeCanvas, { passive: true });
+    window.addEventListener("resize", resizeCanvas, { passive: true });
     resizeCanvas();
     drawStars();
+  </script>
+<!-- Payment gate (run before form validation) -->
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const paid = params.get("paid");
+
+      // If not coming from Stripe success redirect, bounce to homepage
+      if (paid !== "true") {
+        window.location.replace("https://myaidiscoverylab.com/");
+        return;
+      }
+
+      // Mark as verified for submission tracking
+      const pv = document.getElementById("payment_verified");
+      if (pv) pv.value = "true";
+    })();
   </script>
 
   <!-- URL normaliser + validation (add ONCE) -->
@@ -395,28 +485,22 @@
 
       function normalizeUrl(input) {
         let value = (input.value || "").trim();
-
-        // If they type "www.domain.com" or "domain.com", auto-add https://
         if (value && !/^https?:\/\//i.test(value)) value = "https://" + value;
-
         input.value = value;
       }
 
       function isValidUrl(value) {
         try {
           const u = new URL(value);
-          // Optional: require a real hostname like example.com
           return !!u.hostname && u.hostname.includes(".");
         } catch {
           return false;
         }
       }
 
-      // Clean up on blur (nice UX)
       websiteField.addEventListener("blur", () => normalizeUrl(websiteField));
       productField.addEventListener("blur", () => normalizeUrl(productField));
 
-      // Hard validation on submit
       form.addEventListener("submit", (e) => {
         normalizeUrl(websiteField);
         normalizeUrl(productField);
