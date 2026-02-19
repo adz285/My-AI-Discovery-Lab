@@ -6,14 +6,23 @@
   (function () {
     const params = new URLSearchParams(window.location.search);
 
-    // OWNER PREVIEW MODE (for testing)
-    if (params.get("preview") === "1") return;
+    // Allow access for testing OR Stripe success param
+    const allowPreview = params.get("preview") === "1";
+    const allowPaidParam = params.get("paid") === "1";
 
-    // "Paid" flag set after Stripe success redirect
+    // If coming from Stripe success, persist paid status for future visits (refresh/bookmark)
+    if (allowPaidParam) {
+      try { localStorage.setItem("myaidl_paid_intake", "1"); } catch (e) {}
+    }
+
+    // Owner preview mode OR paid param allows access immediately
+    if (allowPreview || allowPaidParam) return;
+
+    // Paid flag persisted after Stripe success redirect
     const isPaid = localStorage.getItem("myaidl_paid_intake") === "1";
 
     if (!isPaid) {
-      window.location.replace("/index.html#pricing");
+      window.location.replace("/index.html");
     }
   })();
 </script>
@@ -247,11 +256,15 @@
             <!-- After submission redirect -->
             <input type="hidden" name="_next" value="https://myaidiscoverylab.com/success.html" />
             <input type="hidden" name="_subject" value="New AI Discovery Audit Intake" />
-<input type="hidden" name="submission_source" value="intake_form" />
+            <input type="hidden" name="submission_source" value="intake_form" />
             <input type="hidden" name="service_type" value="ai_discovery_audit" />
             <input type="hidden" name="lead_stage" value="paid_intake" />
+            <input type="hidden" name="source_page" value="/intake.html" />
+            <input type="hidden" name="utm_source" value="" />
+            <input type="hidden" name="utm_campaign" value="" />
+            <input type="hidden" name="utm_medium" value="" />
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-<input type="hidden" id="payment_verified" name="payment_verified" value="false" />
+            <input type="hidden" id="payment_verified" name="payment_verified" value="false" />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -315,7 +328,8 @@
                 </select>
               </div>
             </div>
-<!-- New operational fields -->
+
+            <!-- New operational fields -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="label" for="passwordProtected">Is your storefront password protected? <span class="text-pink-300/90">*</span></label>
@@ -337,6 +351,7 @@
                 </select>
               </div>
             </div>
+
             <div>
               <label class="label" for="notes">Additional Notes</label>
               <textarea class="field mt-2 focus-ring min-h-[120px]" id="notes" name="notes" placeholder="Anything we should know (collections to prioritise, variants complexity, international pricing, etc.)"></textarea>
@@ -351,9 +366,8 @@
               </button>
 
               <a
-                href="https://myaidiscoverylab.com/"
+                href="/index.html"
                 class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring"
-              >
               >
                 Back to site
               </a>
@@ -456,21 +470,21 @@
     resizeCanvas();
     drawStars();
   </script>
-<!-- Payment gate (run before form validation) -->
+
+  <!-- Payment gate (run before form validation) -->
   <script>
     (function () {
       const params = new URLSearchParams(window.location.search);
-      const paid = params.get("paid");
+      const paid = params.get("paid") === "1";
+      const preview = params.get("preview") === "1";
 
-      // If not coming from Stripe success redirect, bounce to homepage
-      if (paid !== "true") {
-        window.location.replace("https://myaidiscoverylab.com/");
-        return;
+      // Only set tracking flags here — gating/redirect is handled in the <head> script
+      if (paid) {
+        try { localStorage.setItem("myaidl_paid_intake", "1"); } catch (e) {}
       }
 
-      // Mark as verified for submission tracking
       const pv = document.getElementById("payment_verified");
-      if (pv) pv.value = "true";
+      if (pv && (paid || preview)) pv.value = "true";
     })();
   </script>
 
