@@ -190,6 +190,28 @@
     "email":"audit@myaidiscoverylab.com"
   }
   </script>
+
+  <!-- GA4 (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QQ93HP5N6"></script>
+  <script>
+    (function () {
+      const __gaParams = new URLSearchParams(window.location.search);
+      const __gaDebug = __gaParams.get("debug") === "1";
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      gtag("js", new Date());
+      gtag("config", "G-7QQ93HP5N6", __gaDebug ? { debug_mode: true } : {});
+
+      // intake_form_view (fires on intake.html page load)
+      gtag("event", "intake_form_view", {
+        page_location: window.location.href,
+        page_path: window.location.pathname
+      });
+    })();
+  </script>
 </head>
 
 <body class="min-h-screen bg-animated text-zinc-100 font-sans">

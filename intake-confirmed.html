@@ -25,6 +25,19 @@
 
   <link rel="icon" href="/favicon.ico" />
 
+<!-- GA4 (My AI Discovery Lab) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QQ93HP5N6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+window.gtag = gtag;
+    const __gaParams = new URLSearchParams(window.location.search);
+    const __gaDebug = __gaParams.get("debug") === "1";
+
+    gtag("js", new Date());
+    gtag("config", "G-7QQ93HP5N6", __gaDebug ? { debug_mode: true } : {});
+  </script>
+
   <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -182,16 +195,16 @@
     </section>
   </main>
 
-  <!-- Conversion tracking -->
+<!-- GA4 event: intake_submitted -->
   <script>
-    window.addEventListener("load", function () {
+    (function () {
+      const page_location = window.location.href;
+      const page_path = window.location.pathname;
+
       if (typeof gtag === "function") {
-        gtag('event', 'intake_submitted', {
-          event_category: 'Lead',
-          event_label: 'AI Discovery Audit Intake'
-        });
+        gtag("event", "intake_submitted", { page_location, page_path });
       }
-    });
+    })();
   </script>
 
 </body>

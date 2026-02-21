@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://myaidiscoverylab.com/sitemap.xml
