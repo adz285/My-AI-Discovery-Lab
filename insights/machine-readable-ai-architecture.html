@@ -36,7 +36,9 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"] },
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"]
+          },
           boxShadow: {
             glass: "0 12px 34px rgba(0,0,0,.45)",
             glow: "0 0 0 1px rgba(255,255,255,.06), 0 24px 90px rgba(192,38,211,.22)"
@@ -53,6 +55,7 @@
     body { min-height: 100vh; }
     img { max-width: 100%; height: auto; }
 
+    /* Match existing site background */
     .bg-animated {
       background:
         radial-gradient(1200px 800px at 12% 10%, rgba(138,43,226,.26), transparent 60%),
@@ -129,26 +132,27 @@
       height: 1px;
     }
 
-    /* Article typography */
-    .proseish p { margin-top: 16px; line-height: 1.85; }
+    /* Article typography tuned to match main site spacing */
+    .proseish p { margin-top: 14px; line-height: 1.85; }
     .proseish p:first-child { margin-top: 0; }
+    .proseish ul { margin-top: 14px; }
+    .proseish li { margin-top: 8px; }
 
     .section-title {
-      margin-top: 46px;
-      text-align: center;
+      margin-top: 42px;
       font-weight: 600;
       letter-spacing: -0.01em;
       line-height: 1.15;
-      font-size: 22px;
+      font-size: 20px;
     }
     @media (min-width: 640px) {
-      .section-title { font-size: 30px; }
+      .section-title { font-size: 28px; }
     }
 
     /* Click-to-enlarge images */
     .zoomable {
       cursor: zoom-in;
-      transition: transform .25s ease, filter .25s ease, border-color .25s ease;
+      transition: transform .25s ease, filter .25s ease;
     }
     .zoomable:hover {
       transform: translateY(-1px);
@@ -211,30 +215,31 @@
     }
   </style>
 
+  <!-- GA4 (My AI Discovery Lab) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QQ93HP5N6"></script>
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      const __gaParams = new URLSearchParams(window.location.search);
+      const __gaDebug = __gaParams.get("debug") === "1";
+
+      gtag("js", new Date());
+      gtag("config", "G-7QQ93HP5N6", __gaDebug ? { debug_mode: true } : {});
+    })();
+  </script>
+
   <!-- Breadcrumb JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"BreadcrumbList",
     "itemListElement":[
-      {
-        "@type":"ListItem",
-        "position":1,
-        "name":"Home",
-        "item":"https://myaidiscoverylab.com/index.html"
-      },
-      {
-        "@type":"ListItem",
-        "position":2,
-        "name":"Insights",
-        "item":"https://myaidiscoverylab.com/insights.html"
-      },
-      {
-        "@type":"ListItem",
-        "position":3,
-        "name":"The End of Keywords",
-        "item":"https://myaidiscoverylab.com/insights/machine-readable-ai-architecture.html"
-      }
+      { "@type":"ListItem", "position":1, "name":"Home", "item":"https://myaidiscoverylab.com/index.html" },
+      { "@type":"ListItem", "position":2, "name":"Insights", "item":"https://myaidiscoverylab.com/insights.html" },
+      { "@type":"ListItem", "position":3, "name":"The End of Keywords", "item":"https://myaidiscoverylab.com/insights/machine-readable-ai-architecture.html" }
     ]
   }
   </script>
@@ -280,13 +285,12 @@
     <canvas id="particles"></canvas>
   </div>
 
-  <!-- Top nav (same system) -->
+  <!-- Top nav (match your existing site) -->
   <header id="siteNav" class="sticky top-0 z-50 nav-base">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
         <a href="/index.html#top" class="flex items-center gap-3 min-w-0">
           <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden shrink-0 p-1.5">
-            <!-- NOTE: This page is inside /insights/, so logo is referenced relatively -->
             <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
           </div>
           <div class="leading-tight min-w-0">
@@ -305,11 +309,13 @@
           <a href="/snapshot.html" class="hover:text-white transition">Free Snapshot</a>
         </nav>
 
-        <div class="flex items-center gap-3 shrink-0">
+        <!-- Keep audit button ALWAYS visible -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
           <a href="/snapshot.html" class="hidden sm:inline-flex rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition focus-ring">
             Get snapshot
           </a>
-          <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary transition focus-ring whitespace-nowrap">
+          <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary transition focus-ring whitespace-nowrap">
             £149 Audit
           </a>
         </div>
@@ -317,8 +323,27 @@
     </div>
   </header>
 
+  <!-- Mobile sticky CTA bar (audit always visible on phones) -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pb-4">
+    <div class="mx-auto max-w-6xl">
+      <div class="glass-strong rounded-2xl p-3 border border-white/10 shadow-glow">
+        <div class="flex gap-2">
+          <a href="/snapshot.html"
+             class="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
+            Free Snapshot
+          </a>
+          <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+             class="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold text-white btn-primary transition focus-ring">
+            £149 Audit
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <main class="relative">
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+    <!-- Extra bottom padding so the mobile sticky bar never overlaps content -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-14 pb-28 md:pb-14">
       <div class="mx-auto max-w-3xl">
         <!-- Breadcrumb -->
         <div class="text-xs text-zinc-300/70">
@@ -329,51 +354,73 @@
           <span class="text-zinc-200/90">The End of Keywords</span>
         </div>
 
-        <h1 class="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
-          The End of Keywords: Why Machine-Readable AI Architecture Is the New E-commerce SEO
-        </h1>
+        <!-- Hero header card (matches site layout) -->
+        <div class="mt-5 glass-strong rounded-3xl p-6 sm:p-8 shadow-glow">
+          <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
+            <span class="h-2 w-2 rounded-full" style="background:#C026D3;"></span>
+            <span class="text-xs text-zinc-200/90">Insights • Infrastructure shift • AI discovery</span>
+          </div>
 
-        <!-- Publisher / dates -->
-        <div class="mt-4 text-sm text-zinc-300/80">
-          Published February 21, 2026 <span class="mx-2">•</span>
-          Updated February 21, 2026 <span class="mx-2">•</span>
-          By My AI Discovery Lab
+          <h1 class="mt-5 text-3xl sm:text-5xl font-semibold tracking-tight leading-tight">
+            The End of Keywords: Why Machine-Readable AI Architecture Is the New E-commerce SEO
+          </h1>
+
+          <div class="mt-4 text-sm text-zinc-300/80">
+            Published February 21, 2026 <span class="mx-2">•</span>
+            Updated February 21, 2026 <span class="mx-2">•</span>
+            By My AI Discovery Lab
+          </div>
+
+          <p class="mt-5 text-base sm:text-lg text-zinc-200/85 leading-relaxed">
+            AI search doesn’t rank stores. It recommends what it can interpret. If your product data isn’t machine-readable, your brand becomes structurally invisible.
+          </p>
+
+          <div class="mt-6 divider"></div>
+
+          <!-- Above-the-fold CTAs (match site) -->
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+               class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
+              Book £149 Audit
+            </a>
+            <a href="/snapshot.html"
+               class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
+              Get Free Snapshot
+            </a>
+          </div>
         </div>
 
-        <div class="mt-8 glass-strong rounded-3xl p-6 sm:p-8 shadow-glow">
+        <!-- Article body card -->
+        <div class="mt-6 glass-strong rounded-3xl p-6 sm:p-8 shadow-glow">
           <div class="proseish text-zinc-200/90">
             <p class="text-lg sm:text-xl font-medium text-zinc-100/90">
               If you run an ecommerce brand doing £250K to £1M per year, chances are you’ve invested in ecommerce SEO. For years, that blueprint worked. Today, it’s structurally incomplete.
             </p>
-          </div>
 
-          <!-- HERO IMAGE (click to enlarge) -->
-          <figure class="mt-8">
-            <div class="glass rounded-3xl border border-white/10 bg-black/25 overflow-hidden">
-              <img
-                src="./hero.png"
-                alt="Abstract hero graphic representing AI search and machine-readable product architecture"
-                class="zoomable w-full object-cover"
-                data-zoom
-              />
-            </div>
-            <figcaption class="mt-3 text-xs text-zinc-300/70">
-              Click to enlarge.
-            </figcaption>
-          </figure>
+            <!-- HERO IMAGE -->
+            <figure class="mt-8">
+              <div class="glass rounded-3xl border border-white/10 bg-black/25 overflow-hidden">
+                <img
+                  src="./hero.png"
+                  alt="Abstract hero graphic representing AI search and machine-readable product architecture"
+                  class="zoomable w-full object-cover"
+                  data-zoom
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="mt-3 text-xs text-zinc-300/70">
+                Click to enlarge.
+              </figcaption>
+            </figure>
 
-          <div class="mt-10 divider"></div>
+            <div class="mt-10 divider"></div>
 
-          <div class="proseish text-zinc-200/90">
             <p>
               AI search engines like ChatGPT, Claude, Google AI Overviews, Gemini, and Meta’s AI systems are reshaping how customers discover and evaluate products. Buyers are no longer typing fragmented keywords into search bars and manually comparing ten open tabs.
             </p>
-            <p>
-              They are asking AI to decide for them.
-            </p>
-            <p>
-              And AI does not evaluate your store the way Google did in 2015.
-            </p>
+            <p>They are asking AI to decide for them.</p>
+            <p>And AI does not evaluate your store the way Google did in 2015.</p>
             <p>
               It evaluates entities. If your ecommerce infrastructure is not machine-readable, your brand is not ranked lower. It is simply ignored.
             </p>
@@ -383,9 +430,7 @@
             <p>
               Traditional ecommerce SEO is built around keywords and retrieval. It assumes a human user will click your listing, read your product description, compare your features, and make a decision.
             </p>
-            <p>
-              AI search works differently.
-            </p>
+            <p>AI search works differently.</p>
             <p>
               When someone asks: “Find me a waterproof hiking backpack under £150 with a 30L capacity and recycled materials.”
             </p>
@@ -405,14 +450,12 @@
             <p>
               When an AI generates a buying recommendation, it typically surfaces: 3–5 products, structured comparisons, summary reasoning, direct purchase pathways.
             </p>
-            <p>
-              If your product is not machine-interpretable, you are not in the candidate set.
-            </p>
+            <p>If your product is not machine-interpretable, you are not in the candidate set.</p>
             <p>
               Your SEO dashboard may show green arrows and improving traffic. Meanwhile, AI recommendation layers quietly bypass you. This is the visibility crisis emerging across ecommerce — and it’s accelerating.
             </p>
 
-            <!-- Inline image (click to enlarge) -->
+            <!-- Inline image -->
             <figure class="mt-10">
               <div class="glass rounded-3xl border border-white/10 bg-black/25 overflow-hidden">
                 <img
@@ -420,6 +463,8 @@
                   alt="Diagram showing the pipeline from product pages to structured data to AI recommendations"
                   class="zoomable w-full object-cover"
                   data-zoom
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <figcaption class="mt-3 text-xs text-zinc-300/70">
@@ -427,14 +472,17 @@
               </figcaption>
             </figure>
 
-            <!-- CTA (UPDATED) -->
+            <!-- CTA block (matches your updated design) -->
             <div class="mt-10 glass rounded-3xl p-6 border border-white/10 bg-black/25">
-              <div class="text-xs text-zinc-300/80">Action</div>
-              <div class="mt-1 text-lg font-semibold text-zinc-100/90">Stop Guessing. Get an Infrastructure Audit.</div>
-              <div class="mt-2 text-sm text-zinc-200/80">
-                Find out if your store is machine-readable — or structurally invisible.
+              <div class="text-xs text-zinc-300/80">Decisive next step</div>
+              <div class="mt-1 text-2xl font-semibold tracking-tight text-zinc-100/90">
+                Secure your position in AI search before you’re playing catch-up
               </div>
-              <div class="mt-5 flex flex-col sm:flex-row gap-3">
+              <div class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
+                Infrastructure authority takes time to build. If you wait until your competitors are “AI-native,” you’ll be catching up from behind.
+                Get the audit, get the blueprint, and close the structural gap now.
+              </div>
+              <div class="mt-6 flex flex-col sm:flex-row gap-3">
                 <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
                    class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
                   Book £149 Audit
@@ -454,9 +502,7 @@
             <p>
               AI readiness requires explicit product entity typing, attribute-level clarity (size, weight, materials, compatibility), clean JSON-LD architecture, structured offers and availability, review and aggregate rating modelling, and consistent attribute naming across variants.
             </p>
-            <p>
-              This is not cosmetic optimisation. It is product data architecture.
-            </p>
+            <p>This is not cosmetic optimisation. It is product data architecture.</p>
             <p>
               AI systems prioritise certainty. Structured data eliminates ambiguity. When your product catalog is machine-readable, AI systems can confidently interpret, compare, and recommend your inventory.
             </p>
@@ -476,7 +522,7 @@
               If your site requires scraping, guessing, or contextual inference, you introduce friction. AI agents default to brands that provide clean, interoperable, machine-readable product data.
             </p>
 
-            <!-- Screenshot example (optional, included) -->
+            <!-- Screenshot example -->
             <figure class="mt-10">
               <div class="glass rounded-3xl border border-white/10 bg-black/25 overflow-hidden">
                 <img
@@ -484,6 +530,8 @@
                   alt="Screenshot showing how ads or placements can appear inside AI interfaces"
                   class="zoomable w-full object-cover"
                   data-zoom
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <figcaption class="mt-3 text-xs text-zinc-300/70">
@@ -493,9 +541,7 @@
 
             <h2 class="section-title">The Competitive Advantage No One Is Measuring</h2>
 
-            <p>
-              Here is the uncomfortable truth: most ecommerce brands are structurally invisible to AI search engines.
-            </p>
+            <p>Here is the uncomfortable truth: most ecommerce brands are structurally invisible to AI search engines.</p>
             <p>
               Two brands may sell identical products. The brand with superior machine-readable product architecture is more likely to appear in AI-generated summaries, recommendation sets, comparison tables, and agent-driven shopping flows.
             </p>
@@ -511,12 +557,8 @@
 
             <h2 class="section-title">The Takeaway</h2>
 
-            <p>
-              The future of ecommerce SEO is not about chasing keywords. It is about engineering clarity.
-            </p>
-            <p>
-              AI search engines do not reward clever copy. They reward structured certainty.
-            </p>
+            <p>The future of ecommerce SEO is not about chasing keywords. It is about engineering clarity.</p>
+            <p>AI search engines do not reward clever copy. They reward structured certainty.</p>
             <p>
               If your store has never been evaluated for AI visibility, you are operating blind in the fastest-moving layer of product discovery.
             </p>
@@ -524,25 +566,20 @@
               Before you invest another pound in backlinks, ads, or traditional SEO optimisation, assess your AI visibility risk.
             </p>
 
-            <!-- FINAL CTA (UPDATED) -->
+            <!-- Final CTA (tight + consistent) -->
             <div class="mt-12 glass-strong rounded-3xl p-7 border border-white/10 bg-black/25">
-              <div class="text-xs text-zinc-300/80">Decisive next step</div>
-
+              <div class="text-xs text-zinc-300/80">Action</div>
               <div class="mt-1 text-2xl font-semibold tracking-tight text-zinc-100/90">
-                Secure your position in AI search before you’re playing catch-up
+                Get your AI visibility blueprint in 48–72 hours
               </div>
-
               <div class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-                Infrastructure authority takes time to build. If you wait until your competitors are “AI-native,” you’ll be catching up from behind.
-                Get the audit, get the blueprint, and close the structural gap now.
+                We’ll audit your live product JSON + JSON-LD, identify the structural gaps, and deliver an implementation-ready rebuild plan.
               </div>
-
               <div class="mt-6 flex flex-col sm:flex-row gap-3">
                 <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
                    class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
                   Book £149 Audit
                 </a>
-
                 <a href="/snapshot.html"
                    class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
                   Get Free Snapshot
@@ -584,7 +621,7 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // Starfield particles (same lightweight approach)
+    // Starfield particles (same lightweight approach as other pages)
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d", { alpha: true });
 
