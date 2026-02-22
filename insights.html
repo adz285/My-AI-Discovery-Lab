@@ -1,7 +1,9 @@
-<!-- insights.html -->
+<!-- insights.html (amended to match index.html: light theme, sticky nav + mobile menu, cookie-consent gating for GA4 + AdSense, no horizontal scroll) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- NOTE: Google Search Console verification is via DNS (no meta tag required). -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -23,6 +25,9 @@
   <meta name="twitter:description" content="Strategic analysis on AI commerce infrastructure, structured data systems, and machine-readable product architecture." />
   <meta name="twitter:image" content="https://myaidiscoverylab.com/og-image.png" />
 
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#FFFFFF" />
+
   <link rel="icon" href="/favicon.ico" />
 
   <!-- Inter font -->
@@ -36,10 +41,16 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"] },
-          boxShadow: {
-            glass: "0 12px 34px rgba(0,0,0,.45)",
-            glow: "0 0 0 1px rgba(255,255,255,.06), 0 24px 90px rgba(192,38,211,.22)"
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"]
+          },
+          colors: {
+            ink: "#0A2540",
+            text: "#0B1220",
+            sub: "#475569",
+            surface: "#F6F8FB",
+            border: "#E5EAF0",
+            accent: "#2563EB"
           }
         }
       }
@@ -47,91 +58,135 @@
   </script>
 
   <style>
-    :root { color-scheme: dark; }
+    /* Mobile-safe baseline */
     html, body { overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    pre, code { word-break: break-word; white-space: pre-wrap; }
     html { scroll-behavior: smooth; }
-    body { min-height: 100vh; }
-    img { max-width: 100%; height: auto; }
+    body { min-height: 100vh; background: #FFFFFF; color: #0B1220; }
 
-    .bg-animated {
-      background:
-        radial-gradient(1200px 800px at 12% 10%, rgba(138,43,226,.26), transparent 60%),
-        radial-gradient(1000px 760px at 92% 18%, rgba(192,38,211,.18), transparent 58%),
-        radial-gradient(900px 700px at 48% 92%, rgba(147,51,234,.16), transparent 55%),
-        linear-gradient(180deg, #060510 0%, #04030c 55%, #03020a 100%);
-    }
-
-    .glass {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .glass-strong {
-      background: rgba(10,8,22,.52);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .focus-ring:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(192,38,211,.28);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #8A2BE2 0%, #C026D3 45%, #9333EA 100%);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.08),
-        0 14px 44px rgba(192,38,211,.18),
-        0 0 42px rgba(147,51,234,.14);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary::after {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 40%);
-      transform: translateX(-30%);
-      opacity: .55;
-      transition: opacity .35s ease;
-    }
-    .btn-primary:hover::after { opacity: .78; }
-    .btn-primary:active { transform: translateY(1px); }
-
+    /* Sticky nav */
     .nav-base {
-      background: rgba(0,0,0,.18);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid #E5EAF0;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      transition: background .25s ease, border-color .25s ease;
-    }
-    .nav-scrolled {
-      background: rgba(4,3,10,.72);
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
     }
 
-    #particles {
-      position: absolute;
+    /* Buttons */
+    .btn-primary {
+      background: #2563EB;
+      color: #FFFFFF;
+      border: 1px solid rgba(37,99,235,.55);
+    }
+    .btn-primary:hover { background: #1D4ED8; }
+    .btn-secondary {
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      color: #0A2540;
+    }
+    .btn-secondary:hover { background: #F6F8FB; }
+
+    /* Cookie banner */
+    .cookie-banner {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 9999;
+      background: #0B1220;
+      color: #FFFFFF;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 14px 16px;
+    }
+    .cookie-banner-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .cookie-banner p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.88);
+    }
+    .cookie-actions { display: flex; gap: 10px; align-items: center; }
+    .cookie-btn {
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: #FFF;
+      cursor: pointer;
+    }
+    .cookie-btn:hover { background: rgba(255,255,255,.12); }
+    .cookie-btn.primary {
+      background: #2563EB;
+      border-color: rgba(37,99,235,.55);
+    }
+    .cookie-btn.primary:hover { background: #1D4ED8; }
+    .cookie-link {
+      color: rgba(255,255,255,.9);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Image enlarge modal (sitewide pattern) */
+    .img-modal-backdrop {
+      position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: .85;
-      mix-blend-mode: screen;
+      z-index: 10000;
+      background: rgba(11,18,32,.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
     }
-
-    .divider {
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
-      height: 1px;
+    .img-modal-panel {
+      width: min(1100px, 100%);
+      max-height: 86vh;
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,.25);
+      display: flex;
+      flex-direction: column;
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+    .img-modal-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #E5EAF0;
+      background: #F6F8FB;
     }
+    .img-modal-title {
+      font-size: 12px;
+      color: #475569;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .img-modal-close {
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-weight: 700;
+      font-size: 12px;
+      border: 1px solid #E5EAF0;
+      background: #FFFFFF;
+      color: #0A2540;
+      cursor: pointer;
+    }
+    .img-modal-close:hover { background: #F6F8FB; }
+    .img-modal-body { overflow: auto; background: #FFFFFF; }
+    .img-modal-body img { width: 100%; height: auto; display: block; }
   </style>
 
   <!-- Lightweight Organization JSON-LD -->
@@ -144,175 +199,335 @@
     "email":"audit@myaidiscoverylab.com"
   }
   </script>
+
+  <script>
+    // Sitewide IDs (consistent across pages)
+    window.__AIDL__ = {
+      GA4_ID: "G-7QQ93HP5N6",
+      ADSENSE_CLIENT: "ca-pub-7230693944040551"
+    };
+  </script>
 </head>
 
-<body class="min-h-screen bg-animated text-zinc-100 font-sans">
-  <!-- Background layers -->
-  <div class="fixed inset-0 -z-10">
-    <canvas id="particles"></canvas>
+<body class="font-sans">
+  <!-- Cookie Consent Banner -->
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-banner-inner">
+      <p>
+        We use cookies to measure traffic and support ads. Accept to enable analytics (GA4) and AdSense.
+        <a class="cookie-link" href="/privacy.html">Privacy</a>
+      </p>
+      <div class="cookie-actions">
+        <button id="cookieDecline" class="cookie-btn" type="button">Decline</button>
+        <button id="cookieAccept" class="cookie-btn primary" type="button">Accept</button>
+      </div>
+    </div>
   </div>
 
-  <!-- Top nav (same structure/system as your other pages) -->
+  <!-- Image Enlarge Modal -->
+  <div id="imgModal" class="img-modal-backdrop" aria-hidden="true">
+    <div class="img-modal-panel" role="dialog" aria-modal="true" aria-label="Image preview">
+      <div class="img-modal-topbar">
+        <div id="imgModalTitle" class="img-modal-title">Preview</div>
+        <button id="imgModalClose" class="img-modal-close" type="button" aria-label="Close preview">Close</button>
+      </div>
+      <div class="img-modal-body">
+        <img id="imgModalImg" alt="" src="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Nav (matches index.html) -->
   <header id="siteNav" class="sticky top-0 z-50 nav-base">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
         <a href="/index.html#top" class="flex items-center gap-3 min-w-0">
-          <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden shrink-0 p-1.5">
+          <div class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
             <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
           </div>
           <div class="leading-tight min-w-0">
-            <div class="text-sm font-semibold tracking-tight truncate">My AI Discovery Lab</div>
-            <div class="text-[11px] text-zinc-300/80 truncate">AI discovery infrastructure for commerce</div>
+            <div class="text-sm font-semibold tracking-tight text-ink truncate">My AI Discovery Lab</div>
+            <div class="text-[11px] text-sub truncate">Product data infrastructure</div>
           </div>
         </a>
 
-        <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-200/90">
-          <a href="/index.html#what" class="hover:text-white transition">What we do</a>
-          <a href="/index.html#why" class="hover:text-white transition">Why it matters</a>
-          <a href="/index.html#how" class="hover:text-white transition">How it works</a>
-          <a href="/index.html#pricing" class="hover:text-white transition">Pricing</a>
-          <a href="/index.html#faq" class="hover:text-white transition">FAQ</a>
-          <a href="/insights.html" class="hover:text-white transition">Insights</a>
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuToggle"
+          class="md:hidden inline-flex items-center justify-center rounded-xl p-2 border border-border bg-white"
+          aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ink" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6 text-sm text-ink/90">
+          <a href="/snapshot.html" class="hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="hover:text-ink transition">Insights</a>
         </nav>
 
-        <div class="flex items-center gap-3 shrink-0">
-          <a href="/index.html#pricing" class="hidden sm:inline-flex rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition focus-ring">
-            See pricing
+        <div class="hidden md:flex items-center gap-3 shrink-0">
+          <a href="/index.html"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-secondary">
+            Back to site
           </a>
-          <a href="/index.html#pricing" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary transition focus-ring whitespace-nowrap">
-            Book $149 Audit
+          <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+            £149 Audit
           </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="mt-3 rounded-2xl border border-border bg-white p-4 space-y-3 text-sm text-ink/90">
+          <a href="/snapshot.html" class="block hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="block hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="block hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="block hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="block hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="block hover:text-ink transition">Insights</a>
+
+          <div class="pt-2 grid grid-cols-1 gap-2">
+            <a href="/index.html"
+               class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-secondary">
+              Back to site
+            </a>
+            <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+               class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+              £149 Audit
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="relative">
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-      <div class="w-full max-w-4xl">
-        <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
-          <span class="h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-          <span class="text-xs text-zinc-200/90">Infrastructure insights • AI commerce shifts • Machine-readable systems</span>
+  <main id="top">
+    <!-- Page intro -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-16 pb-6">
+      <div class="mx-auto max-w-4xl">
+        <div class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2">
+          <span class="h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+          <span class="text-xs text-sub">Infrastructure insights • AI commerce shifts • Machine-readable systems</span>
         </div>
 
-        <h1 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight">
+        <h1 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight text-ink">
           AI Commerce Infrastructure Insights
         </h1>
 
-        <p class="mt-4 max-w-3xl text-zinc-200/85 leading-relaxed">
+        <p class="mt-4 max-w-3xl text-sub leading-relaxed">
           Strategic analysis on structured data systems, AI discovery mechanics, machine-readable product architecture, and the structural shifts redefining e-commerce search.
-          This is not marketing theory. This is infrastructure thinking.
+          This is infrastructure thinking — not marketing theory.
         </p>
+      </div>
+    </section>
 
-        <div class="mt-6 divider"></div>
-
-        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Cards -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-14">
+      <div class="mx-auto max-w-4xl">
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Article Card 1 -->
           <a href="/insights/machine-readable-ai-architecture.html"
-             class="glass-strong rounded-2xl p-6 hover:bg-white/5 transition">
-            <div class="text-xs text-zinc-300/70">Infrastructure Shift</div>
-            <h2 class="mt-3 text-xl font-semibold">
+             class="group rounded-2xl border border-border bg-white p-6 hover:bg-surface transition">
+            <div class="text-xs text-sub">Infrastructure shift</div>
+            <h2 class="mt-3 text-xl font-semibold text-ink">
               The End of Keywords: Why Machine-Readable AI Architecture Is the New E-commerce SEO
             </h2>
-            <p class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-              Ranking is no longer enough. AI systems recommend what they understand. Most stores are structurally invisible.
+            <p class="mt-3 text-sm text-sub leading-relaxed">
+              Ranking is no longer enough. AI systems recommend what they understand — most stores are structurally invisible.
             </p>
-            <div class="mt-5 text-sm font-semibold text-white/90">
+            <div class="mt-5 text-sm font-semibold text-accent">
               Read article →
             </div>
           </a>
 
-          <!-- Future articles: duplicate this card -->
+          <!-- Placeholder card (keeps layout consistent; remove when you add the next post) -->
+          <div class="rounded-2xl border border-border bg-white p-6">
+            <div class="text-xs text-sub">Next drop</div>
+            <h2 class="mt-3 text-xl font-semibold text-ink">
+              Next insight coming soon
+            </h2>
+            <p class="mt-3 text-sm text-sub leading-relaxed">
+              Add a second card by duplicating the article card block above and changing the href + text.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 rounded-2xl border border-border bg-surface p-6">
+          <div class="text-sm font-semibold text-ink">Want a fast read on your store?</div>
+          <p class="mt-2 text-sm text-sub leading-relaxed">
+            Get a free Snapshot to see whether AI systems can interpret your product data structure.
+          </p>
+          <div class="mt-4 flex flex-col sm:flex-row gap-3">
+            <a href="/snapshot.html" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-primary">
+              Get Free Snapshot
+            </a>
+            <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-secondary">
+              £149 Audit
+            </a>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Footer (matches index.html) -->
+    <footer class="border-t border-border bg-white">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+          <div class="flex items-start gap-4 min-w-0">
+            <div class="h-12 w-12 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
+              <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" />
+            </div>
+            <div class="text-sm min-w-0">
+              <div class="font-semibold text-ink break-words">My AI Discovery Lab</div>
+              <div class="mt-1 text-sub break-words">Machine-readable commerce infrastructure.</div>
+              <div class="mt-2 text-sub break-words">
+                <a class="underline text-accent" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:items-end gap-3">
+            <div class="flex flex-wrap items-center gap-4 text-sm text-sub">
+              <a href="/privacy.html" class="hover:text-ink transition">Privacy</a>
+              <a href="/terms.html" class="hover:text-ink transition">Terms</a>
+              <a href="/snapshot.html" class="hover:text-ink transition">Snapshot</a>
+              <a href="/insights.html" class="hover:text-ink transition">Insights</a>
+            </div>
+            <div class="text-xs text-sub">© <span id="year"></span> My AI Discovery Lab. All rights reserved.</div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
 
   <script>
-    // Nav blur/darken on scroll
-    const nav = document.getElementById("siteNav");
-    const onScroll = () => {
-      if (window.scrollY > 12) nav.classList.add("nav-scrolled");
-      else nav.classList.remove("nav-scrolled");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Starfield particles (same lightweight approach)
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d", { alpha: true });
+    // Mobile menu toggle + close on link click
+    const toggle = document.getElementById("mobileMenuToggle");
+    const menu = document.getElementById("mobileMenu");
+    if (toggle && menu) toggle.addEventListener("click", () => menu.classList.toggle("hidden"));
+    document.querySelectorAll('#mobileMenu a').forEach(a => {
+      a.addEventListener('click', () => menu?.classList.add('hidden'));
+    });
+  </script>
 
-    let w, h, dpr, particles;
-    const PARTICLE_COUNT = 110;
-    const MAX_SPEED = 0.18;
+  <!-- Image Enlarge (sitewide) -->
+  <script>
+    (function () {
+      const modal = document.getElementById("imgModal");
+      const img = document.getElementById("imgModalImg");
+      const title = document.getElementById("imgModalTitle");
+      const closeBtn = document.getElementById("imgModalClose");
 
-    function resizeCanvas() {
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      w = canvas.clientWidth = window.innerWidth;
-      h = canvas.clientHeight = window.innerHeight;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      particles = Array.from({ length: PARTICLE_COUNT }, () => spawnParticle(true));
-    }
+      if (!modal || !img || !closeBtn) return;
 
-    function spawnParticle(randomY = false) {
-      const x = Math.random() * w;
-      const y = randomY ? Math.random() * h : -10;
-      const r = 0.5 + Math.random() * 1.5;
-      const vx = (Math.random() - 0.5) * MAX_SPEED;
-      const vy = (0.03 + Math.random() * 0.14);
-      const a = 0.14 + Math.random() * 0.32;
-      return { x, y, r, vx, vy, a };
-    }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, w, h);
-
-      const g = ctx.createRadialGradient(w * 0.55, h * 0.15, 0, w * 0.55, h * 0.15, Math.max(w, h));
-      g.addColorStop(0, "rgba(192,38,211,0.06)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.y > h + 12) particles[i] = spawnParticle(false);
-        if (p.x < -12) p.x = w + 12;
-        if (p.x > w + 12) p.x = -12;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.a})`;
-        ctx.fill();
+      function openModal(src, altText) {
+        img.src = src;
+        img.alt = altText || "";
+        title.textContent = altText || "Preview";
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
       }
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 110) {
-            const alpha = (1 - dist / 110) * 0.06;
-            ctx.strokeStyle = `rgba(138,43,226,${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
+      function closeModal() {
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+        img.src = "";
+        document.body.style.overflow = "";
       }
 
-      requestAnimationFrame(drawStars);
-    }
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
-    window.addEventListener("resize", resizeCanvas, { passive: true });
-    resizeCanvas();
-    drawStars();
+      document.querySelectorAll('img[data-enlarge="true"]').forEach((el) => {
+        el.style.cursor = "zoom-in";
+        el.addEventListener("click", () => openModal(el.currentSrc || el.src, el.alt));
+      });
+    })();
+  </script>
+
+  <!-- Consent + Analytics Loader (GA4 + AdSense gated) -->
+  <script>
+    (function () {
+      const CONSENT_KEY = "aidl_cookie_consent_v1";
+      const banner = document.getElementById("cookieBanner");
+      const acceptBtn = document.getElementById("cookieAccept");
+      const declineBtn = document.getElementById("cookieDecline");
+
+      function hasConsent() { return localStorage.getItem(CONSENT_KEY) === "accepted"; }
+      function setConsent(value) { localStorage.setItem(CONSENT_KEY, value); }
+
+      function loadScriptOnce(id, src) {
+        if (document.getElementById(id)) return;
+        const s = document.createElement("script");
+        s.id = id;
+        s.async = true;
+        s.src = src;
+        document.head.appendChild(s);
+      }
+
+      function enableGA4() {
+        const GA4_ID = (window.__AIDL__ && window.__AIDL__.GA4_ID) || "";
+        if (!GA4_ID) return;
+
+        loadScriptOnce("ga4-gtag", "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4_ID));
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ window.dataLayer.push(arguments); }
+        window.gtag = window.gtag || gtag;
+
+        gtag("js", new Date());
+        gtag("config", GA4_ID, { anonymize_ip: true });
+      }
+
+      function enableAdSense() {
+        const client = (window.__AIDL__ && window.__AIDL__.ADSENSE_CLIENT) || "";
+        if (!client) return;
+
+        loadScriptOnce(
+          "adsense-auto",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(client)
+        );
+      }
+
+      function enableTracking() {
+        enableGA4();
+        enableAdSense();
+      }
+
+      const prior = localStorage.getItem(CONSENT_KEY);
+      if (hasConsent()) {
+        enableTracking();
+      } else {
+        if (banner && !prior) banner.style.display = "block";
+      }
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          setConsent("accepted");
+          if (banner) banner.style.display = "none";
+          enableTracking();
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener("click", function () {
+          setConsent("declined");
+          if (banner) banner.style.display = "none";
+        });
+      }
+    })();
   </script>
 </body>
 </html>
