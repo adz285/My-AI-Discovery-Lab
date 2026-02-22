@@ -1,26 +1,59 @@
+<!-- privacy.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- NOTE: Google Search Console verification is via DNS (no meta tag required). -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Privacy Policy — My AI Discovery Lab</title>
   <meta name="description" content="Privacy Policy for My AI Discovery Lab." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://myaidiscoverylab.com/privacy.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy Policy — My AI Discovery Lab" />
+  <meta property="og:description" content="Privacy Policy for My AI Discovery Lab." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myaidiscoverylab.com/privacy.html" />
+  <meta property="og:image" content="https://myaidiscoverylab.com/og-image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Policy — My AI Discovery Lab" />
+  <meta name="twitter:description" content="Privacy Policy for My AI Discovery Lab." />
+  <meta name="twitter:image" content="https://myaidiscoverylab.com/og-image.png" />
+
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#FFFFFF" />
+
   <link rel="icon" href="/favicon.ico" />
 
+  <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"] },
-          boxShadow: {
-            glass: "0 12px 34px rgba(0,0,0,.45)",
-            glow: "0 0 0 1px rgba(255,255,255,.06), 0 24px 90px rgba(192,38,211,.22)"
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"]
+          },
+          colors: {
+            ink: "#0A2540",
+            text: "#0B1220",
+            sub: "#475569",
+            surface: "#F6F8FB",
+            border: "#E5EAF0",
+            accent: "#2563EB",
+            success: "#16A34A",
+            warn: "#D97706",
+            danger: "#DC2626"
           }
         }
       }
@@ -28,194 +61,504 @@
   </script>
 
   <style>
-    :root { color-scheme: dark; }
+    /* ===== Mobile safe baseline: no horizontal scroll, responsive media ===== */
     html, body { overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    pre, code { word-break: break-word; white-space: pre-wrap; }
+
     html { scroll-behavior: smooth; }
-    body { min-height: 100vh; }
-    img { max-width: 100%; height: auto; }
+    body { min-height: 100vh; background: #FFFFFF; color: #0B1220; }
 
-    .bg-animated {
-      background:
-        radial-gradient(1200px 800px at 12% 10%, rgba(138,43,226,.26), transparent 60%),
-        radial-gradient(1000px 760px at 92% 18%, rgba(192,38,211,.18), transparent 58%),
-        radial-gradient(900px 700px at 48% 92%, rgba(147,51,234,.16), transparent 55%),
-        linear-gradient(180deg, #060510 0%, #04030c 55%, #03020a 100%);
-    }
-
-    .glass {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .glass-strong {
-      background: rgba(10,8,22,.52);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-    .focus-ring:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(192,38,211,.28);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #8A2BE2 0%, #C026D3 45%, #9333EA 100%);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.08),
-        0 14px 44px rgba(192,38,211,.18),
-        0 0 42px rgba(147,51,234,.14);
-    }
-
+    /* ===== Sticky nav + subtle border ===== */
     .nav-base {
-      background: rgba(0,0,0,.18);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid #E5EAF0;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
-    .nav-scrolled {
-      background: rgba(4,3,10,.72);
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+
+    /* ===== Buttons (accent only) ===== */
+    .btn-primary {
+      background: #2563EB;
+      color: #FFFFFF;
+      border: 1px solid rgba(37,99,235,.55);
+    }
+    .btn-primary:hover { background: #1D4ED8; }
+    .btn-secondary {
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      color: #0A2540;
+    }
+    .btn-secondary:hover { background: #F6F8FB; }
+
+    /* ===== Cookie banner ===== */
+    .cookie-banner {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 9999;
+      background: #0B1220;
+      color: #FFFFFF;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 14px 16px;
+    }
+    .cookie-banner-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .cookie-banner p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.88);
+    }
+    .cookie-actions { display: flex; gap: 10px; align-items: center; }
+    .cookie-btn {
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: #FFF;
+      cursor: pointer;
+    }
+    .cookie-btn:hover { background: rgba(255,255,255,.12); }
+    .cookie-btn.primary {
+      background: #2563EB;
+      border-color: rgba(37,99,235,.55);
+    }
+    .cookie-btn.primary:hover { background: #1D4ED8; }
+    .cookie-link {
+      color: rgba(255,255,255,.9);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    .divider {
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
-      height: 1px;
+    /* ===== Image enlarge modal (sitewide pattern) ===== */
+    .img-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(11,18,32,.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
     }
-
-    .footer-glow {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(192,38,211,.55), rgba(138,43,226,.36), transparent);
-      filter: blur(.15px);
-      opacity: .9;
+    .img-modal-panel {
+      width: min(1100px, 100%);
+      max-height: 86vh;
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,.25);
+      display: flex;
+      flex-direction: column;
     }
-    .footer-glow-soft {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
-      opacity: .55;
+    .img-modal-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #E5EAF0;
+      background: #F6F8FB;
     }
+    .img-modal-title {
+      font-size: 12px;
+      color: #475569;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .img-modal-close {
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-weight: 700;
+      font-size: 12px;
+      border: 1px solid #E5EAF0;
+      background: #FFFFFF;
+      color: #0A2540;
+      cursor: pointer;
+    }
+    .img-modal-close:hover { background: #F6F8FB; }
+    .img-modal-body { overflow: auto; background: #FFFFFF; }
+    .img-modal-body img { width: 100%; height: auto; display: block; }
   </style>
+
+  <!-- Lightweight Organization JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"My AI Discovery Lab",
+    "url":"https://myaidiscoverylab.com/",
+    "email":"audit@myaidiscoverylab.com"
+  }
+  </script>
+
+  <script>
+    // ===== Sitewide IDs (keep consistent across ALL pages) =====
+    window.__AIDL__ = {
+      GA4_ID: "G-7QQ93HP5N6",
+      ADSENSE_CLIENT: "ca-pub-7230693944040551"
+    };
+  </script>
 </head>
 
-<body class="min-h-screen bg-animated text-zinc-100 font-sans">
+<body class="font-sans">
+  <!-- ===== Cookie Consent Banner (blocks GA4 + AdSense until accepted) ===== -->
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-banner-inner">
+      <p>
+        We use cookies to measure traffic and support ads. Accept to enable analytics (GA4) and AdSense.
+        <a class="cookie-link" href="/privacy.html">Privacy</a>
+      </p>
+      <div class="cookie-actions">
+        <button id="cookieDecline" class="cookie-btn" type="button">Decline</button>
+        <button id="cookieAccept" class="cookie-btn primary" type="button">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Image Enlarge Modal (sitewide) ===== -->
+  <div id="imgModal" class="img-modal-backdrop" aria-hidden="true">
+    <div class="img-modal-panel" role="dialog" aria-modal="true" aria-label="Image preview">
+      <div class="img-modal-topbar">
+        <div id="imgModalTitle" class="img-modal-title">Preview</div>
+        <button id="imgModalClose" class="img-modal-close" type="button" aria-label="Close preview">Close</button>
+      </div>
+      <div class="img-modal-body">
+        <img id="imgModalImg" alt="" src="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Sticky Nav (matches index.html) ===== -->
   <header id="siteNav" class="sticky top-0 z-50 nav-base">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
-        <a href="/" class="flex items-center gap-3 min-w-0">
-          <div class="h-16 w-16 rounded-2xl glass shadow-glow flex items-center justify-center overflow-hidden shrink-0">
-            <img src="./logo.png" alt="My AI Discovery Lab logo" class="h-14 w-14 object-contain" />
+        <a href="/index.html#top" class="flex items-center gap-3 min-w-0">
+          <div class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
+            <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
           </div>
           <div class="leading-tight min-w-0">
-            <div class="text-sm font-semibold tracking-tight truncate">My AI Discovery Lab</div>
-            <div class="text-[11px] text-zinc-300/80 truncate">AI discovery infrastructure for commerce</div>
+            <div class="text-sm font-semibold tracking-tight text-ink truncate">My AI Discovery Lab</div>
+            <div class="text-[11px] text-sub truncate">Product data infrastructure</div>
           </div>
         </a>
 
-        <div class="flex items-center gap-3 shrink-0">
-          <a href="/" class="hidden sm:inline-flex rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition focus-ring">
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuToggle"
+          class="md:hidden inline-flex items-center justify-center rounded-xl p-2 border border-border bg-white"
+          aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ink" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6 text-sm text-ink/90">
+          <a href="/snapshot.html" class="hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="hover:text-ink transition">Insights</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3 shrink-0">
+          <a href="/index.html"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-secondary">
             Back to site
           </a>
-          <a href="/#pricing" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary transition focus-ring whitespace-nowrap">
-            Book $149 Audit
+          <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+            £149 Audit
           </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="mt-3 rounded-2xl border border-border bg-white p-4 space-y-3 text-sm text-ink/90">
+          <a href="/snapshot.html" class="block hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="block hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="block hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="block hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="block hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="block hover:text-ink transition">Insights</a>
+
+          <div class="pt-2 grid grid-cols-1 gap-2">
+            <a href="/index.html"
+               class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-secondary">
+              Back to site
+            </a>
+            <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+               class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+              £149 Audit
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
-    <div class="glass-strong rounded-3xl p-8 sm:p-10 shadow-glow">
-      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight">Privacy Policy</h1>
-      <p class="mt-3 text-sm text-zinc-300/85">Last updated: <span id="lastUpdated"></span></p>
+  <main id="top">
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-16 pb-14">
+      <div class="mx-auto max-w-3xl">
+        <div class="rounded-2xl border border-border bg-white p-6 sm:p-8">
+          <div class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2">
+            <span class="h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+            <span class="text-xs text-sub">Policy</span>
+          </div>
 
-      <div class="divider my-8"></div>
+          <h1 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight text-ink">Privacy Policy</h1>
+          <p class="mt-3 text-sm text-sub">Last updated: <span id="lastUpdated"></span></p>
 
-      <div class="space-y-6 text-zinc-200/85 leading-relaxed">
-        <section>
-          <h2 class="text-xl font-semibold text-zinc-100">Overview</h2>
-          <p class="mt-2">
-            My AI Discovery Lab (“we”, “us”) operates myaidiscoverylab.com. This policy explains what we collect, why we collect it, and how you can contact us.
-          </p>
-        </section>
+          <div class="mt-8 rounded-xl border border-border bg-surface p-5">
+            <p class="text-sm text-sub leading-relaxed">
+              This policy explains what we collect, why we collect it, and how you can contact us.
+              Analytics and ads (GA4 + AdSense) only load after cookie consent.
+            </p>
+          </div>
 
-        <section>
-          <h2 class="text-xl font-semibold text-zinc-100">Information we collect</h2>
-          <ul class="mt-2 list-disc pl-6 space-y-2">
-            <li><span class="font-medium text-zinc-100/90">Contact details</span> you provide (e.g. email) when you reach out or purchase.</li>
-            <li><span class="font-medium text-zinc-100/90">Transaction metadata</span> related to payments (processed by Stripe). We do not store full card details.</li>
-            <li><span class="font-medium text-zinc-100/90">Site usage data</span> (basic analytics, logs, and device/browser information) to keep the site secure and improve performance.</li>
-          </ul>
-        </section>
+          <div class="mt-10 space-y-8 text-sub leading-relaxed">
+            <section>
+              <h2 class="text-xl font-semibold text-ink">Overview</h2>
+              <p class="mt-2">
+                My AI Discovery Lab (“we”, “us”) operates myaidiscoverylab.com. This policy explains what we collect, why we collect it, and how you can contact us.
+              </p>
+            </section>
 
-        <section>
-          <h2 class="text-xl font-semibold text-zinc-100">Payments</h2>
-          <p class="mt-2">
-            Payments are processed by Stripe. Your payment details are handled by Stripe’s systems. We receive confirmation of payment and order details needed to deliver the service.
-          </p>
-        </section>
+            <section>
+              <h2 class="text-xl font-semibold text-ink">Information we collect</h2>
+              <ul class="mt-2 list-disc pl-6 space-y-2">
+                <li><span class="font-semibold text-ink">Contact details</span> you provide (e.g. email) when you reach out or purchase.</li>
+                <li><span class="font-semibold text-ink">Transaction metadata</span> related to payments (processed by Stripe). We do not store full card details.</li>
+                <li><span class="font-semibold text-ink">Site usage data</span> (basic analytics, logs, and device/browser information) to keep the site secure and improve performance.</li>
+              </ul>
+            </section>
 
-        <section>
-          <h2 class="text-xl font-semibold text-zinc-100">How we use your information</h2>
-          <ul class="mt-2 list-disc pl-6 space-y-2">
-            <li>To deliver the AI Discovery Audit and communicate about scope, access, and scheduling.</li>
-            <li>To send receipts and essential service updates.</li>
-            <li>To maintain site security and prevent abuse.</li>
-          </ul>
-        </section>
+            <section>
+              <h2 class="text-xl font-semibold text-ink">Payments</h2>
+              <p class="mt-2">
+                Payments are processed by Stripe. Your payment details are handled by Stripe’s systems. We receive confirmation of payment and order details needed to deliver the service.
+              </p>
+            </section>
 
-        <section>
-          <h2 class="text-xl font-semibold text-zinc-100">Data retention</h2>
-          <p class="mt-2">
-            We keep information only as long as necessary to deliver services, maintain records, and comply with legal obligations.
-          </p>
-        </section>
+            <section>
+              <h2 class="text-xl font-semibold text-ink">How we use your information</h2>
+              <ul class="mt-2 list-disc pl-6 space-y-2">
+                <li>To deliver the AI Discovery Audit and communicate about scope, access, and scheduling.</li>
+                <li>To send receipts and essential service updates.</li>
+                <li>To maintain site security and prevent abuse.</li>
+              </ul>
+            </section>
 
-        <section>
-          <h2 class="text-xl font-semibold text-zinc-100">Your rights</h2>
-          <p class="mt-2">
-            You can request access, correction, or deletion of personal data where applicable. Contact us at
-            <a class="underline hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>.
-          </p>
-        </section>
+            <section>
+              <h2 class="text-xl font-semibold text-ink">Data retention</h2>
+              <p class="mt-2">
+                We keep information only as long as necessary to deliver services, maintain records, and comply with legal obligations.
+              </p>
+            </section>
 
-        <section>
-          <h2 class="text-xl font-semibold text-zinc-100">Contact</h2>
-          <p class="mt-2">
-            Email:
-            <a class="underline hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
-          </p>
-        </section>
+            <section>
+              <h2 class="text-xl font-semibold text-ink">Your rights</h2>
+              <p class="mt-2">
+                You can request access, correction, or deletion of personal data where applicable. Contact us at
+                <a class="underline text-accent" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-ink">Contact</h2>
+              <p class="mt-2">
+                Email:
+                <a class="underline text-accent" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+              </p>
+            </section>
+          </div>
+
+          <div class="mt-10 flex flex-col sm:flex-row gap-3">
+            <a href="/index.html"
+               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-secondary">
+              Back to site
+            </a>
+            <a href="/snapshot.html"
+               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-primary">
+              Get a Free Snapshot
+            </a>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="mt-10">
-        <a href="/" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
-          Back to My AI Discovery Lab
-        </a>
+    <!-- Footer (matches index.html) -->
+    <footer class="border-t border-border bg-white">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+          <div class="flex items-start gap-4 min-w-0">
+            <div class="h-12 w-12 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
+              <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" />
+            </div>
+            <div class="text-sm min-w-0">
+              <div class="font-semibold text-ink break-words">My AI Discovery Lab</div>
+              <div class="mt-1 text-sub break-words">Machine-readable commerce infrastructure.</div>
+              <div class="mt-2 text-sub break-words">
+                <a class="underline text-accent" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:items-end gap-3">
+            <div class="flex flex-wrap items-center gap-4 text-sm text-sub">
+              <a href="/privacy.html" class="hover:text-ink transition">Privacy</a>
+              <a href="/terms.html" class="hover:text-ink transition">Terms</a>
+              <a href="/snapshot.html" class="hover:text-ink transition">Snapshot</a>
+              <a href="/insights.html" class="hover:text-ink transition">Insights</a>
+            </div>
+            <div class="text-xs text-sub">© <span id="year"></span> My AI Discovery Lab. All rights reserved.</div>
+          </div>
+        </div>
       </div>
-    </div>
+    </footer>
   </main>
 
-  <div class="footer-glow"></div>
-  <div class="footer-glow-soft"></div>
-  <footer class="border-t border-white/10 bg-black/30">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10 text-xs text-zinc-400/70">
-      © <span id="year"></span> My AI Discovery Lab. All rights reserved.
-    </div>
-  </footer>
-
   <script>
+    // Current year + last updated
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("lastUpdated").textContent = new Date().toLocaleDateString(undefined, { year:"numeric", month:"short", day:"numeric" });
 
-    const nav = document.getElementById("siteNav");
-    const onScroll = () => {
-      if (window.scrollY > 12) nav.classList.add("nav-scrolled");
-      else nav.classList.remove("nav-scrolled");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    // ===== Mobile menu toggle + close on link click =====
+    const toggle = document.getElementById("mobileMenuToggle");
+    const menu = document.getElementById("mobileMenu");
+
+    if (toggle && menu) {
+      toggle.addEventListener("click", () => menu.classList.toggle("hidden"));
+    }
+    document.querySelectorAll('#mobileMenu a').forEach(a => {
+      a.addEventListener('click', () => menu?.classList.add('hidden'));
+    });
+  </script>
+
+  <!-- ===== Image Enlarge (sitewide) ===== -->
+  <script>
+    (function () {
+      const modal = document.getElementById("imgModal");
+      const img = document.getElementById("imgModalImg");
+      const title = document.getElementById("imgModalTitle");
+      const closeBtn = document.getElementById("imgModalClose");
+
+      if (!modal || !img || !closeBtn) return;
+
+      function openModal(src, altText) {
+        img.src = src;
+        img.alt = altText || "";
+        title.textContent = altText || "Preview";
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+        img.src = "";
+        document.body.style.overflow = "";
+      }
+
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+      document.querySelectorAll('img[data-enlarge="true"]').forEach((el) => {
+        el.style.cursor = "zoom-in";
+        el.addEventListener("click", () => openModal(el.currentSrc || el.src, el.alt));
+      });
+    })();
+  </script>
+
+  <!-- ===== Consent + Analytics Loader (GA4 + AdSense gated) ===== -->
+  <script>
+    (function () {
+      const CONSENT_KEY = "aidl_cookie_consent_v1";
+      const banner = document.getElementById("cookieBanner");
+      const acceptBtn = document.getElementById("cookieAccept");
+      const declineBtn = document.getElementById("cookieDecline");
+
+      function hasConsent() { return localStorage.getItem(CONSENT_KEY) === "accepted"; }
+      function setConsent(value) { localStorage.setItem(CONSENT_KEY, value); }
+
+      function loadScriptOnce(id, src) {
+        if (document.getElementById(id)) return;
+        const s = document.createElement("script");
+        s.id = id;
+        s.async = true;
+        s.src = src;
+        document.head.appendChild(s);
+      }
+
+      function enableGA4() {
+        const GA4_ID = (window.__AIDL__ && window.__AIDL__.GA4_ID) || "";
+        if (!GA4_ID) return;
+
+        loadScriptOnce("ga4-gtag", "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4_ID));
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ window.dataLayer.push(arguments); }
+        window.gtag = window.gtag || gtag;
+
+        gtag("js", new Date());
+        gtag("config", GA4_ID, { anonymize_ip: true });
+      }
+
+      function enableAdSense() {
+        const client = (window.__AIDL__ && window.__AIDL__.ADSENSE_CLIENT) || "";
+        if (!client) return;
+
+        loadScriptOnce(
+          "adsense-auto",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(client)
+        );
+      }
+
+      function enableTracking() {
+        enableGA4();
+        enableAdSense();
+      }
+
+      const prior = localStorage.getItem(CONSENT_KEY);
+      if (hasConsent()) {
+        enableTracking();
+      } else {
+        if (banner && !prior) banner.style.display = "block";
+      }
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          setConsent("accepted");
+          if (banner) banner.style.display = "none";
+          enableTracking();
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener("click", function () {
+          setConsent("declined");
+          if (banner) banner.style.display = "none";
+        });
+      }
+    })();
   </script>
 </body>
 </html>
