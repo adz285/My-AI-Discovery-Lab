@@ -2,17 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- NOTE: Google Search Console verification is via DNS (no meta tag required). -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Payment Confirmed — My AI Discovery Lab</title>
-  <meta name="description" content="Payment confirmed for your AI Discovery Audit. Complete the intake form to begin." />
+  <meta name="description" content="Payment confirmed for your £149 AI Discovery Audit. Complete the intake form to begin." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://myaidiscoverylab.com/success.html" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Payment Confirmed — My AI Discovery Lab" />
-  <meta property="og:description" content="Your AI Discovery Audit is now scheduled. Complete intake to begin." />
+  <meta property="og:description" content="Payment confirmed for your £149 AI Discovery Audit. Complete intake to begin." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://myaidiscoverylab.com/success.html" />
   <meta property="og:image" content="https://myaidiscoverylab.com/og-image.png" />
@@ -20,23 +22,13 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Payment Confirmed — My AI Discovery Lab" />
-  <meta name="twitter:description" content="Your AI Discovery Audit is now scheduled. Complete intake to begin." />
+  <meta name="twitter:description" content="Payment confirmed for your £149 AI Discovery Audit. Complete intake to begin." />
   <meta name="twitter:image" content="https://myaidiscoverylab.com/og-image.png" />
 
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#FFFFFF" />
+
   <link rel="icon" href="/favicon.ico" />
-
-<!-- GA4 (My AI Discovery Lab) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QQ93HP5N6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
-    const __gaParams = new URLSearchParams(window.location.search);
-    const __gaDebug = __gaParams.get("debug") === "1";
-
-    gtag("js", new Date());
-    gtag("config", "G-7QQ93HP5N6", __gaDebug ? { debug_mode: true } : {});
-  </script>
 
   <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,10 +41,19 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"] },
-          boxShadow: {
-            glass: "0 12px 34px rgba(0,0,0,.45)",
-            glow: "0 0 0 1px rgba(255,255,255,.06), 0 24px 90px rgba(192,38,211,.22)"
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"]
+          },
+          colors: {
+            ink: "#0A2540",
+            text: "#0B1220",
+            sub: "#475569",
+            surface: "#F6F8FB",
+            border: "#E5EAF0",
+            accent: "#2563EB",
+            success: "#16A34A",
+            warn: "#D97706",
+            danger: "#DC2626"
           }
         }
       }
@@ -60,157 +61,505 @@
   </script>
 
   <style>
-    :root { color-scheme: dark; }
+    /* ===== Mobile safe baseline: no horizontal scroll, responsive media ===== */
     html, body { overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    pre, code { word-break: break-word; white-space: pre-wrap; }
+
     html { scroll-behavior: smooth; }
-    body { min-height: 100vh; }
-    img { max-width: 100%; height: auto; }
+    body { min-height: 100vh; background: #FFFFFF; color: #0B1220; }
 
-    .bg-animated {
-      background:
-        radial-gradient(1200px 800px at 12% 10%, rgba(138,43,226,.26), transparent 60%),
-        radial-gradient(1000px 760px at 92% 18%, rgba(192,38,211,.18), transparent 58%),
-        radial-gradient(900px 700px at 48% 92%, rgba(147,51,234,.16), transparent 55%),
-        linear-gradient(180deg, #060510 0%, #04030c 55%, #03020a 100%);
-    }
-
-    .glass {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .glass-strong {
-      background: rgba(10,8,22,.52);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .focus-ring:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(192,38,211,.28);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #8A2BE2 0%, #C026D3 45%, #9333EA 100%);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.08),
-        0 14px 44px rgba(192,38,211,.18),
-        0 0 42px rgba(147,51,234,.14);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary::after {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 40%);
-      transform: translateX(-30%);
-      opacity: .55;
-      transition: opacity .35s ease;
-    }
-    .btn-primary:hover::after { opacity: .78; }
-    .btn-primary:active { transform: translateY(1px); }
-
+    /* ===== Sticky nav + subtle border ===== */
     .nav-base {
-      background: rgba(0,0,0,.18);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid #E5EAF0;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      transition: background .25s ease, border-color .25s ease;
     }
 
-    .divider {
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
-      height: 1px;
+    /* ===== Buttons (accent only) ===== */
+    .btn-primary {
+      background: #2563EB;
+      color: #FFFFFF;
+      border: 1px solid rgba(37,99,235,.55);
+    }
+    .btn-primary:hover { background: #1D4ED8; }
+    .btn-secondary {
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      color: #0A2540;
+    }
+    .btn-secondary:hover { background: #F6F8FB; }
+
+    /* ===== Cookie banner ===== */
+    .cookie-banner {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 9999;
+      background: #0B1220;
+      color: #FFFFFF;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 14px 16px;
+    }
+    .cookie-banner-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .cookie-banner p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.88);
+    }
+    .cookie-actions { display: flex; gap: 10px; align-items: center; }
+    .cookie-btn {
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: #FFF;
+      cursor: pointer;
+    }
+    .cookie-btn:hover { background: rgba(255,255,255,.12); }
+    .cookie-btn.primary {
+      background: #2563EB;
+      border-color: rgba(37,99,235,.55);
+    }
+    .cookie-btn.primary:hover { background: #1D4ED8; }
+    .cookie-link {
+      color: rgba(255,255,255,.9);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ===== Image enlarge (sitewide) ===== */
+    .zoomable { cursor: zoom-in; }
+    #imgLightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: none;
+      background: rgba(11, 18, 32, 0.78);
+      padding: 18px;
+    }
+    #imgLightbox[aria-hidden="false"] { display: block; }
+    .lb-inner {
+      height: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .lb-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #fff;
+    }
+    .lb-btn {
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 700;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: #fff;
+      cursor: pointer;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,.14); }
+    .lb-stage {
+      flex: 1;
+      min-height: 0;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+    .lb-stage img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
     }
   </style>
+
+  <!-- Lightweight Organization JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"My AI Discovery Lab",
+    "url":"https://myaidiscoverylab.com/",
+    "email":"audit@myaidiscoverylab.com"
+  }
+  </script>
+
+  <script>
+    // ===== Sitewide IDs (keep consistent across ALL pages) =====
+    window.__AIDL__ = {
+      GA4_ID: "G-7QQ93HP5N6",
+      ADSENSE_CLIENT: "ca-pub-7230693944040551"
+    };
+  </script>
 </head>
 
-<body class="min-h-screen bg-animated text-zinc-100 font-sans">
-
-  <div class="fixed inset-0 -z-10">
-    <canvas id="particles"></canvas>
+<body class="font-sans">
+  <!-- ===== Cookie Consent Banner (blocks GA4 + AdSense until accepted) ===== -->
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-banner-inner">
+      <p>
+        We use cookies to measure traffic and support ads. Accept to enable analytics (GA4) and AdSense.
+        <a class="cookie-link" href="/privacy.html">Privacy</a>
+      </p>
+      <div class="cookie-actions">
+        <button id="cookieDecline" class="cookie-btn" type="button">Decline</button>
+        <button id="cookieAccept" class="cookie-btn primary" type="button">Accept</button>
+      </div>
+    </div>
   </div>
 
-  <header class="sticky top-0 z-50 nav-base">
+  <!-- ===== Sticky Nav (matches index.html) ===== -->
+  <header id="siteNav" class="sticky top-0 z-50 nav-base">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
-        <a href="/index.html#top" class="flex items-center gap-3">
-          <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden p-1.5">
-            <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" />
+        <a href="/index.html#top" class="flex items-center gap-3 min-w-0">
+          <div class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
+            <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
           </div>
-          <div>
-            <div class="text-sm font-semibold tracking-tight">My AI Discovery Lab</div>
-            <div class="text-[11px] text-zinc-300/80">AI discovery infrastructure for commerce</div>
+          <div class="leading-tight min-w-0">
+            <div class="text-sm font-semibold tracking-tight text-ink truncate">My AI Discovery Lab</div>
+            <div class="text-[11px] text-sub truncate">Product data infrastructure</div>
           </div>
         </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuToggle"
+          class="md:hidden inline-flex items-center justify-center rounded-xl p-2 border border-border bg-white"
+          aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ink" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6 text-sm text-ink/90">
+          <a href="/snapshot.html" class="hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="hover:text-ink transition">Insights</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3 shrink-0">
+          <a href="/snapshot.html"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+            Get a Free Snapshot
+          </a>
+          <a href="/index.html#offers"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-secondary">
+            Offers
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="mt-3 rounded-2xl border border-border bg-white p-4 space-y-3 text-sm text-ink/90">
+          <a href="/snapshot.html" class="block hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="block hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="block hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="block hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="block hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="block hover:text-ink transition">Insights</a>
+
+          <div class="pt-2">
+            <a href="/snapshot.html"
+               class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+              Get a Free Snapshot
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <main class="relative">
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
+  <main id="top">
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
       <div class="flex min-h-[70vh] items-center justify-center">
-        <div class="w-full max-w-xl glass-strong rounded-3xl p-8 sm:p-10 shadow-glow">
-
-          <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
-            <span class="h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-            <span class="text-xs text-zinc-200/90">AI Discovery Audit • $149 one-time • No contract</span>
+        <div class="w-full max-w-xl rounded-3xl border border-border bg-surface p-8 sm:p-10">
+          <div class="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2">
+            <span class="h-2 w-2 rounded-full" style="background:#16A34A;"></span>
+            <span class="text-xs text-sub">AI Discovery Audit • £149 one-time • No contract</span>
           </div>
 
-          <h1 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight">
-            Payment Confirmed.
+          <h1 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight text-ink">
+            Payment confirmed.
           </h1>
 
-          <p class="mt-3 text-base sm:text-lg text-zinc-200/85 leading-relaxed">
-            Your AI Discovery Audit is now scheduled.
+          <p class="mt-3 text-base sm:text-lg text-sub leading-relaxed">
+            Next step: complete the intake so we can begin the structured review.
           </p>
 
-          <div class="mt-6 divider"></div>
+          <div class="mt-6 rounded-full" style="height:1px;background:#E5EAF0;"></div>
 
-          <div class="mt-6 space-y-3 text-sm text-zinc-200/85">
-            <div class="glass rounded-2xl p-4 border border-white/10 bg-black/25">
-              <div class="text-xs text-zinc-300/80">Delivery expectation</div>
-              <div class="mt-1 font-semibold text-zinc-100/90">48–72 hours</div>
-              <div class="mt-1 text-xs text-zinc-300/80">after your intake details are submitted.</div>
+          <div class="mt-6 space-y-3">
+            <div class="rounded-2xl border border-border bg-white p-4">
+              <div class="text-xs text-sub">Delivery expectation</div>
+              <div class="mt-1 font-semibold text-ink">48–72 hours</div>
+              <div class="mt-1 text-xs text-sub">after your intake details are submitted.</div>
             </div>
           </div>
 
           <div class="mt-8 flex flex-col sm:flex-row gap-3">
             <a href="/intake.html"
-               class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
+               class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-primary">
               Complete Audit Intake
             </a>
 
             <a href="/index.html"
-               class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
+               class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-secondary">
               Back to site
             </a>
           </div>
 
+          <div class="mt-5 text-xs text-sub">
+            If you close this page, you can always return to intake via <span class="font-semibold">myaidiscoverylab.com/intake.html</span>.
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Footer (matches index.html) -->
+    <footer class="border-t border-border bg-white">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+          <div class="flex items-start gap-4 min-w-0">
+            <div class="h-12 w-12 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
+              <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" />
+            </div>
+            <div class="text-sm min-w-0">
+              <div class="font-semibold text-ink break-words">My AI Discovery Lab</div>
+              <div class="mt-1 text-sub break-words">Machine-readable commerce infrastructure.</div>
+              <div class="mt-2 text-sub break-words">
+                <a class="underline text-accent" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:items-end gap-3">
+            <div class="flex flex-wrap items-center gap-4 text-sm text-sub">
+              <a href="/privacy.html" class="hover:text-ink transition">Privacy</a>
+              <a href="/terms.html" class="hover:text-ink transition">Terms</a>
+              <a href="/snapshot.html" class="hover:text-ink transition">Snapshot</a>
+              <a href="/insights.html" class="hover:text-ink transition">Insights</a>
+            </div>
+            <div class="text-xs text-sub">© <span id="year"></span> My AI Discovery Lab. All rights reserved.</div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
 
-<!-- GA4 event: purchase -->
+  <!-- ===== Image Lightbox (sitewide) ===== -->
+  <div id="imgLightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+    <div class="lb-inner">
+      <div class="lb-top">
+        <div id="lbCaption" class="text-sm" style="opacity:.92;"></div>
+        <button id="lbClose" class="lb-btn" type="button" aria-label="Close image preview">Close</button>
+      </div>
+      <div id="lbStage" class="lb-stage">
+        <img id="lbImg" alt="" src="" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== Mobile menu toggle + close on link click =====
+    const toggle = document.getElementById("mobileMenuToggle");
+    const menu = document.getElementById("mobileMenu");
+
+    if (toggle && menu) {
+      toggle.addEventListener("click", () => menu.classList.toggle("hidden"));
+    }
+
+    document.querySelectorAll("#mobileMenu a").forEach(a => {
+      a.addEventListener("click", () => menu?.classList.add("hidden"));
+    });
+  </script>
+
+  <!-- ===== Consent + Analytics Loader (GA4 + AdSense gated) ===== -->
+  <script>
+    (function () {
+      const CONSENT_KEY = "aidl_cookie_consent_v1";
+      const banner = document.getElementById("cookieBanner");
+      const acceptBtn = document.getElementById("cookieAccept");
+      const declineBtn = document.getElementById("cookieDecline");
+
+      // Queue GA events until GA4 is available (after consent)
+      window.__aidlEventQueue = window.__aidlEventQueue || [];
+
+      function hasConsent() {
+        return localStorage.getItem(CONSENT_KEY) === "accepted";
+      }
+      function setConsent(value) {
+        localStorage.setItem(CONSENT_KEY, value);
+      }
+      function loadScriptOnce(id, src) {
+        if (document.getElementById(id)) return;
+        const s = document.createElement("script");
+        s.id = id;
+        s.async = true;
+        s.src = src;
+        document.head.appendChild(s);
+      }
+
+      function enableGA4() {
+        const GA4_ID = (window.__AIDL__ && window.__AIDL__.GA4_ID) || "";
+        if (!GA4_ID) return;
+
+        loadScriptOnce("ga4-gtag", "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4_ID));
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ window.dataLayer.push(arguments); }
+        window.gtag = window.gtag || gtag;
+
+        gtag("js", new Date());
+        gtag("config", GA4_ID, { anonymize_ip: true });
+
+        // Flush queued events
+        try {
+          const q = window.__aidlEventQueue || [];
+          while (q.length) {
+            const evt = q.shift();
+            if (evt && typeof evt === "object" && evt.name) {
+              gtag("event", evt.name, evt.params || {});
+            }
+          }
+        } catch (e) {}
+      }
+
+      function enableAdSense() {
+        const client = (window.__AIDL__ && window.__AIDL__.ADSENSE_CLIENT) || "";
+        if (!client) return;
+
+        loadScriptOnce(
+          "adsense-auto",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(client)
+        );
+      }
+
+      function enableTracking() {
+        enableGA4();
+        enableAdSense();
+      }
+
+      const prior = localStorage.getItem(CONSENT_KEY);
+      if (hasConsent()) {
+        enableTracking();
+      } else {
+        if (banner && !prior) banner.style.display = "block";
+      }
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          setConsent("accepted");
+          if (banner) banner.style.display = "none";
+          enableTracking();
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener("click", function () {
+          setConsent("declined");
+          if (banner) banner.style.display = "none";
+        });
+      }
+    })();
+  </script>
+
+  <!-- ===== GA4 purchase event (gated + queued) ===== -->
   <script>
     (function () {
       const params = new URLSearchParams(window.location.search);
       const txFromUrl = params.get("tx");
       const transaction_id = txFromUrl ? String(txFromUrl) : ("myaidl_" + Date.now());
 
-      if (typeof gtag === "function") {
-        gtag("event", "purchase", {
-          transaction_id,
-          value: 149,
-          currency: "GBP"
-        });
+      const payload = {
+        transaction_id,
+        value: 149,
+        currency: "GBP"
+      };
+
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "purchase", payload);
+      } else {
+        window.__aidlEventQueue = window.__aidlEventQueue || [];
+        window.__aidlEventQueue.push({ name: "purchase", params: payload });
       }
     })();
   </script>
 
+  <!-- ===== Image enlarge behavior (sitewide) ===== -->
+  <script>
+    (function () {
+      const lb = document.getElementById("imgLightbox");
+      const lbImg = document.getElementById("lbImg");
+      const lbClose = document.getElementById("lbClose");
+      const lbCaption = document.getElementById("lbCaption");
+      const lbStage = document.getElementById("lbStage");
+
+      function openLB(src, alt) {
+        if (!lb || !lbImg) return;
+        lbImg.src = src;
+        lbImg.alt = alt || "";
+        if (lbCaption) lbCaption.textContent = alt || "";
+        lb.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLB() {
+        if (!lb || !lbImg) return;
+        lb.setAttribute("aria-hidden", "true");
+        lbImg.src = "";
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll("img.zoomable").forEach(img => {
+        img.addEventListener("click", () => {
+          const src = img.getAttribute("data-full") || img.currentSrc || img.src;
+          openLB(src, img.alt || "");
+        });
+      });
+
+      if (lbClose) lbClose.addEventListener("click", closeLB);
+      if (lb) {
+        lb.addEventListener("click", (e) => { if (e.target === lb) closeLB(); });
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lb && lb.getAttribute("aria-hidden") === "false") closeLB();
+      });
+      if (lbStage) {
+        lbStage.addEventListener("click", (e) => { if (e.target === lbStage) closeLB(); });
+      }
+    })();
+  </script>
 </body>
 </html>
