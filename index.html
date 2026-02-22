@@ -1,40 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QQ93HP5N6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7QQ93HP5N6');
+  </script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7QQ93HP5N6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7QQ93HP5N6');
-</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My AI Discovery Lab — AI Discovery Audit (£149)</title>
-  <meta name="description" content="My AI Discovery Lab helps e-commerce brands become machine-readable for AI-driven discovery. Book a £149 one-time AI Discovery Audit for an AI readiness score, structured data gap report, and implementation-ready rollout plan." />
+  <title>My AI Discovery Lab — Product Data Infrastructure for AI Discovery</title>
+  <meta name="description" content="Machine-readable product data infrastructure for AI discovery. Variant-level offers, attribute contracts, Schema.org architecture, validation-first delivery. Get a free snapshot or book a £149 audit." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://myaidiscoverylab.com/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="My AI Discovery Lab — AI Discovery Audit (£149)" />
-  <meta property="og:description" content="Most e-commerce stores are built for humans, not machines. Get an AI readiness score, structured data gap report, and implementation blueprint for £149." />
+  <meta property="og:title" content="My AI Discovery Lab — Product Data Infrastructure for AI Discovery" />
+  <meta property="og:description" content="Machine-readable product data infrastructure for AI discovery. Variant-level offers, attribute contracts, structured data architecture. Validation-first delivery." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://myaidiscoverylab.com/" />
   <meta property="og:image" content="https://myaidiscoverylab.com/og-image.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="My AI Discovery Lab — AI Discovery Audit (£149)" />
-  <meta name="twitter:description" content="AI-driven product discovery is accelerating. If your products aren’t structured for AI systems, they become invisible." />
+  <meta name="twitter:title" content="My AI Discovery Lab — Product Data Infrastructure for AI Discovery" />
+  <meta name="twitter:description" content="Variant-level offers. Attribute contracts. Structured data architecture. Built, validated, and governed." />
   <meta name="twitter:image" content="https://myaidiscoverylab.com/og-image.png" />
 
-  <!-- Favicon (placeholder) -->
   <link rel="icon" href="/favicon.ico" />
-
-  <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -45,344 +42,87 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"] },
-          boxShadow: {
-            glass: "0 12px 34px rgba(0,0,0,.45)",
-            glow: "0 0 0 1px rgba(255,255,255,.06), 0 24px 90px rgba(192,38,211,.22)"
-          }
+          fontFamily: { sans: ["Inter","ui-sans-serif","system-ui","Segoe UI","Roboto","Helvetica Neue","Arial","Noto Sans","Apple Color Emoji","Segoe UI Emoji"] }
         }
       }
     }
   </script>
 
   <style>
-    :root { color-scheme: dark; }
-
-    /* CRITICAL: prevent any horizontal scroll */
+    :root { color-scheme: light; }
     html, body { overflow-x: hidden; }
-
     html { scroll-behavior: smooth; }
-    body { min-height: 100vh; }
-
-    /* CRITICAL: make all images responsive */
+    body { min-height: 100vh; background: #ffffff; color: #0B1220; }
     img { max-width: 100%; height: auto; }
 
-    /* ====== Dark matter background + depth layers ====== */
-    .bg-animated {
-      background:
-        radial-gradient(1200px 800px at 12% 10%, rgba(138,43,226,.26), transparent 60%),
-        radial-gradient(1000px 760px at 92% 18%, rgba(192,38,211,.18), transparent 58%),
-        radial-gradient(900px 700px at 48% 92%, rgba(147,51,234,.16), transparent 55%),
-        linear-gradient(180deg, #060510 0%, #04030c 55%, #03020a 100%);
+    /* Enterprise tokens */
+    .bg-surface { background: #F6F8FB; }
+    .text-ink { color: #0A2540; }
+    .text-secondary { color: #475569; }
+    .border-subtle { border-color: #E5EAF0; }
+
+    /* Buttons */
+    .btn-primary {
+      background: #2563EB;
+      color: #ffffff;
+      border: 1px solid #2563EB;
+    }
+    .btn-primary:hover { filter: brightness(0.95); }
+    .btn-secondary {
+      background: #ffffff;
+      color: #0A2540;
+      border: 1px solid #E5EAF0;
+    }
+    .btn-secondary:hover { background: #F6F8FB; }
+
+    /* Cards */
+    .card {
+      background: #ffffff;
+      border: 1px solid #E5EAF0;
+      border-radius: 18px;
     }
 
-    /* ====== HERO ORB (image) ======
-       Uses clamp + max-width so it can never force layout overflow. */
-    .orb-img {
-  position: absolute;
-  right: -12vw;
-  top: 28px;
-  width: clamp(300px, 54vw, 520px);
-  max-width: 78vw;
-  height: auto;
-  opacity: .58;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  filter: saturate(1.15) brightness(1.05) contrast(1.05)
-          drop-shadow(0 0 26px rgba(192,38,211,.22))
-          drop-shadow(0 0 70px rgba(138,43,226,.18));
-  transform: translate3d(0,0,0);
-  animation: orbDrift 22s ease-in-out infinite;
-  z-index: 0;
-}
-    @keyframes orbDrift {
-      0%   { transform: translate(0px, 0px) scale(1); }
-      50%  { transform: translate(-34px, 20px) scale(1.02); }
-      100% { transform: translate(0px, 0px) scale(1); }
+    /* Nav */
+    .nav-base {
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid #E5EAF0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: box-shadow .2s ease;
     }
-    @media (max-width: 1024px) {
-  .orb-img {
-    right: -30vw;
-    top: -10px;
-    opacity: .46;
-  }
-}
-    @media (max-width: 768px) {
-  .orb-img {
-    right: -44vw;
-    top: -70px;
-    opacity: .36;
-  }
-}
+    .nav-scrolled { box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06); }
 
-    /* ====== DNA faint curves overlay ====== */
-    .dna {
-      position: absolute;
-      inset: -40px;
-      pointer-events: none;
-      opacity: .12;
-      filter: blur(.1px);
-      mix-blend-mode: screen;
-    }
-    .dna svg {
-      width: 120%;
-      height: 120%;
-      animation: dnaDrift 26s ease-in-out infinite;
-    }
-    @keyframes dnaDrift {
-      0% { transform: translate(0px, 0px); }
-      50% { transform: translate(-18px, 12px); }
-      100% { transform: translate(0px, 0px); }
-    }
-
-    /* ====== Glassmorphism helper ====== */
-    .glass {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .glass-strong {
-      background: rgba(10,8,22,.52);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    /* ====== Focus ring ====== */
+    /* Focus ring */
     .focus-ring:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 4px rgba(192,38,211,.28);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+      border-radius: 12px;
     }
 
-    /* ====== Scroll reveal ====== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .75s ease, transform .75s ease;
-      will-change: opacity, transform;
-    }
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ====== Background starfield canvas ====== */
-    #particles {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: .85;
-      mix-blend-mode: screen;
-    }
-
-    /* ====== Soft section divider ====== */
+    /* Subtle divider */
     .divider {
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
       height: 1px;
+      background: #E5EAF0;
     }
 
-    /* ====== Primary gradient button (pinky-purple neon) ====== */
-    .btn-primary {
-      background: linear-gradient(135deg, #8A2BE2 0%, #C026D3 45%, #9333EA 100%);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.08),
-        0 14px 44px rgba(192,38,211,.18),
-        0 0 42px rgba(147,51,234,.14);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary::after {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 40%);
-      transform: translateX(-30%);
-      opacity: .55;
-      transition: opacity .35s ease;
-    }
-    .btn-primary:hover::after { opacity: .78; }
-    .btn-primary:active { transform: translateY(1px); }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 14px 44px rgba(192,38,211,.18), 0 0 46px rgba(147,51,234,.14); }
-      50% { box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 18px 54px rgba(192,38,211,.22), 0 0 58px rgba(147,51,234,.18); }
-    }
-    .btn-pulse { animation: pulseGlow 3.8s ease-in-out infinite; }
-
-    /* ====== Nav behavior ====== */
-    .nav-base {
-      background: rgba(0,0,0,.18);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: background .25s ease, border-color .25s ease;
-    }
-    .nav-scrolled {
-      background: rgba(4,3,10,.72);
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    /* Tiny label chip */
+    .chip {
+      border: 1px solid #E5EAF0;
+      background: #ffffff;
+      color: #0A2540;
     }
 
-    /* ====== Ticker ====== */
-    .ticker {
-      --speed: 22s;
-      position: relative;
-      overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    }
-    .ticker-track {
-      display: flex;
-      gap: 22px;
-      width: max-content;
-      animation: tickerScroll var(--speed) linear infinite;
-      align-items: center;
-    }
-    @keyframes tickerScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ====== Accordion animation (height) ====== */
-    .acc-panel {
-      height: 0;
-      overflow: hidden;
-      transition: height .28s ease;
-    }
-
-    /* ====== Mobile modal (audit modal) ====== */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      display: none;
-      z-index: 60;
-    }
-    .modal-backdrop.is-open { display: block; }
-    .modal-sheet {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: min(92vw, 720px);
-      max-height: 82vh;
-      overflow: auto;
-    }
-
-    /* ====== Image viewer modal (diagram + JSON visual) ====== */
-    .img-modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      z-index: 70;
-      background: rgba(0,0,0,.72);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      opacity: 0;
-      transition: opacity .18s ease;
-    }
-    .img-modal.is-open {
-      display: block;
-      opacity: 1;
-    }
-    .img-modal-inner {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: min(85vw, 1100px);
-      max-height: 86vh;
-      overflow: auto;
-    }
-    .img-modal-card {
-      background: rgba(10,8,22,.62);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 22px;
-      padding: 16px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 26px 110px rgba(192,38,211,.18);
-    }
-
-    /* ====== Code snippet ====== */
+    /* Proof code block */
     pre.code {
-      background: rgba(0,0,0,.32);
-      border: 1px solid rgba(255,255,255,.10);
+      background: #0B1220;
+      color: rgba(255,255,255,0.92);
       border-radius: 14px;
       padding: 14px;
       overflow: auto;
       font-size: 12px;
       line-height: 1.5;
     }
-    pre.code code { color: rgba(255,255,255,.86); }
-
-    /* ====== Logo styling (brighter/whiter) ====== */
-    .logo-ticker {
-      height: 22px;
-      width: auto;
-      opacity: .78;
-      filter: brightness(1.9) contrast(1.2) saturate(0) invert(1);
-      transition: transform .2s ease, opacity .2s ease, filter .2s ease, drop-shadow .2s ease;
-      transform: translateZ(0);
-    }
-    .logo-ticker:hover {
-      opacity: 1;
-      transform: scale(1.08);
-      filter: brightness(2.1) contrast(1.25) saturate(0) invert(1)
-              drop-shadow(0 0 14px rgba(192,38,211,.22))
-              drop-shadow(0 0 26px rgba(138,43,226,.16));
-    }
-
-    /* ====== Infrastructure icon styling (brighter/whiter) ====== */
-    .infra-icon {
-      width: 30px;
-      height: 30px;
-      opacity: .96;
-      filter: brightness(1.4) contrast(1.2) saturate(0) invert(1)
-              drop-shadow(0 0 10px rgba(192,38,211,.25));
-    }
-
-    /* ====== Hover lift cards ====== */
-    .lift-card {
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
-      will-change: transform;
-    }
-    .lift-card:hover {
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 26px 92px rgba(192,38,211,.18);
-      border-color: rgba(255,255,255,.14);
-    }
-
-    /* ====== Footer top glow divider ====== */
-    .footer-glow {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(192,38,211,.55), rgba(138,43,226,.36), transparent);
-      filter: blur(.15px);
-      opacity: .9;
-    }
-    .footer-glow-soft {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
-      opacity: .55;
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { transition: none; }
-      .ticker-track { animation: none; }
-      .dna svg { animation: none; }
-      .btn-pulse { animation: none; }
-      .acc-panel { transition: none; }
-      .orb-img { animation: none; }
-      .lift-card { transition: none; }
-      .logo-ticker { transition: none; }
-      .img-modal { transition: none; }
-    }
+    pre.code code { color: rgba(255,255,255,0.92); }
   </style>
 
   <!-- Lightweight Organization JSON-LD -->
@@ -397,835 +137,567 @@
   </script>
 </head>
 
-<body class="min-h-screen bg-animated text-zinc-100 font-sans">
-  <!-- Background layers -->
-  <div class="fixed inset-0 -z-10">
-    <canvas id="particles"></canvas>
-
-    <!-- DNA faint curves -->
-    <div class="dna hidden md:block">
-      <svg viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M70 680 C 240 540, 360 740, 520 600 C 680 460, 820 640, 980 520 C 1120 430, 1180 520, 1260 420"
-              stroke="rgba(255,255,255,.85)" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M60 560 C 240 420, 360 620, 520 480 C 680 340, 820 520, 980 400 C 1120 310, 1180 400, 1260 300"
-              stroke="rgba(255,255,255,.65)" stroke-width="1" stroke-linecap="round"/>
-        <path d="M90 740 C 260 600, 380 800, 540 660 C 700 520, 840 700, 1000 580 C 1140 490, 1200 580, 1280 480"
-              stroke="rgba(255,255,255,.55)" stroke-width="1" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
-
-  <!-- Top nav -->
+<body class="font-sans">
+  <!-- Top nav (sticky preserved) -->
   <header id="siteNav" class="sticky top-0 z-50 nav-base">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
-        <a href="#top" class="flex items-center gap-3 min-w-0">
-         <div class="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl glass shadow-glow flex items-center justify-center shrink-0 p-3">
-  <img
-    src="./logo-icon.png"
-    alt="My AI Discovery Lab logo"
-    class="h-full w-full object-contain"
-    loading="eager"
-    decoding="async"
-  />
-</div>
+        <a href="#top" class="flex items-center gap-3 min-w-0 focus-ring">
+          <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl border border-subtle bg-white flex items-center justify-center shrink-0 p-2">
+            <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
+          </div>
           <div class="leading-tight min-w-0">
-            <div class="text-sm font-semibold tracking-tight truncate">My AI Discovery Lab</div>
-            <div class="text-[11px] text-zinc-300/80 truncate">AI discovery infrastructure for commerce</div>
+            <div class="text-sm font-semibold tracking-tight truncate text-ink">My AI Discovery Lab</div>
+            <div class="text-[11px] truncate text-secondary">Product data infrastructure for AI discovery</div>
           </div>
         </a>
-<!-- Mobile Menu Button -->
-<button id="mobileMenuToggle"
-  class="md:hidden inline-flex items-center justify-center rounded-xl p-2 glass focus-ring">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-zinc-200" fill="none"
-       viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round"
-          d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-</button>
-        <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-200/90">
-<a href="/snapshot.html" class="hover:text-white transition">Free Snapshot</a>
-          <a href="#what" class="hover:text-white transition">What we do</a>
-          <a href="#why" class="hover:text-white transition">Why it matters</a>
-          <a href="#how" class="hover:text-white transition">How it works</a>
-          <a href="#pricing" class="hover:text-white transition">Pricing</a>
-          <a href="#faq" class="hover:text-white transition">FAQ</a>
-<a href="/insights.html" class="hover:text-white transition">Insights</a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center rounded-xl p-2 border border-subtle bg-white focus-ring" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm text-secondary">
+          <a href="/snapshot.html" class="hover:text-ink transition focus-ring">Free Snapshot</a>
+          <a href="#problem" class="hover:text-ink transition focus-ring">Problem</a>
+          <a href="#pillars" class="hover:text-ink transition focus-ring">Pillars</a>
+          <a href="#method" class="hover:text-ink transition focus-ring">Method</a>
+          <a href="#pricing" class="hover:text-ink transition focus-ring">Pricing</a>
+          <a href="#faq" class="hover:text-ink transition focus-ring">FAQ</a>
+          <a href="/insights.html" class="hover:text-ink transition focus-ring">Insights</a>
         </nav>
-<!-- Mobile Menu -->
-<div id="mobileMenu"
-     class="hidden md:hidden mt-4 rounded-2xl glass p-4 space-y-3 text-sm text-zinc-200/90">
 
-  <a href="#what" class="block hover:text-white transition">What we do</a>
-  <a href="#why" class="block hover:text-white transition">Why it matters</a>
-  <a href="#how" class="block hover:text-white transition">How it works</a>
-  <a href="#pricing" class="block hover:text-white transition">Pricing</a>
-  <a href="#faq" class="block hover:text-white transition">FAQ</a>
-<a href="/snapshot.html" class="block hover:text-white transition">Free Snapshot</a>
-  <a href="/insights.html" class="block hover:text-white transition">Insights</a>
-
-</div>
-
-        <div class="flex items-center gap-3 shrink-0">
-          <a href="#pricing" class="hidden sm:inline-flex rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition focus-ring">
+        <!-- Right actions -->
+        <div class="hidden md:flex items-center gap-3 shrink-0">
+          <a href="#pricing" class="inline-flex rounded-xl px-4 py-2 text-sm btn-secondary transition focus-ring">
             See pricing
           </a>
-          <a href="#pricing" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary btn-pulse transition focus-ring whitespace-nowrap">
+          <a href="#pricing" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary transition focus-ring whitespace-nowrap">
             Book £149 Audit
           </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden mt-3 mb-4 rounded-2xl border border-subtle bg-white p-4 space-y-3 text-sm text-secondary">
+        <a href="/snapshot.html" class="block hover:text-ink transition focus-ring">Free Snapshot</a>
+        <a href="#problem" class="block hover:text-ink transition focus-ring">Problem</a>
+        <a href="#pillars" class="block hover:text-ink transition focus-ring">Pillars</a>
+        <a href="#method" class="block hover:text-ink transition focus-ring">Method</a>
+        <a href="#pricing" class="block hover:text-ink transition focus-ring">Pricing</a>
+        <a href="#faq" class="block hover:text-ink transition focus-ring">FAQ</a>
+        <a href="/insights.html" class="block hover:text-ink transition focus-ring">Insights</a>
+        <div class="pt-2 flex gap-3">
+          <a href="#pricing" class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm btn-secondary transition focus-ring">See pricing</a>
+          <a href="#pricing" class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary transition focus-ring">Book £149</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
   <main id="top">
-    <section class="relative overflow-hidden">
-      <img src="./orb.svg" alt="" class="orb-img" aria-hidden="true" />
-
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-16 sm:pt-20 pb-14 sm:pb-18 relative z-10">
-        <!-- CRITICAL: mobile stacks by default; desktop unchanged -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div class="lg:col-span-7 min-w-0">
-            <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass max-w-full">
-              <span class="h-2 w-2 rounded-full" style="background: #C026D3;"></span>
-              <span class="text-xs text-zinc-200/90">AI Discovery Audit • £149 one-time • No contract</span>
-            </div>
-
-            <!-- Typography: scales naturally; wraps on small screens -->
-            <h1 class="mt-6 text-4xl sm:text-5xl leading-[1.08] font-semibold tracking-tight break-words">
-              Most E-Commerce Stores Are Built for Humans. Not Machines.
-            </h1>
-
-            <p class="mt-5 text-base sm:text-lg text-zinc-200/85 leading-relaxed max-w-2xl">
-              AI-driven product discovery is accelerating. If your products aren’t structured for AI systems, they become invisible.
-              We audit your live product data + structured data and deliver an implementation-ready blueprint.
-            </p>
-
-            <div class="mt-6 flex flex-wrap gap-2 text-sm text-zinc-200/85">
-              <span class="glass rounded-full px-3 py-1">AI-readable product architecture</span>
-              <span class="glass rounded-full px-3 py-1">Structured data optimisation</span>
-              <span class="glass rounded-full px-3 py-1">AI discovery readiness</span>
-              <span class="glass rounded-full px-3 py-1">Machine reasoning compatibility</span>
-            </div>
-
-            <!-- Buttons: stack vertically on mobile, never overflow -->
-            <div class="mt-8 flex flex-col sm:flex-row gap-3 w-full">
-              <a href="#pricing"
-                 class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
-                Book £149 Audit
-                <svg class="ml-2 h-4 w-4 opacity-90" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                </svg>
-              </a>
-              <a href="#what"
-                 class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
-                See What’s Inside
-              </a>
-            </div>
-
-            <div class="mt-3 text-sm text-zinc-300/80">
-              <span class="glass rounded-full px-3 py-1 inline-flex">One-time payment. No contract.</span>
-            </div>
-
-            <div class="mt-10 flex flex-wrap gap-3 text-xs text-zinc-300/85">
-              <div class="glass rounded-xl px-4 py-2">One-time audit</div>
-              <div class="glass rounded-xl px-4 py-2">Actionable rollout plan</div>
-              <div class="glass rounded-xl px-4 py-2">Works on Shopify • WooCommerce • Headless</div>
-            </div>
+    <!-- Section 1 — Hero -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 pt-14 sm:pt-18 pb-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7 min-w-0">
+          <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 chip text-xs">
+            <span class="h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+            <span>Validation-first product data infrastructure</span>
           </div>
 
-          <div class="lg:col-span-5 min-w-0">
-            <div id="auditCard" class="glass-strong rounded-2xl p-6 shadow-glow reveal relative z-10 w-full">
-              <div class="flex items-start justify-between gap-4 flex-wrap">
-                <div class="min-w-0">
-                  <div class="text-sm text-zinc-200/90">Audit Output (Example)</div>
-                  <div class="mt-1 text-xl font-semibold tracking-tight">What the audit actually fixes</div>
-                </div>
+          <h1 class="mt-6 text-4xl sm:text-5xl leading-[1.08] font-semibold tracking-tight text-ink break-words">
+            Machine-readable product data infrastructure for AI discovery.
+          </h1>
 
-                <button id="auditExpandBtn"
-                        class="rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center gap-2 px-3 py-2 shrink-0"
-                        aria-expanded="false"
-                        aria-controls="auditAcc"
-                        aria-label="Expand audit output example">
-                  <span class="text-xs text-zinc-200/85 whitespace-nowrap">Click to expand</span>
-                  <svg id="auditChevron" class="h-4 w-4 text-zinc-200 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
-                </button>
-              </div>
-
-              <div class="mt-5 grid gap-3" id="auditSummary">
-                <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-                  <div class="text-xs text-zinc-300/80">Collapsed view</div>
-                  <div class="mt-1 text-sm text-zinc-100/90">
-                    Schema optimisation • Variant modelling • Offer restructuring • FAQ schema • AI readiness scoring
-                  </div>
-                </div>
-
-                <button type="button"
-                        class="glass rounded-2xl p-4 border border-white/10 bg-black/25 shadow-glass text-left hover:bg-white/5 transition focus-ring w-full"
-                        data-img-modal="./json-structured-visual.svg"
-                        aria-label="Open validator-ready JSON-LD visual preview">
-                  <div class="text-xs text-zinc-300/80 mb-2">Validator-ready JSON-LD example (visual)</div>
-                  <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl block" />
-                </button>
-              </div>
-
-              <div id="auditAcc" class="acc-panel mt-4 md:block" aria-hidden="true">
-                <div class="divider my-4"></div>
-
-                <div class="space-y-3">
-                  <div class="rounded-xl border border-white/10 bg-black/25">
-                    <button class="w-full flex items-center justify-between gap-4 px-4 py-4 text-left focus-ring rounded-xl audit-item"
-                            aria-expanded="false">
-                      <span class="font-semibold">Schema Type</span>
-                      <span class="text-xs text-zinc-300/80">Before → After</span>
-                    </button>
-                    <div class="acc-panel px-4 pb-4">
-                      <p class="text-sm text-zinc-200/85 leading-relaxed">
-                        <span class="text-zinc-100/90 font-medium">Before:</span> Generic Product with minimal attributes.<br />
-                        <span class="text-zinc-100/90 font-medium">After:</span> Richer structured model aligned to your product category (examples include <span class="text-zinc-100 font-medium">DietarySupplement</span>, but the approach applies across e-commerce).
-                      </p>
-                      <div class="mt-3 text-xs text-zinc-300/80">Micro-comparison: <span class="text-zinc-100/90">Product → richer structured model</span></div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25">
-                    <button class="w-full flex items-center justify-between gap-4 px-4 py-4 text-left focus-ring rounded-xl audit-item"
-                            aria-expanded="false">
-                      <span class="font-semibold">Offers & Variants</span>
-                      <span class="text-xs text-zinc-300/80">Before → After</span>
-                    </button>
-                    <div class="acc-panel px-4 pb-4">
-                      <p class="text-sm text-zinc-200/85 leading-relaxed">
-                        <span class="text-zinc-100/90 font-medium">Before:</span> A single Offer representing multiple variants (pricing/availability ambiguity).<br />
-                        <span class="text-zinc-100/90 font-medium">After:</span> Per-variant Offer array with consistent identifiers, price, currency, availability, and URLs.
-                      </p>
-                      <div class="mt-3 text-xs text-zinc-300/80">Micro-comparison: <span class="text-zinc-100/90">single offer → per-variant offers</span></div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25">
-                    <button class="w-full flex items-center justify-between gap-4 px-4 py-4 text-left focus-ring rounded-xl audit-item"
-                            aria-expanded="false">
-                      <span class="font-semibold">Attributes / Specs</span>
-                      <span class="text-xs text-zinc-300/80">Before → After</span>
-                    </button>
-                    <div class="acc-panel px-4 pb-4">
-                      <p class="text-sm text-zinc-200/85 leading-relaxed">
-                        <span class="text-zinc-100/90 font-medium">Before:</span> Key attributes trapped in HTML or marketing copy (not computable).<br />
-                        <span class="text-zinc-100/90 font-medium">After:</span> Machine-readable properties via <span class="text-zinc-100/90 font-medium">additionalProperty</span>, identifiers, and consistent naming so AI can compare and filter.
-                      </p>
-                      <div class="mt-3 text-xs text-zinc-300/80">Micro-comparison: <span class="text-zinc-100/90">text → machine-readable properties</span></div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25">
-                    <button class="w-full flex items-center justify-between gap-4 px-4 py-4 text-left focus-ring rounded-xl audit-item"
-                            aria-expanded="false">
-                      <span class="font-semibold">FAQ Structure</span>
-                      <span class="text-xs text-zinc-300/80">Before → After</span>
-                    </button>
-                    <div class="acc-panel px-4 pb-4">
-                      <p class="text-sm text-zinc-200/85 leading-relaxed">
-                        <span class="text-zinc-100/90 font-medium">Before:</span> Questions answered in-page only (AI can’t reliably extract Q/A pairs).<br />
-                        <span class="text-zinc-100/90 font-medium">After:</span> FAQPage schema added where relevant to expose clean Q/A structure.
-                      </p>
-                      <div class="mt-3 text-xs text-zinc-300/80">Micro-comparison: <span class="text-zinc-100/90">missing → FAQPage where relevant</span></div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25">
-                    <button class="w-full flex items-center justify-between gap-4 px-4 py-4 text-left focus-ring rounded-xl audit-item"
-                            aria-expanded="false">
-                      <span class="font-semibold">AI Readiness Score</span>
-                      <span class="text-xs text-zinc-300/80">Example</span>
-                    </button>
-                    <div class="acc-panel px-4 pb-4">
-                      <p class="text-sm text-zinc-200/85 leading-relaxed">
-                        <span class="text-zinc-100/90 font-medium">Sample score:</span> <span class="text-zinc-100 font-semibold">6.8 / 10</span><br />
-                        This reflects structural coverage (schema type, offers, attributes, conflicts, and consistency). The audit explains what moves the score and what to ship first.
-                      </p>
-                      <div class="mt-3 text-xs text-zinc-300/80">Micro-comparison: <span class="text-zinc-100/90">“indexed” ≠ “interpretable”</span></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-5">
-                  <div class="text-xs text-zinc-300/80 mb-2">Validator-ready JSON-LD example (visual)</div>
-
-                  <button type="button"
-                          class="glass rounded-2xl p-4 border border-white/10 bg-black/25 shadow-glass w-full text-left hover:bg-white/5 transition focus-ring"
-                          data-img-modal="./json-structured-visual.svg"
-                          aria-label="Open validator-ready JSON-LD visual preview">
-                    <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl block" />
-                  </button>
-
-                  <button id="rawJsonToggle"
-                          class="mt-3 inline-flex items-center gap-2 text-xs text-zinc-200/85 hover:text-white transition focus-ring rounded-lg px-2 py-1"
-                          aria-expanded="false"
-                          aria-controls="rawJsonPanel">
-                    <span>View raw JSON</span>
-                    <svg id="rawJsonChevron" class="h-4 w-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                      <path d="M6 9l6 6 6-6"></path>
-                    </svg>
-                  </button>
-
-                  <div id="rawJsonPanel" class="acc-panel mt-3" aria-hidden="true">
-                    <pre class="code"><code>{
-  "@context": "https://schema.org",
-  "@type": ["Product","DietarySupplement"],
-  "name": "Example Product",
-  "offers": [
-    { "@type": "Offer", "sku": "VAR-001", "price": "29.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
-  ],
-  "additionalProperty": [
-    { "@type": "PropertyValue", "name": "Form", "value": "Capsules" },
-    { "@type": "PropertyValue", "name": "Servings", "value": "60" }
-  ]
-}</code></pre>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-4 text-xs text-zinc-300/75">
-                Not SEO. Infrastructure. This applies across Shopify, WooCommerce, headless, and modern e-commerce builds.
-              </div>
-            </div>
-
-            <div class="mt-4 glass rounded-2xl p-5 shadow-glass reveal w-full">
-              <div class="flex items-center justify-between gap-3 flex-wrap">
-                <div class="text-sm font-semibold">Make your catalog interpretable</div>
-                <div class="text-xs text-zinc-300/80">Built for machine reasoning</div>
-              </div>
-              <div class="mt-3 text-xs text-zinc-300/85 leading-relaxed">
-                AI systems interpret entities and attributes. If your products, variants, and constraints aren’t structured, they’re hard to compare and easy to ignore.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- glow accents: use max-w/w-full (no fixed width utilities) -->
-      <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-full max-w-5xl rounded-full blur-3xl"
-           style="background: rgba(192,38,211,.10);"></div>
-      <div class="pointer-events-none absolute -bottom-32 right-0 h-80 w-80 max-w-full rounded-full blur-3xl"
-           style="background: rgba(138,43,226,.10);"></div>
-    </section>
-
-    <!-- SOCIAL PROOF STRIP -->
-    <section class="border-y border-white/10 bg-black/20">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
-        <div class="flex flex-col gap-4">
-          <div class="text-sm text-zinc-200/90">
-            <span class="font-semibold text-white">Designed for AI-Driven Commerce</span>
-            <span class="text-zinc-300/80"> — built for interpretation, not just indexing.</span>
-          </div>
-
-          <div class="ticker glass rounded-2xl px-4 py-3">
-            <div class="ticker-track" aria-label="AI discovery systems ticker">
-              <div class="flex items-center gap-8 pr-8">
-                <img src="./chatgpt.svg" alt="ChatGPT" class="logo-ticker" />
-                <img src="./gemini.svg" alt="Gemini" class="logo-ticker" />
-                <img src="./shopify.svg" alt="Shopify" class="logo-ticker" />
-                <img src="./meta.svg" alt="Meta" class="logo-ticker" />
-              </div>
-
-              <div class="flex items-center gap-8 pr-8" aria-hidden="true">
-                <img src="./chatgpt.svg" alt="ChatGPT" class="logo-ticker" />
-                <img src="./gemini.svg" alt="Gemini" class="logo-ticker" />
-                <img src="./shopify.svg" alt="Shopify" class="logo-ticker" />
-                <img src="./meta.svg" alt="Meta" class="logo-ticker" />
-              </div>
-
-              <div class="flex items-center gap-8 pr-8" aria-hidden="true">
-                <img src="./chatgpt.svg" alt="ChatGPT" class="logo-ticker" />
-                <img src="./gemini.svg" alt="Gemini" class="logo-ticker" />
-                <img src="./shopify.svg" alt="Shopify" class="logo-ticker" />
-                <img src="./meta.svg" alt="Meta" class="logo-ticker" />
-              </div>
-            </div>
-          </div>
-
-          <div class="text-xs text-zinc-400/70">
-            Visual references only. No implied affiliation.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT WE DO -->
-    <section id="what" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-      <div class="max-w-2xl mx-auto text-center reveal">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">AI-Ready Product Infrastructure</h2>
-        <p class="mt-3 text-zinc-200/85 leading-relaxed">
-          We rebuild the machine-readable layer so AI systems can reliably interpret your products, variants, attributes, and constraints.
-          This is infrastructure work — not “SEO tactics”.
-        </p>
-        <p class="mt-3 text-zinc-200/80 leading-relaxed">
-          AI systems don’t just crawl pages. They infer meaning. When your structured signals are incomplete, inconsistent, or ambiguous, products become harder to retrieve and recommend.
-        </p>
-      </div>
-
-      <!-- CRITICAL: grid-cols-1 mobile, lg:grid-cols-4 desktop -->
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
-        <div class="glass rounded-2xl p-6 shadow-glass reveal text-center w-full max-w-sm lift-card">
-          <div class="h-11 w-11 mx-auto rounded-xl border border-white/10 flex items-center justify-center" style="background: rgba(138,43,226,.16);">
-            <img src="./structured-data.svg" alt="Structured product data icon" class="infra-icon" />
-          </div>
-          <h3 class="mt-4 font-semibold">Structured Product Data (JSON-LD)</h3>
-          <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-            Validate and strengthen JSON-LD so products resolve as clear entities with consistent identifiers and attributes.
+          <p class="mt-5 text-base sm:text-lg text-secondary leading-relaxed max-w-2xl">
+            Variant-level offers. Attribute contracts. Structured data architecture. Built, validated, and governed.
           </p>
-        </div>
 
-        <div class="glass rounded-2xl p-6 shadow-glass reveal text-center w-full max-w-sm lift-card">
-          <div class="h-11 w-11 mx-auto rounded-xl border border-white/10 flex items-center justify-center" style="background: rgba(192,38,211,.16);">
-            <img src="./variant-offers.svg" alt="Variant offer structure icon" class="infra-icon" />
-          </div>
-          <h3 class="mt-4 font-semibold">Variant-Level Offer Structure</h3>
-          <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-            Map each variant to its own Offer for accurate pricing, availability, URLs, and SKU/GTIN continuity.
-          </p>
-        </div>
-
-        <div class="glass rounded-2xl p-6 shadow-glass reveal text-center w-full max-w-sm lift-card">
-          <div class="h-11 w-11 mx-auto rounded-xl border border-white/10 flex items-center justify-center" style="background: rgba(147,51,234,.16);">
-            <img src="./attributes.svg" alt="Attributes and spec modelling icon" class="infra-icon" />
-          </div>
-          <h3 class="mt-4 font-semibold">Attributes & Spec Modelling</h3>
-          <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-            Convert key attributes into machine-readable properties so AI can compare, filter, and reason about your catalog.
-          </p>
-        </div>
-
-        <div class="glass rounded-2xl p-6 shadow-glass reveal text-center w-full max-w-sm lift-card">
-          <div class="h-11 w-11 mx-auto rounded-xl border border-white/10 flex items-center justify-center" style="background: rgba(255,255,255,.05);">
-            <img src="./faq-structured.svg" alt="FAQ structured data icon" class="infra-icon" />
-          </div>
-          <h3 class="mt-4 font-semibold">FAQ Structured Data (Where Relevant)</h3>
-          <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-            Add FAQPage schema where it clarifies buyer questions and exposes consistent Q/A structure to AI systems.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY THIS MATTERS -->
-    <section id="why" class="border-y border-white/10 bg-black/20">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-        <!-- CRITICAL: stacks on mobile -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div class="lg:col-span-7 reveal min-w-0">
-            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">SEO is indexing. AI is interpretation.</h2>
-            <p class="mt-4 text-zinc-200/85 leading-relaxed">
-              Traditional search finds pages. AI-driven discovery tries to understand products.
-              That means your store needs structured signals that reasoning systems can trust: entities, attributes, variant logic, constraints, and consistent identifiers.
-            </p>
-
-            <p class="mt-4 text-zinc-200/80 leading-relaxed">
-              This applies across e-commerce — Shopify, WooCommerce, headless, and custom storefronts. Supplements are a common case because the gap is obvious (ingredients, dosing, claims), but the same structural issues exist for apparel, electronics, cosmetics, home goods, and more.
-            </p>
-
-            <ul class="mt-6 space-y-3 text-sm text-zinc-200/85">
-              <li class="flex gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-                <span>Default platform schema is typically minimal and inconsistent across templates.</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-                <span>Attributes/specs are often plain text, which reduces machine comparability.</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-                <span>Variants frequently collapse into a single Offer, causing ambiguity in price and availability.</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-                <span>FAQ data is rarely structured, so Q/A extraction becomes unreliable.</span>
-              </li>
-            </ul>
-
-            <div class="mt-8 glass-strong rounded-2xl p-7 shadow-glow reveal w-full">
-              <div class="text-lg font-semibold">Infrastructure, not hype</div>
-              <p class="mt-3 text-base text-zinc-200/85 leading-relaxed">
-                This is the machine-readable layer your platform rarely ships well by default. We diagnose it and give you the blueprint to rebuild it cleanly —
-                schema type alignment, per-variant offers, computable attributes, and structured Q/A where it matters.
-              </p>
-            </div>
+          <div class="mt-6 flex flex-wrap gap-2 text-sm">
+            <span class="rounded-full px-3 py-1 chip">Schema.org aligned</span>
+            <span class="rounded-full px-3 py-1 chip">Variant-aware offers</span>
+            <span class="rounded-full px-3 py-1 chip">Catalogue governance</span>
+            <span class="rounded-full px-3 py-1 chip">Drift monitoring</span>
           </div>
 
-          <div class="lg:col-span-5 min-w-0">
-            <button type="button"
-                    class="glass-strong rounded-2xl p-4 shadow-glow reveal w-full text-left hover:bg-white/5 transition focus-ring"
-                    data-img-modal="./seo-vs-ai-interpretation.svg"
-                    aria-label="Open indexing vs interpretable diagram">
-              <img src="./seo-vs-ai-interpretation.svg" alt="SEO indexing vs AI interpretation diagram" class="w-full h-auto rounded-xl block" />
-              <div class="mt-4 rounded-xl border border-white/10 bg-black/25 p-4 text-center">
-                <div class="text-lg font-bold tracking-tight text-zinc-100/95">
-                  Indexing ≠ Interpretable
-                </div>
-                <div class="mt-1 text-sm text-zinc-300/85">
-                  Click to expand
-                </div>
-              </div>
-            </button>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3 w-full">
+            <a href="/snapshot.html" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-primary transition focus-ring">
+              Get a Free Snapshot
+            </a>
 
-            <div class="mt-4 glass-strong rounded-2xl p-6 shadow-glow reveal border border-white/15 w-full"
-                 style="box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 24px 90px rgba(192,38,211,.18);">
-              <div class="flex items-center justify-center text-center font-bold text-base sm:text-lg text-zinc-100/95">
-                AI discovery requires structured signals, not just indexed pages
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-      <div class="max-w-2xl mx-auto text-center reveal">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">How It Works</h2>
-        <p class="mt-3 text-zinc-200/85 leading-relaxed">
-          A practical process designed to turn your current structured data into an implementation-ready rebuild blueprint.
-        </p>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card w-full">
-          <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold shrink-0" style="background: rgba(138,43,226,.18);">1</div>
-            <h3 class="font-semibold">Purchase audit</h3>
-          </div>
-          <p class="mt-3 text-sm text-zinc-200/80 leading-relaxed">
-            You pay once and book a slot. We confirm your representative product pages and the scope.
-          </p>
-        </div>
-
-        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card w-full">
-          <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold shrink-0" style="background: rgba(192,38,211,.18);">2</div>
-            <h3 class="font-semibold">Site analysis (schema + structure)</h3>
-          </div>
-          <p class="mt-3 text-sm text-zinc-200/80 leading-relaxed">
-            We extract live product JSON + JSON-LD, validate it, then map structural conflicts across variants, attributes, and FAQs.
-          </p>
-        </div>
-
-        <div class="glass rounded-2xl p-6 shadow-glass reveal lift-card w-full">
-          <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center font-semibold shrink-0" style="background: rgba(147,51,234,.18);">3</div>
-            <h3 class="font-semibold">AI readiness score + rebuild blueprint</h3>
-          </div>
-          <p class="mt-3 text-sm text-zinc-200/80 leading-relaxed">
-            You receive a technical report, readiness scoring, example JSON-LD, and a rollout plan. Optional implementation support is available.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT YOU GET -->
-    <section class="border-y border-white/10 bg-black/20">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div class="lg:col-span-6 reveal min-w-0">
-            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">What You Get (£149)</h2>
-            <p class="mt-4 text-zinc-200/85 leading-relaxed">
-              A technical audit pack built for execution — not generic recommendations.
-            </p>
-
-            <ul class="mt-6 space-y-3 text-sm text-zinc-200/85">
-              <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>AI readiness score (1–10)</span></li>
-              <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>Structured data gap report</span></li>
-              <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>Validator-ready example JSON-LD for a representative product</span></li>
-              <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>Rollout plan across templates/collections/products</span></li>
-              <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>10–15 min Loom walkthrough</span></li>
-              <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>Quick wins + next phase options</span></li>
-            </ul>
-          </div>
-
-          <div class="lg:col-span-6 min-w-0">
-            <div class="glass-strong rounded-2xl p-6 shadow-glow reveal w-full">
-              <div class="flex items-start justify-between gap-4">
-                <div class="min-w-0">
-                  <div class="text-sm text-zinc-200/90">Interactive deliverables</div>
-                  <div class="mt-1 text-xl font-semibold tracking-tight">What your team ships next</div>
-                </div>
-                <button id="deliverablesBtn"
-                        class="h-10 w-10 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center justify-center shrink-0"
-                        aria-expanded="false"
-                        aria-controls="deliverablesPanel"
-                        aria-label="Expand deliverables details">
-                  <svg id="deliverablesChevron" class="h-5 w-5 text-zinc-200 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
-                </button>
-              </div>
-
-              <div class="mt-5 rounded-xl border border-white/10 bg-black/25 p-4">
-                <div class="text-xs text-zinc-300/80">Collapsed view</div>
-                <div class="mt-1 text-sm text-zinc-100/90">
-                  Schema optimisation • Variant modelling • Offer restructuring • FAQ schema • AI readiness scoring
-                </div>
-              </div>
-
-              <div id="deliverablesPanel" class="acc-panel mt-4" aria-hidden="true">
-                <div class="divider my-4"></div>
-
-                <div class="space-y-3">
-                  <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-                    <div class="font-semibold">Schema optimisation</div>
-                    <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-                      Validate schema type choices and align properties so products resolve as interpretable entities — not just pages.
-                    </p>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-                    <div class="font-semibold">Variant modelling</div>
-                    <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-                      Ensure variants map cleanly to identifiers and URLs, so AI can reason about options without ambiguity.
-                    </p>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-                    <div class="font-semibold">Offer restructuring</div>
-                    <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-                      Replace single-offer shortcuts with per-variant Offer arrays (price, availability, currency, SKU/GTIN where applicable).
-                    </p>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-                    <div class="font-semibold">FAQ schema (where relevant)</div>
-                    <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-                      Add FAQPage structured data only where it clarifies core buyer questions and improves extraction reliability.
-                    </p>
-                  </div>
-
-                  <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-                    <div class="font-semibold">AI readiness scoring</div>
-                    <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-                      A practical score based on structural coverage and consistency. You’ll see what moves the number and the recommended order of fixes.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="mt-4 text-xs text-zinc-300/80">
-                  Optional implementation support can be scoped after the audit. The audit is designed to make implementation straightforward for your team.
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4 glass rounded-2xl p-6 shadow-glass reveal w-full">
-              <div class="text-sm font-semibold">Platform-agnostic</div>
-              <p class="mt-2 text-sm text-zinc-200/80 leading-relaxed">
-                Shopify, WooCommerce, headless, custom templates — the audit focuses on the structured layer AI systems can interpret, independent of your stack.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<section id="snapshot" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-  <div class="glass-strong rounded-3xl p-8 sm:p-10 shadow-glow">
-    <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
-      <span class="h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-      <span class="text-xs text-zinc-200/90">Free AI Visibility Snapshot • 24hr Delivery</span>
-    </div>
-
-    <h2 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight">
-      Free AI Visibility Snapshot (24hr Delivery)
-    </h2>
-
-    <p class="mt-3 text-base sm:text-lg text-zinc-200/85 leading-relaxed max-w-3xl">
-      Find out whether AI search engines can actually read your product data — or whether you're structurally invisible.
-    </p>
-
-    <div class="mt-8 flex flex-col sm:flex-row gap-3">
-      <a href="/snapshot.html"
-         class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
-        Get My Free Snapshot
-      </a>
-
-      <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
-         class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
-        £149 Audit
-      </a>
-    </div>
-  </div>
-</section>
-    <!-- PRICING -->
-    <section id="pricing" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-      <div class="text-center max-w-2xl mx-auto reveal">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Pricing</h2>
-        <p class="mt-3 text-zinc-200/85 leading-relaxed">
-          One-time audit. No contract. Built for fast execution.
-        </p>
-      </div>
-
-      <div class="mt-10 flex justify-center">
-        <div class="w-full max-w-xl glass-strong rounded-3xl p-8 shadow-glow reveal">
-          <div class="flex items-start justify-between gap-4 flex-wrap">
-            <div class="min-w-0">
-              <div class="text-sm text-zinc-200/90">AI Discovery Audit</div>
-              <div class="mt-2 flex items-end gap-2 flex-wrap">
-                <div class="text-5xl font-semibold tracking-tight">£149</div>
-                <div class="text-sm text-zinc-300/80 pb-2">one-time</div>
-              </div>
-              <div class="mt-2 text-sm text-zinc-200/80">One-time payment • No contract</div>
-            </div>
-            <div class="hidden sm:block">
-              <div class="rounded-2xl border border-white/10 bg-black/25 px-4 py-3">
-                <div class="text-xs text-zinc-300/80">Works with</div>
-                <div class="text-sm font-medium mt-1">Shopify • WooCommerce • Headless</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 divider"></div>
-
-          <ul class="mt-6 space-y-3 text-sm text-zinc-200/85">
-            <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>AI readiness score + structural gaps</span></li>
-            <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>Validator-ready example JSON-LD + blueprint</span></li>
-            <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>Rollout plan across templates and products</span></li>
-            <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full" style="background:#C026D3;"></span><span>10–15 min Loom walkthrough</span></li>
-          </ul>
-
-          <!-- Buttons never overflow: w-full on mobile -->
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <button id="stripeBtn"
-              class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
-              Secure Audit Now
-            </button>
-            <a href="#faq"
-              class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
-              Read FAQs
+            <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-secondary transition focus-ring">
+              View Sample Report
+              <!-- TODO: set correct link -->
             </a>
           </div>
 
-          <div class="mt-4 text-xs text-zinc-300/70 break-words">
-            Questions? <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+          <div class="mt-4 text-sm text-secondary">
+            Not SEO. Infrastructure for interpretation: entities, offers, attributes, identifiers.
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 min-w-0">
+          <div class="card p-6 bg-surface border-subtle">
+            <div class="text-sm font-semibold text-ink">Enterprise architecture diagram</div>
+            <div class="mt-2 text-sm text-secondary">
+              Place the generated diagram image here.
+            </div>
+
+            <div class="mt-4 rounded-2xl border border-subtle bg-white p-3">
+              <img
+                src="./hero-architecture-diagram.png"
+                alt="Diagram showing product data flowing from catalogue to schema and AI discovery systems"
+                class="w-full h-auto rounded-xl block"
+                loading="lazy"
+                decoding="async"
+              />
+              <!-- TODO: add image file -->
+            </div>
+
+            <div class="mt-4 text-xs text-secondary">
+              Built for Shopify / WooCommerce. Schema.org aligned. Validation-first delivery.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="border-y border-white/10 bg-black/20">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-        <div class="max-w-2xl reveal">
-          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">FAQ</h2>
+    <!-- Section 2 — Trust Strip -->
+    <section class="border-t border-b border-subtle bg-surface">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-secondary">
+          <div class="flex flex-wrap gap-3">
+            <span class="chip rounded-full px-3 py-1">Built for Shopify / WooCommerce</span>
+            <span class="chip rounded-full px-3 py-1">Schema.org aligned</span>
+            <span class="chip rounded-full px-3 py-1">Validation-first delivery</span>
+            <span class="chip rounded-full px-3 py-1">Variant-aware offers</span>
+          </div>
+          <div class="text-ink font-semibold">Indexing ≠ Interpretable</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 — Structural Problem -->
+    <section id="problem" class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-18">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7 min-w-0">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">
+            You’re SEO-visible. You’re structurally invisible to AI.
+          </h2>
+          <p class="mt-4 text-secondary leading-relaxed">
+            Most catalogues render fine for humans, but the machine-readable layer is incomplete or ambiguous — which breaks comparison, filtering, and recommendation.
+          </p>
+
+          <ul class="mt-6 space-y-3 text-sm text-secondary">
+            <li class="flex gap-3">
+              <span class="mt-2 h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+              <span>Generic Product schema across catalogue</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+              <span>Variant offers collapsed into ambiguity</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+              <span>Attributes buried in product copy</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+              <span>Duplicate schema conflicts from apps</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+              <span>No validation or drift monitoring</span>
+            </li>
+          </ul>
+
+          <div class="mt-8 card p-6">
+            <div class="text-ink font-semibold">What this means in practice</div>
+            <p class="mt-2 text-sm text-secondary leading-relaxed">
+              AI systems infer entities and constraints. If offers, attributes, and identifiers aren’t structured and consistent, products become harder to retrieve and easy to ignore.
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 min-w-0">
+          <div class="card p-6 bg-surface">
+            <div class="text-sm font-semibold text-ink">Common failure mode</div>
+            <p class="mt-2 text-sm text-secondary leading-relaxed">
+              A single Offer representing multiple variants creates pricing and availability ambiguity — even when you’re “indexed”.
+            </p>
+            <div class="mt-4 divider"></div>
+            <div class="mt-4 text-sm text-secondary">
+              Fix = per-variant offer architecture + identifier continuity.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 — 3 Pillars -->
+    <section id="pillars" class="border-t border-b border-subtle bg-surface">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-18">
+        <div class="max-w-2xl">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">The infrastructure layer we build</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Outputs-first. No hype. This is catalogue architecture, implemented and validated.
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="card p-6 bg-white">
+            <div class="text-sm font-semibold text-ink">Pillar 1</div>
+            <h3 class="mt-1 text-lg font-semibold text-ink">Catalogue Data Contracts</h3>
+            <ul class="mt-4 space-y-2 text-sm text-secondary">
+              <li>Attribute dictionary (names, types, allowed values)</li>
+              <li>Mapping rules per product type</li>
+              <li>Identifier strategy (SKU/GTIN continuity)</li>
+              <li>Minimum viable “product entity” spec per PDP</li>
+            </ul>
+          </div>
+
+          <div class="card p-6 bg-white">
+            <div class="text-sm font-semibold text-ink">Pillar 2</div>
+            <h3 class="mt-1 text-lg font-semibold text-ink">Variant-Level Offer Architecture</h3>
+            <ul class="mt-4 space-y-2 text-sm text-secondary">
+              <li>Per-variant Offer array (price, availability, URL)</li>
+              <li>Consistent product/variant identifiers</li>
+              <li>Canonical variant mapping rules (no ambiguity)</li>
+              <li>Offer validation rules (currency, URLs, availability)</li>
+            </ul>
+          </div>
+
+          <div class="card p-6 bg-white">
+            <div class="text-sm font-semibold text-ink">Pillar 3</div>
+            <h3 class="mt-1 text-lg font-semibold text-ink">Validation + Drift Monitoring</h3>
+            <ul class="mt-4 space-y-2 text-sm text-secondary">
+              <li>Validator-ready JSON-LD templates</li>
+              <li>Pass / Warn / Fail checks</li>
+              <li>Duplicate/conflict detection (apps + theme)</li>
+              <li>Monthly drift report (breakages + regressions)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 — Method (5-Step Lab Process) -->
+    <section id="method" class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-18">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-6 min-w-0">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Lab process (validation-first)</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            We treat your catalogue like a data system — not a set of pages.
+          </p>
+
+          <ol class="mt-6 space-y-3 text-sm text-secondary">
+            <li><span class="font-semibold text-ink">1. Extract</span> — live product JSON + rendered JSON-LD</li>
+            <li><span class="font-semibold text-ink">2. Specify</span> — contracts: entities, attributes, offers, identifiers</li>
+            <li><span class="font-semibold text-ink">3. Implement</span> — template output changes (theme/app-aware)</li>
+            <li><span class="font-semibold text-ink">4. Validate</span> — schema + logic checks (pass/warn/fail)</li>
+            <li><span class="font-semibold text-ink">5. Monitor</span> — drift detection when apps/products/themes change</li>
+          </ol>
+        </div>
+
+        <div class="lg:col-span-6 min-w-0">
+          <div class="card p-6 bg-surface">
+            <div class="text-sm font-semibold text-ink">5-step diagram</div>
+            <div class="mt-4 rounded-2xl border border-subtle bg-white p-3">
+              <img
+                src="./method-5-step-diagram.png"
+                alt="Five-step process: Extract, Specify, Implement, Validate, Monitor"
+                class="w-full h-auto rounded-xl block"
+                loading="lazy"
+                decoding="async"
+              />
+              <!-- TODO: add image file -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 — Offer Ladder -->
+    <section id="pricing" class="border-t border-b border-subtle bg-surface">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-18">
+        <div class="max-w-2xl">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Engagement ladder</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Start with a diagnostic, then move into blueprint and implementation when you’re ready.
+          </p>
         </div>
 
         <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <details class="glass rounded-2xl p-6 shadow-glass reveal">
-            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-              <span class="font-semibold">Is this SEO?</span>
-              <span class="text-zinc-300/80">+</span>
+          <div class="card p-7 bg-white">
+            <div class="text-sm font-semibold text-ink">Card 1</div>
+            <h3 class="mt-1 text-xl font-semibold text-ink">Free Snapshot</h3>
+            <div class="mt-1 text-sm text-secondary">24–48h diagnostic</div>
+
+            <ul class="mt-4 space-y-2 text-sm text-secondary">
+              <li>1–2 product pages reviewed</li>
+              <li>3–5 structural issues identified</li>
+              <li>Priority fix order</li>
+              <li>Interpretability notes (not SEO)</li>
+            </ul>
+
+            <div class="mt-6">
+              <a href="/snapshot.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold btn-primary transition focus-ring">
+                Get Free Snapshot
+              </a>
+            </div>
+          </div>
+
+          <div class="card p-7 bg-white">
+            <div class="text-sm font-semibold text-ink">Card 2</div>
+            <h3 class="mt-1 text-xl font-semibold text-ink">£149 Audit</h3>
+            <div class="mt-1 text-sm text-secondary">Catalogue issue register + blueprint</div>
+
+            <ul class="mt-4 space-y-2 text-sm text-secondary">
+              <li>Catalogue issue register (theme + templates)</li>
+              <li>Representative PDP JSON-LD rebuild example</li>
+              <li>Variant offer modelling recommendations</li>
+              <li>Implementation blueprint + rollout plan</li>
+            </ul>
+
+            <div class="mt-6">
+              <button id="stripeBtn" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold btn-primary transition focus-ring">
+                Book £149 Audit
+              </button>
+            </div>
+
+            <div class="mt-3 text-xs text-secondary break-words">
+              Questions? <a class="underline hover:no-underline focus-ring" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+            </div>
+          </div>
+
+          <div class="card p-7 bg-white">
+            <div class="text-sm font-semibold text-ink">Card 3</div>
+            <h3 class="mt-1 text-xl font-semibold text-ink">Full Catalogue Implementation</h3>
+            <div class="mt-1 text-sm text-secondary">20–30 SKUs typical</div>
+
+            <ul class="mt-4 space-y-2 text-sm text-secondary">
+              <li>Template architecture updates (PDP patterns)</li>
+              <li>Variant offer implementation across templates</li>
+              <li>Attribute contract mapping (computable attributes)</li>
+              <li>Validation suite applied to key templates</li>
+            </ul>
+
+            <div class="mt-6">
+              <a href="mailto:audit@myaidiscoverylab.com?subject=Catalogue%20Implementation%20Scope" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold btn-secondary transition focus-ring">
+                Request Scope
+              </a>
+            </div>
+          </div>
+
+          <div class="card p-7 bg-white">
+            <div class="text-sm font-semibold text-ink">Card 4</div>
+            <h3 class="mt-1 text-xl font-semibold text-ink">Ongoing Monitoring</h3>
+            <div class="mt-1 text-sm text-secondary">Monthly drift detection</div>
+
+            <ul class="mt-4 space-y-2 text-sm text-secondary">
+              <li>Monthly structured data health report</li>
+              <li>Drift detection (apps/theme edits/new products)</li>
+              <li>Regression list + recommended fixes</li>
+              <li>Validator status summary</li>
+            </ul>
+
+            <div class="mt-6">
+              <a href="mailto:audit@myaidiscoverylab.com?subject=Monitoring%20Request" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold btn-secondary transition focus-ring">
+                Request Monitoring
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7 — Proof -->
+    <section id="proof" class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-18">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">What proof looks like in infrastructure work</h2>
+        <p class="mt-3 text-secondary leading-relaxed">
+          Technical artifacts — schema conflicts resolved, offers made unambiguous, validation status made visible.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="card p-6 bg-surface">
+          <div class="text-sm font-semibold text-ink">Example: duplicate schema fix</div>
+          <p class="mt-2 text-sm text-secondary">
+            Before: multiple Product entities from apps + theme. After: single authoritative entity and controlled output.
+          </p>
+          <div class="mt-4">
+            <pre class="code"><code>// BEFORE
+// App A: Product JSON-LD
+// App B: Product JSON-LD
+// Theme: Product JSON-LD (conflicts)
+
+// AFTER
+// Theme outputs the authoritative Product entity
+// Apps suppressed or de-conflicted</code></pre>
+          </div>
+        </div>
+
+        <div class="card p-6 bg-surface">
+          <div class="text-sm font-semibold text-ink">Example: variant offer correction</div>
+          <p class="mt-2 text-sm text-secondary">
+            Before: one Offer for many variants. After: Offer array per variant with identifiers and URLs.
+          </p>
+          <div class="mt-4 rounded-2xl border border-subtle bg-white p-3">
+            <img
+              src="./variant-offer-modelling-schematic.png"
+              alt="Diagram showing one product entity connected to multiple variant offers"
+              class="w-full h-auto rounded-xl block"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- TODO: add image file -->
+          </div>
+        </div>
+
+        <div class="card p-6 bg-surface">
+          <div class="text-sm font-semibold text-ink">Example: validation status (pass/warn/fail)</div>
+          <p class="mt-2 text-sm text-secondary">
+            Make structural health visible and actionable.
+          </p>
+          <div class="mt-4 rounded-2xl border border-subtle bg-white p-3">
+            <img
+              src="./validation-badges-pass-warn-fail.png"
+              alt="Validation status badges: Pass, Warn, Fail"
+              class="w-full h-auto rounded-xl block"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- TODO: add image file -->
+          </div>
+        </div>
+
+        <div class="card p-6 bg-surface">
+          <div class="text-sm font-semibold text-ink">Example: attribute contract table</div>
+          <p class="mt-2 text-sm text-secondary">
+            Turn “marketing copy attributes” into typed, governed fields that machines can compare.
+          </p>
+          <div class="mt-4 rounded-2xl border border-subtle bg-white p-3">
+            <img
+              src="./attribute-contract-table.png"
+              alt="Table showing attribute contracts with types and allowed values"
+              class="w-full h-auto rounded-xl block"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- TODO: add image file -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8 — FAQ -->
+    <section id="faq" class="border-t border-b border-subtle bg-surface">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-18">
+        <div class="max-w-2xl">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">FAQ</h2>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <details class="card p-6 bg-white">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-ink font-semibold focus-ring">
+              Will this break my theme?
+              <span class="text-secondary">+</span>
             </summary>
-            <p class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-              It’s infrastructure. SEO helps pages rank. This improves how AI systems interpret products: variants, attributes, offers, constraints, and structured Q/A.
+            <p class="mt-3 text-sm text-secondary leading-relaxed">
+              No. We work at the structured output layer (templates + injected schema). Changes are isolated, testable, and reversible.
             </p>
           </details>
 
-          <details class="glass rounded-2xl p-6 shadow-glass reveal">
-            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-              <span class="font-semibold">Do you implement changes?</span>
-              <span class="text-zinc-300/80">+</span>
+          <details class="card p-6 bg-white">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-ink font-semibold focus-ring">
+              How do you handle app-injected schema?
+              <span class="text-secondary">+</span>
             </summary>
-            <p class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-              The £149 product is the audit + blueprint. Implementation support is optional and can be scoped after the audit based on your setup.
+            <p class="mt-3 text-sm text-secondary leading-relaxed">
+              We identify duplicates and conflicts, then suppress or de-conflict app output where possible and establish a single authoritative entity strategy.
             </p>
           </details>
 
-          <details class="glass rounded-2xl p-6 shadow-glass reveal">
-            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-              <span class="font-semibold">Does this work outside Shopify?</span>
-              <span class="text-zinc-300/80">+</span>
+          <details class="card p-6 bg-white">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-ink font-semibold focus-ring">
+              How do you model variants?
+              <span class="text-secondary">+</span>
             </summary>
-            <p class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-              Yes. The audit targets structured data and product architecture. That layer exists on Shopify, WooCommerce, headless storefronts, and custom builds.
+            <p class="mt-3 text-sm text-secondary leading-relaxed">
+              One product entity, many offers: per-variant Offer arrays with stable identifiers, URLs, price, currency, and availability. No collapsed ambiguity.
             </p>
           </details>
 
-          <details class="glass rounded-2xl p-6 shadow-glass reveal">
-            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-              <span class="font-semibold">What do I get after payment?</span>
-              <span class="text-zinc-300/80">+</span>
+          <details class="card p-6 bg-white">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-ink font-semibold focus-ring">
+              How do you prevent drift?
+              <span class="text-secondary">+</span>
             </summary>
-            <p class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-              A booking link to schedule your slot. After analysis, you receive a structured report, readiness score, example JSON-LD, rollout plan, and Loom walkthrough.
+            <p class="mt-3 text-sm text-secondary leading-relaxed">
+              Validation checks plus monitoring. When apps, themes, or product data change, we detect regressions and report what broke and what to fix.
             </p>
           </details>
 
-          <details class="glass rounded-2xl p-6 shadow-glass reveal">
-            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-              <span class="font-semibold">How fast is delivery?</span>
-              <span class="text-zinc-300/80">+</span>
+          <details class="card p-6 bg-white">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-ink font-semibold focus-ring">
+              What platforms do you support?
+              <span class="text-secondary">+</span>
             </summary>
-            <p class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-              Typical turnaround is 48–72 hours after your intake details are confirmed.
-            </p>
-          </details>
-
-          <details class="glass rounded-2xl p-6 shadow-glass reveal">
-            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-              <span class="font-semibold">What if I have many products?</span>
-              <span class="text-zinc-300/80">+</span>
-            </summary>
-            <p class="mt-3 text-sm text-zinc-200/85 leading-relaxed">
-              The audit uses representative products and templates to produce a rollout plan that scales across collections and variants. For large catalogs, we’ll prioritise the highest-impact templates first.
+            <p class="mt-3 text-sm text-secondary leading-relaxed">
+              Shopify, WooCommerce, headless, and custom storefronts. The structured layer is the same: entity clarity, offer logic, attributes, identifiers, and validation.
             </p>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- FINAL CTA (center aligned) -->
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-      <div class="glass-strong rounded-3xl p-10 sm:p-12 shadow-glow reveal text-center">
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">Be early. Not invisible.</h2>
-        <p class="mt-4 text-zinc-200/85 leading-relaxed max-w-2xl mx-auto">
-          AI discovery surfaces are forming now. If your product data isn’t interpretable, you get filtered out before the user even sees you.
+    <!-- Section 9 — Final CTA -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-18">
+      <div class="card p-10 sm:p-12 bg-surface border-subtle text-center">
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">Get a Free Snapshot</h2>
+        <p class="mt-4 text-secondary leading-relaxed max-w-2xl mx-auto">
+          Know what machines can actually read from your catalogue.
         </p>
-        <div class="mt-3 text-sm text-zinc-300/80 break-words">
-          Questions? <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
-        </div>
 
-        <div class="mt-8 flex justify-center">
-          <a href="#pricing" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-7 py-3 font-semibold text-white btn-primary transition focus-ring">
-            Book £149 Audit
+        <div class="mt-7 flex justify-center">
+          <a href="/snapshot.html" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-7 py-3 font-semibold btn-primary transition focus-ring">
+            Get Free Snapshot
           </a>
         </div>
+
+        <div class="mt-4 text-sm text-secondary break-words">
+          Or email: <a class="underline hover:no-underline focus-ring" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+        </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <div class="footer-glow"></div>
-    <div class="footer-glow-soft"></div>
-    <footer class="border-t border-white/10 bg-black/30">
+    <!-- Footer -->
+    <footer class="border-t border-subtle bg-white">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 py-12">
         <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
           <div class="flex items-start gap-4 min-w-0">
-            <div class="h-20 w-20 rounded-2xl glass shadow-glow flex items-center justify-center shrink-0 p-3">
+            <div class="h-16 w-16 rounded-xl border border-subtle bg-white flex items-center justify-center shrink-0 p-2">
               <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" />
             </div>
-            <div class="text-sm text-zinc-200/90 min-w-0">
-              <div class="font-semibold break-words">My AI Discovery Lab</div>
-              <div class="mt-1 text-zinc-300/80 break-words">Machine-readable commerce infrastructure.</div>
-              <div class="mt-2 text-zinc-300/80 break-words">
-                <a class="hover:text-white transition" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+            <div class="text-sm min-w-0">
+              <div class="font-semibold break-words text-ink">My AI Discovery Lab</div>
+              <div class="mt-1 break-words text-secondary">Machine-readable commerce infrastructure.</div>
+              <div class="mt-2 break-words text-secondary">
+                <a class="underline hover:no-underline focus-ring" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
               </div>
             </div>
           </div>
 
           <div class="flex flex-col md:items-end gap-4">
-            <div class="flex items-center gap-6 text-sm text-zinc-300/80">
-              <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
-              <a href="/terms.html" class="hover:text-white transition">Terms</a>
-<a href="/index.html#snapshot" class="hover:text-white transition">Snapshot</a>
+            <div class="flex items-center gap-6 text-sm text-secondary">
+              <a href="/privacy.html" class="hover:text-ink transition focus-ring">Privacy</a>
+              <a href="/terms.html" class="hover:text-ink transition focus-ring">Terms</a>
+              <a href="/snapshot.html" class="hover:text-ink transition focus-ring">Snapshot</a>
             </div>
-            <div class="text-xs text-zinc-400/70">
+            <div class="text-xs text-secondary">
               © <span id="year"></span> My AI Discovery Lab. All rights reserved.
             </div>
           </div>
@@ -1234,372 +706,45 @@
     </footer>
   </main>
 
-  <!-- Mobile modal for audit card expansion -->
-  <div id="auditModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
-    <div class="modal-sheet glass-strong rounded-3xl p-6 shadow-glow">
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <div class="text-sm text-zinc-200/90" id="auditModalTitle">Audit Output (Example)</div>
-          <div class="mt-1 text-xl font-semibold tracking-tight">What the audit actually fixes</div>
-        </div>
-        <button id="auditModalClose" class="h-10 w-10 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center justify-center" aria-label="Close">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M18 6L6 18"></path><path d="M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div class="mt-4 text-xs text-zinc-300/80">
-        Supplement examples may appear in snippets as a common case; the same modelling applies across e-commerce.
-      </div>
-
-      <div class="divider my-5"></div>
-
-      <div class="space-y-3">
-        <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-          <div class="font-semibold">Schema Type</div>
-          <div class="mt-2 text-sm text-zinc-200/85"><span class="font-medium text-zinc-100/90">Before:</span> generic Product<br><span class="font-medium text-zinc-100/90">After:</span> richer structured model</div>
-        </div>
-        <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-          <div class="font-semibold">Offers & Variants</div>
-          <div class="mt-2 text-sm text-zinc-200/85"><span class="font-medium text-zinc-100/90">Before:</span> single offer<br><span class="font-medium text-zinc-100/90">After:</span> per-variant offers</div>
-        </div>
-        <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-          <div class="font-semibold">Attributes / Specs</div>
-          <div class="mt-2 text-sm text-zinc-200/85"><span class="font-medium text-zinc-100/90">Before:</span> text-only<br><span class="font-medium text-zinc-100/90">After:</span> machine-readable properties</div>
-        </div>
-        <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-          <div class="font-semibold">FAQ Structure</div>
-          <div class="mt-2 text-sm text-zinc-200/85"><span class="font-medium text-zinc-100/90">Before:</span> unstructured Q/A<br><span class="font-medium text-zinc-100/90">After:</span> FAQPage where relevant</div>
-        </div>
-        <div class="rounded-xl border border-white/10 bg-black/25 p-4">
-          <div class="font-semibold">AI Readiness Score</div>
-          <div class="mt-2 text-sm text-zinc-200/85"><span class="font-medium text-zinc-100/90">Example:</span> 6.8 / 10 — with a clear fix order.</div>
-        </div>
-      </div>
-
-      <div class="mt-5">
-        <div class="text-xs text-zinc-300/80 mb-2">Validator-ready JSON-LD example (visual)</div>
-        <button type="button"
-                class="glass rounded-2xl p-4 border border-white/10 bg-black/25 shadow-glass w-full text-left hover:bg-white/5 transition focus-ring"
-                data-img-modal="./json-structured-visual.svg"
-                aria-label="Open validator-ready JSON-LD visual preview">
-          <img src="./json-structured-visual.svg" alt="Validator-ready JSON-LD visual example" class="w-full h-auto rounded-xl block" />
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Image viewer modal for diagrams -->
-  <div id="imageModal" class="img-modal" role="dialog" aria-modal="true" aria-label="Image preview">
-    <div id="imageModalInner" class="img-modal-inner">
-      <div class="img-modal-card">
-        <div class="flex items-start justify-between gap-4">
-          <div class="text-sm text-zinc-200/90">Preview</div>
-          <button id="imageModalClose" class="h-10 w-10 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition focus-ring inline-flex items-center justify-center" aria-label="Close preview">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M18 6L6 18"></path><path d="M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="mt-4">
-          <img id="imageModalImg" src="" alt="" class="w-full h-auto rounded-xl border border-white/10 bg-black/20 block" />
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     // ====== CONFIG ======
     const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00";
 
     // Stripe button action (redirect) — DO NOT MODIFY
-    document.getElementById("stripeBtn").addEventListener("click", () => {
-      window.location.href = STRIPE_CHECKOUT_URL;
-    });
+    const stripeBtn = document.getElementById("stripeBtn");
+    if (stripeBtn) {
+      stripeBtn.addEventListener("click", () => {
+        window.location.href = STRIPE_CHECKOUT_URL;
+      });
+    }
 
     // Current year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Nav blur/darken on scroll
+    // Nav shadow on scroll
     const nav = document.getElementById("siteNav");
     const onScroll = () => {
-      if (window.scrollY > 12) nav.classList.add("nav-scrolled");
+      if (window.scrollY > 10) nav.classList.add("nav-scrolled");
       else nav.classList.remove("nav-scrolled");
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // Scroll reveal (IntersectionObserver)
-    const revealEls = Array.from(document.querySelectorAll(".reveal"));
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          io.unobserve(e.target);
-        }
-      }
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => io.observe(el));
+    // Mobile menu toggle + close on link click
+    const toggle = document.getElementById("mobileMenuToggle");
+    const menu = document.getElementById("mobileMenu");
 
-    // ====== Accordion helper (smooth height) ======
-    function setPanel(panel, open) {
-      panel.style.height = open ? panel.scrollHeight + "px" : "0px";
-      panel.setAttribute("aria-hidden", open ? "false" : "true");
-    }
-
-    function wireAccordions(btnId, chevronId, panelId) {
-      const btn = document.getElementById(btnId);
-      const chevron = document.getElementById(chevronId);
-      const panel = document.getElementById(panelId);
-
-      btn.addEventListener("click", () => {
-        const expanded = btn.getAttribute("aria-expanded") === "true";
-        btn.setAttribute("aria-expanded", String(!expanded));
-        chevron.style.transform = !expanded ? "rotate(180deg)" : "rotate(0deg)";
-        setPanel(panel, !expanded);
+    if (toggle && menu) {
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
       });
 
-      window.addEventListener("resize", () => {
-        const expanded = btn.getAttribute("aria-expanded") === "true";
-        if (expanded) panel.style.height = panel.scrollHeight + "px";
-      }, { passive: true });
-
-      setPanel(panel, false);
-    }
-
-    // Deliverables accordion (What You Get)
-    wireAccordions("deliverablesBtn", "deliverablesChevron", "deliverablesPanel");
-
-    // ====== Audit Output card: collapsed by default; mobile uses modal ======
-    const auditExpandBtn = document.getElementById("auditExpandBtn");
-    const auditAcc = document.getElementById("auditAcc");
-    const auditChevron = document.getElementById("auditChevron");
-    const auditModal = document.getElementById("auditModal");
-    const auditModalClose = document.getElementById("auditModalClose");
-
-    function isMobile() { return window.matchMedia("(max-width: 767px)").matches; }
-
-    function openAuditModal() {
-      auditModal.classList.add("is-open");
-      document.body.style.overflow = "hidden";
-      auditModalClose.focus();
-    }
-    function closeAuditModal() {
-      auditModal.classList.remove("is-open");
-      document.body.style.overflow = "";
-      auditExpandBtn.focus();
-    }
-
-    auditModal.addEventListener("click", (e) => {
-      if (e.target === auditModal) closeAuditModal();
-    });
-    auditModalClose.addEventListener("click", closeAuditModal);
-
-    // Init collapsed
-    setPanel(auditAcc, false);
-    auditAcc.setAttribute("aria-hidden", "true");
-    auditExpandBtn.setAttribute("aria-expanded", "false");
-    auditChevron.style.transform = "rotate(0deg)";
-
-    auditExpandBtn.addEventListener("click", () => {
-      if (isMobile()) {
-        openAuditModal();
-        return;
-      }
-      const expanded = auditExpandBtn.getAttribute("aria-expanded") === "true";
-      auditExpandBtn.setAttribute("aria-expanded", String(!expanded));
-      auditChevron.style.transform = !expanded ? "rotate(180deg)" : "rotate(0deg)";
-      setPanel(auditAcc, !expanded);
-    });
-
-    // Nested accordion items inside audit card (desktop)
-    const auditItems = Array.from(document.querySelectorAll(".audit-item"));
-    auditItems.forEach(btn => {
-      const panel = btn.parentElement.querySelector(".acc-panel");
-      setPanel(panel, false);
-      btn.addEventListener("click", () => {
-        const expanded = btn.getAttribute("aria-expanded") === "true";
-        btn.setAttribute("aria-expanded", String(!expanded));
-        setPanel(panel, !expanded);
-
-        const outerExpanded = auditExpandBtn.getAttribute("aria-expanded") === "true";
-        if (outerExpanded) auditAcc.style.height = auditAcc.scrollHeight + "px";
-      });
-    });
-
-    // Raw JSON toggle under visual
-    const rawToggle = document.getElementById("rawJsonToggle");
-    const rawPanel = document.getElementById("rawJsonPanel");
-    const rawChevron = document.getElementById("rawJsonChevron");
-    if (rawToggle && rawPanel && rawChevron) {
-      setPanel(rawPanel, false);
-      rawToggle.addEventListener("click", () => {
-        const expanded = rawToggle.getAttribute("aria-expanded") === "true";
-        rawToggle.setAttribute("aria-expanded", String(!expanded));
-        rawChevron.style.transform = !expanded ? "rotate(180deg)" : "rotate(0deg)";
-        setPanel(rawPanel, !expanded);
-
-        const outerExpanded = auditExpandBtn.getAttribute("aria-expanded") === "true";
-        if (outerExpanded) auditAcc.style.height = auditAcc.scrollHeight + "px";
+      document.querySelectorAll('#mobileMenu a').forEach(a => {
+        a.addEventListener('click', () => {
+          menu.classList.add('hidden');
+        });
       });
     }
-
-    // ====== Image viewer modal (diagram + JSON visual) ======
-    const imageModal = document.getElementById("imageModal");
-    const imageModalImg = document.getElementById("imageModalImg");
-    const imageModalClose = document.getElementById("imageModalClose");
-
-    function openImageModal(src, altText) {
-      imageModalImg.src = src;
-      imageModalImg.alt = altText || "Preview image";
-      imageModal.classList.add("is-open");
-      document.body.style.overflow = "hidden";
-      imageModalClose.focus();
-    }
-    function closeImageModal() {
-      imageModal.classList.remove("is-open");
-      document.body.style.overflow = "";
-      imageModalImg.src = "";
-      imageModalImg.alt = "";
-    }
-
-    document.querySelectorAll("[data-img-modal]").forEach(el => {
-      el.addEventListener("click", () => {
-        const src = el.getAttribute("data-img-modal");
-        const img = el.querySelector("img");
-        const altText = img ? img.alt : "Preview image";
-        openImageModal(src, altText);
-      });
-    });
-
-    imageModalClose.addEventListener("click", closeImageModal);
-    imageModal.addEventListener("click", (e) => {
-      if (e.target === imageModal) closeImageModal();
-    });
-
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (auditModal.classList.contains("is-open")) closeAuditModal();
-        if (imageModal.classList.contains("is-open")) closeImageModal();
-      }
-    });
-
-    // ====== Starfield particles ======
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d", { alpha: true });
-
-    let w, h, dpr, particles;
-    const PARTICLE_COUNT = 110;
-    const MAX_SPEED = 0.18;
-
-    function resizeCanvas() {
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      w = canvas.clientWidth = window.innerWidth;
-      h = canvas.clientHeight = window.innerHeight;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      particles = Array.from({ length: PARTICLE_COUNT }, () => spawnParticle(true));
-    }
-
-    function spawnParticle(randomY = false) {
-      const x = Math.random() * w;
-      const y = randomY ? Math.random() * h : -10;
-      const r = 0.5 + Math.random() * 1.5;
-      const vx = (Math.random() - 0.5) * MAX_SPEED;
-      const vy = (0.03 + Math.random() * 0.14);
-      const a = 0.14 + Math.random() * 0.32;
-      return { x, y, r, vx, vy, a };
-    }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, w, h);
-
-      const g = ctx.createRadialGradient(w * 0.55, h * 0.15, 0, w * 0.55, h * 0.15, Math.max(w, h));
-      g.addColorStop(0, "rgba(192,38,211,0.06)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.y > h + 12) particles[i] = spawnParticle(false);
-        if (p.x < -12) p.x = w + 12;
-        if (p.x > w + 12) p.x = -12;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.a})`;
-        ctx.fill();
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 110) {
-            const alpha = (1 - dist / 110) * 0.06;
-            ctx.strokeStyle = `rgba(138,43,226,${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(drawStars);
-    }
-
-    window.addEventListener("resize", resizeCanvas, { passive: true });
-    resizeCanvas();
-    drawStars();
   </script>
-<script>
-  const toggle = document.getElementById("mobileMenuToggle");
-  const menu = document.getElementById("mobileMenu");
-
-  if (toggle && menu) {
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-    });
-  }
-</script>
-<script>
-  const toggle = document.getElementById("mobileMenuToggle");
-  const menu = document.getElementById("mobileMenu");
-
-  if (toggle && menu) {
-    const closeMenu = () => menu.classList.add("hidden");
-
-    // Toggle open/close
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-    });
-
-    // Close when any link is clicked
-    menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    // Optional: close if user taps outside menu
-    document.addEventListener("click", (e) => {
-      const clickedInsideMenu = menu.contains(e.target);
-      const clickedToggle = toggle.contains(e.target);
-      if (!clickedInsideMenu && !clickedToggle) closeMenu();
-    });
-
-    // Optional: close on Escape
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-  }
-</script>
 </body>
 </html>
