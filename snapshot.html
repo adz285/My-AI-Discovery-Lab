@@ -2,26 +2,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- NOTE: Google Search Console verification is via DNS (no meta tag required). -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Free AI Visibility Snapshot — My AI Discovery Lab</title>
-  <meta name="description" content="Free AI Visibility Snapshot (24hr delivery). We analyse your structured data and score your AI readiness." />
+  <title>Free Snapshot — My AI Discovery Lab</title>
+  <meta name="description" content="Free Snapshot (24–48h). We review 1–2 product pages and identify 3–5 structural issues affecting machine-readable product data." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://myaidiscoverylab.com/snapshot.html" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Free AI Visibility Snapshot — My AI Discovery Lab" />
-  <meta property="og:description" content="Find out whether AI search engines can actually read your product data — or whether you're structurally invisible." />
+  <meta property="og:title" content="Free Snapshot — My AI Discovery Lab" />
+  <meta property="og:description" content="Find out what machines can actually read from your catalogue — and where structured signals are ambiguous or missing." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://myaidiscoverylab.com/snapshot.html" />
   <meta property="og:image" content="https://myaidiscoverylab.com/og-image.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Free AI Visibility Snapshot — My AI Discovery Lab" />
-  <meta name="twitter:description" content="We analyse your structured data and score your AI readiness." />
+  <meta name="twitter:title" content="Free Snapshot — My AI Discovery Lab" />
+  <meta name="twitter:description" content="A fast diagnostic of product schema + variant offers + attribute structure." />
   <meta name="twitter:image" content="https://myaidiscoverylab.com/og-image.png" />
+
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#FFFFFF" />
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -36,10 +40,19 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"] },
-          boxShadow: {
-            glass: "0 12px 34px rgba(0,0,0,.45)",
-            glow: "0 0 0 1px rgba(255,255,255,.06), 0 24px 90px rgba(192,38,211,.22)"
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"]
+          },
+          colors: {
+            ink: "#0A2540",
+            text: "#0B1220",
+            sub: "#475569",
+            surface: "#F6F8FB",
+            border: "#E5EAF0",
+            accent: "#2563EB",
+            success: "#16A34A",
+            warn: "#D97706",
+            danger: "#DC2626"
           }
         }
       }
@@ -47,211 +60,322 @@
   </script>
 
   <style>
-    :root { color-scheme: dark; }
+    /* ===== Mobile safe baseline: no horizontal scroll, responsive media ===== */
     html, body { overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    pre, code { word-break: break-word; white-space: pre-wrap; }
+
     html { scroll-behavior: smooth; }
-    body { min-height: 100vh; }
-    img { max-width: 100%; height: auto; }
+    body { min-height: 100vh; background: #FFFFFF; color: #0B1220; }
 
-    .bg-animated {
-      background:
-        radial-gradient(1200px 800px at 12% 10%, rgba(138,43,226,.26), transparent 60%),
-        radial-gradient(1000px 760px at 92% 18%, rgba(192,38,211,.18), transparent 58%),
-        radial-gradient(900px 700px at 48% 92%, rgba(147,51,234,.16), transparent 55%),
-        linear-gradient(180deg, #060510 0%, #04030c 55%, #03020a 100%);
-    }
-
-    .glass {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .glass-strong {
-      background: rgba(10,8,22,.52);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .focus-ring:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(192,38,211,.28);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #8A2BE2 0%, #C026D3 45%, #9333EA 100%);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.08),
-        0 14px 44px rgba(192,38,211,.18),
-        0 0 42px rgba(147,51,234,.14);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary::after {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 40%);
-      transform: translateX(-30%);
-      opacity: .55;
-      transition: opacity .35s ease;
-    }
-    .btn-primary:hover::after { opacity: .78; }
-    .btn-primary:active { transform: translateY(1px); }
-
+    /* ===== Sticky nav + subtle border ===== */
     .nav-base {
-      background: rgba(0,0,0,.18);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid #E5EAF0;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      transition: background .25s ease, border-color .25s ease;
-    }
-    .nav-scrolled {
-      background: rgba(4,3,10,.72);
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
     }
 
-    #particles {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: .85;
-      mix-blend-mode: screen;
+    /* ===== Buttons (accent only) ===== */
+    .btn-primary {
+      background: #2563EB;
+      color: #FFFFFF;
+      border: 1px solid rgba(37,99,235,.55);
     }
-
-    .divider {
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
-      height: 1px;
+    .btn-primary:hover { background: #1D4ED8; }
+    .btn-secondary {
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      color: #0A2540;
     }
+    .btn-secondary:hover { background: #F6F8FB; }
 
+    /* ===== Form fields ===== */
     .field {
       width: 100%;
-      background: rgba(0,0,0,.28);
-      border: 1px solid rgba(255,255,255,.10);
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
       border-radius: 14px;
       padding: 12px 12px;
-      color: rgba(255,255,255,.92);
+      color: #0B1220;
       outline: none;
     }
     .field:focus {
-      border-color: rgba(192,38,211,.45);
-      box-shadow: 0 0 0 4px rgba(192,38,211,.20);
+      border-color: rgba(37,99,235,.55);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.18);
     }
     .label {
       font-size: 12px;
-      color: rgba(228,228,231,.80);
+      color: #475569;
       display: block;
-      min-height: 32px;
       line-height: 16px;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+    /* ===== Divider ===== */
+    .divider {
+      background: linear-gradient(90deg, transparent, rgba(11,18,32,.14), transparent);
+      height: 1px;
+    }
+
+    /* ===== Cookie banner (same as index) ===== */
+    .cookie-banner {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 9999;
+      background: #0B1220;
+      color: #FFFFFF;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 14px 16px;
+    }
+    .cookie-banner-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .cookie-banner p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.88);
+    }
+    .cookie-actions { display: flex; gap: 10px; align-items: center; }
+    .cookie-btn {
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: #FFF;
+      cursor: pointer;
+    }
+    .cookie-btn:hover { background: rgba(255,255,255,.12); }
+    .cookie-btn.primary {
+      background: #2563EB;
+      border-color: rgba(37,99,235,.55);
+    }
+    .cookie-btn.primary:hover { background: #1D4ED8; }
+    .cookie-link {
+      color: rgba(255,255,255,.9);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ===== Image modal (enlarge any image) ===== */
+    .img-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9998;
+      background: rgba(11,18,32,.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity .18s ease;
+      padding: 16px;
+    }
+    .img-modal.is-open { display: block; opacity: 1; }
+    .img-modal-inner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(92vw, 1100px);
+      max-height: 86vh;
+      overflow: auto;
+    }
+    .img-modal-card {
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      border-radius: 18px;
+      padding: 14px;
     }
   </style>
+
+  <!-- Lightweight Organization JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"My AI Discovery Lab",
+    "url":"https://myaidiscoverylab.com/",
+    "email":"audit@myaidiscoverylab.com"
+  }
+  </script>
+
+  <script>
+    // ===== Sitewide IDs (keep consistent across ALL pages) =====
+    window.__AIDL__ = {
+      GA4_ID: "G-7QQ93HP5N6",
+      ADSENSE_CLIENT: "ca-pub-7230693944040551"
+    };
+  </script>
 </head>
 
-<body class="min-h-screen bg-animated text-zinc-100 font-sans">
-  <div class="fixed inset-0 -z-10">
-    <canvas id="particles"></canvas>
+<body class="font-sans">
+  <!-- ===== Cookie Consent Banner (blocks GA4 + AdSense until accepted) ===== -->
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-banner-inner">
+      <p>
+        We use cookies to measure traffic and support ads. Accept to enable analytics (GA4) and AdSense.
+        <a class="cookie-link" href="/privacy.html">Privacy</a>
+      </p>
+      <div class="cookie-actions">
+        <button id="cookieDecline" class="cookie-btn" type="button">Decline</button>
+        <button id="cookieAccept" class="cookie-btn primary" type="button">Accept</button>
+      </div>
+    </div>
   </div>
 
-  <!-- Header / Nav (same structure + styling system) -->
+  <!-- ===== Sticky Nav (matches index.html) ===== -->
   <header id="siteNav" class="sticky top-0 z-50 nav-base">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
         <a href="/index.html#top" class="flex items-center gap-3 min-w-0">
-          <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl glass shadow-glow flex items-center justify-center overflow-hidden shrink-0 p-1.5">
-            <img src="/logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
+          <div class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
+            <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" loading="eager" decoding="async" />
           </div>
           <div class="leading-tight min-w-0">
-            <div class="text-sm font-semibold tracking-tight truncate">My AI Discovery Lab</div>
-            <div class="text-[11px] text-zinc-300/80 truncate">AI discovery infrastructure for commerce</div>
+            <div class="text-sm font-semibold tracking-tight text-ink truncate">My AI Discovery Lab</div>
+            <div class="text-[11px] text-sub truncate">Product data infrastructure</div>
           </div>
         </a>
 
-        <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-200/90">
-          <a href="/index.html#what" class="hover:text-white transition">What we do</a>
-          <a href="/index.html#why" class="hover:text-white transition">Why it matters</a>
-          <a href="/index.html#how" class="hover:text-white transition">How it works</a>
-          <a href="/index.html#pricing" class="hover:text-white transition">Pricing</a>
-          <a href="/insights.html" class="hover:text-white transition">Insights</a>
-          <a href="/snapshot.html" class="hover:text-white transition">Free Snapshot</a>
-          <a href="/index.html#faq" class="hover:text-white transition">FAQ</a>
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuToggle"
+          class="md:hidden inline-flex items-center justify-center rounded-xl p-2 border border-border bg-white"
+          aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ink" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6 text-sm text-ink/90">
+          <a href="/snapshot.html" class="hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="hover:text-ink transition">Insights</a>
         </nav>
 
-        <div class="flex items-center gap-3 shrink-0">
-          <a href="#form" class="hidden sm:inline-flex rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition focus-ring">
-            Get snapshot
+        <div class="hidden md:flex items-center gap-3 shrink-0">
+          <a href="#form"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+            Request Snapshot
           </a>
-          <a href="REPLACE_WITH_YOUR_EXISTING_STRIPE_CHECKOUT_URL" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white btn-primary transition focus-ring whitespace-nowrap">
+          <button id="stripeBtnNav"
+             class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-secondary">
             £149 Audit
-          </a>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="mt-3 rounded-2xl border border-border bg-white p-4 space-y-3 text-sm text-ink/90">
+          <a href="/snapshot.html" class="block hover:text-ink transition">Free Snapshot</a>
+          <a href="/index.html#method" class="block hover:text-ink transition">Method</a>
+          <a href="/index.html#offers" class="block hover:text-ink transition">Offers</a>
+          <a href="/index.html#proof" class="block hover:text-ink transition">Proof</a>
+          <a href="/index.html#faq" class="block hover:text-ink transition">FAQ</a>
+          <a href="/insights.html" class="block hover:text-ink transition">Insights</a>
+
+          <div class="pt-2 grid grid-cols-1 gap-2">
+            <a href="#form"
+               class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-primary">
+              Request Snapshot
+            </a>
+            <button id="stripeBtnMobile"
+              class="w-full inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold btn-secondary">
+              £149 Audit
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="relative">
-    <!-- Hero -->
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 shadow-glass">
-            <span class="h-2 w-2 rounded-full" style="background:#C026D3;"></span>
-            <span class="text-xs text-zinc-200/90">Free AI Visibility Snapshot • 24hr Delivery</span>
+  <main id="top">
+    <!-- Page header -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-16 pb-10 sm:pb-14">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7 min-w-0">
+          <div class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2">
+            <span class="h-2 w-2 rounded-full" style="background:#2563EB;"></span>
+            <span class="text-xs text-sub">Free Snapshot • 24–48h delivery</span>
           </div>
 
-          <h1 class="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight">
-            Free AI Visibility Snapshot (24hr Delivery)
+          <h1 class="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight text-ink">
+            Free Snapshot
           </h1>
 
-          <p class="mt-4 text-base sm:text-lg text-zinc-200/85 leading-relaxed max-w-2xl">
-            We analyse your structured data and score your AI readiness — so you know whether AI search engines can actually read your product data, or whether you’re structurally invisible.
+          <p class="mt-4 text-base sm:text-lg text-sub leading-relaxed max-w-2xl">
+            A fast diagnostic of your machine-readable product layer.
+            We review 1–2 product pages and identify 3–5 structural issues that reduce interpretability across AI discovery systems.
           </p>
 
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
             <a href="#form"
-               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
+               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-primary">
               Request My Free Snapshot
             </a>
 
-            <a href="REPLACE_WITH_YOUR_EXISTING_STRIPE_CHECKOUT_URL"
-               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
+            <button id="stripeBtnHero"
+               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-secondary">
               £149 Audit
-            </a>
+            </button>
+          </div>
+
+          <!-- Key Takeaways box -->
+          <div class="mt-8 rounded-2xl border border-border bg-surface p-5">
+            <div class="text-sm font-semibold text-ink">What you’ll get</div>
+            <ul class="mt-3 space-y-2 text-sm text-sub">
+              <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full" style="background:#2563EB;"></span><span>Schema type coverage + conflicts (theme vs app injections).</span></li>
+              <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full" style="background:#2563EB;"></span><span>Variant offer structure check (single offer vs per-variant offers).</span></li>
+              <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full" style="background:#2563EB;"></span><span>Attribute structure check (text-only vs computable properties).</span></li>
+              <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full" style="background:#2563EB;"></span><span>3–5 prioritized issues with the fix order.</span></li>
+            </ul>
           </div>
         </div>
 
-        <div class="lg:col-span-5">
-          <div class="glass-strong rounded-3xl p-6 sm:p-8 shadow-glow">
-            <div class="text-xs text-zinc-300/80">What you get</div>
-            <ul class="mt-4 space-y-3 text-sm text-zinc-200/85">
-              <li class="glass rounded-2xl p-4 border border-white/10 bg-black/25">
-                <div class="font-semibold text-zinc-100/90">Schema Type Check</div>
-                <div class="mt-1 text-xs text-zinc-300/80">Product vs DietarySupplement readiness</div>
-              </li>
-              <li class="glass rounded-2xl p-4 border border-white/10 bg-black/25">
-                <div class="font-semibold text-zinc-100/90">Ingredient Structuring Check</div>
-                <div class="mt-1 text-xs text-zinc-300/80">Can AI interpret what you actually sell?</div>
-              </li>
-              <li class="glass rounded-2xl p-4 border border-white/10 bg-black/25">
-                <div class="font-semibold text-zinc-100/90">Duplicate Schema Risk Scan</div>
-                <div class="mt-1 text-xs text-zinc-300/80">Conflicts that reduce machine confidence</div>
-              </li>
-              <li class="glass rounded-2xl p-4 border border-white/10 bg-black/25">
-                <div class="font-semibold text-zinc-100/90">AI Readiness Score</div>
-                <div class="mt-1 text-xs text-zinc-300/80">1–10 score with a fast explanation</div>
-              </li>
-            </ul>
+        <div class="lg:col-span-5 min-w-0">
+          <div class="rounded-2xl border border-border bg-surface p-6">
+            <div class="text-sm font-semibold text-ink">Snapshot scope</div>
+            <p class="mt-2 text-sm text-sub leading-relaxed">
+              This is a high-level diagnostic. If you want a catalogue-level issue register + implementation blueprint, the £149 audit is the next step.
+            </p>
 
-            <p class="mt-5 text-xs text-zinc-300/70 leading-relaxed">
-              Snapshot is a high-level diagnostic. Full audit includes complete breakdown and a fix roadmap.
+            <div class="mt-5 divider"></div>
+
+            <div class="mt-5 grid grid-cols-1 gap-3">
+              <div class="rounded-xl border border-border bg-white p-4">
+                <div class="text-xs font-semibold text-ink">1–2 PDP review</div>
+                <div class="mt-1 text-sm text-sub">We check live product JSON + JSON-LD outputs.</div>
+              </div>
+              <div class="rounded-xl border border-border bg-white p-4">
+                <div class="text-xs font-semibold text-ink">3–5 structural issues</div>
+                <div class="mt-1 text-sm text-sub">What’s missing, conflicting, or ambiguous.</div>
+              </div>
+              <div class="rounded-xl border border-border bg-white p-4">
+                <div class="text-xs font-semibold text-ink">Clear next step</div>
+                <div class="mt-1 text-sm text-sub">If the audit is needed, you’ll know why.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 rounded-2xl border border-border bg-white p-5">
+            <div class="text-sm font-semibold text-ink">Fast submission</div>
+            <p class="mt-2 text-sm text-sub">
+              Fill in the form below. We’ll email the snapshot to the address you provide.
             </p>
           </div>
         </div>
@@ -259,15 +383,16 @@
     </section>
 
     <!-- Form -->
-    <section id="form" class="mx-auto max-w-6xl px-4 sm:px-6 pb-16 sm:pb-20">
-      <div class="glass-strong rounded-3xl p-8 sm:p-10 shadow-glow max-w-3xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Request your free snapshot</h2>
-        <p class="mt-3 text-sm sm:text-base text-zinc-200/85 leading-relaxed">
-          Share the basics. We’ll review your product data structure and email your snapshot within 24 hours.
+    <section id="form" class="mx-auto max-w-6xl px-4 sm:px-6 pb-12 sm:pb-16">
+      <div class="max-w-3xl mx-auto rounded-3xl border border-border bg-surface p-8 sm:p-10">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Request your free snapshot</h2>
+        <p class="mt-3 text-sm sm:text-base text-sub leading-relaxed">
+          Share the basics. We’ll review your product data structure and email your snapshot within 24–48 hours.
         </p>
 
         <div class="mt-6 divider"></div>
 
+        <!-- IMPORTANT: Formspree action + hidden fields preserved -->
         <form class="mt-6 space-y-5" action="https://formspree.io/f/xdaldprq" method="POST">
           <input type="hidden" name="form_type" value="AI Visibility Snapshot" />
           <input type="hidden" name="_subject" value="New AI Visibility Snapshot Request" />
@@ -278,25 +403,25 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="label" for="fullName">Full Name <span class="text-pink-300/90">*</span></label>
-              <input class="field mt-2 focus-ring" id="fullName" name="fullName" type="text" required autocomplete="name" />
+              <label class="label" for="fullName">Full Name <span style="color:#DC2626;">*</span></label>
+              <input class="field mt-2" id="fullName" name="fullName" type="text" required autocomplete="name" />
             </div>
 
             <div>
-              <label class="label" for="email">Work Email <span class="text-pink-300/90">*</span></label>
-              <input class="field mt-2 focus-ring" id="email" name="email" type="email" required autocomplete="email" />
+              <label class="label" for="email">Work Email <span style="color:#DC2626;">*</span></label>
+              <input class="field mt-2" id="email" name="email" type="email" required autocomplete="email" />
             </div>
           </div>
 
           <div>
-            <label class="label" for="websiteUrl">Website URL <span class="text-pink-300/90">*</span></label>
-            <input class="field mt-2 focus-ring" id="websiteUrl" name="websiteUrl" type="url" required placeholder="https://yourstore.com" />
+            <label class="label" for="websiteUrl">Website URL <span style="color:#DC2626;">*</span></label>
+            <input class="field mt-2" id="websiteUrl" name="websiteUrl" type="url" required placeholder="https://yourstore.com" />
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="label" for="platform">Platform <span class="text-pink-300/90">*</span></label>
-              <select class="field mt-2 focus-ring" id="platform" name="platform" required>
+              <label class="label" for="platform">Platform <span style="color:#DC2626;">*</span></label>
+              <select class="field mt-2" id="platform" name="platform" required>
                 <option value="" disabled selected>Select one</option>
                 <option value="Shopify">Shopify</option>
                 <option value="WooCommerce">WooCommerce</option>
@@ -306,7 +431,7 @@
 
             <div>
               <label class="label" for="monthlyRevenue">Monthly Revenue Band (Optional)</label>
-              <select class="field mt-2 focus-ring" id="monthlyRevenue" name="monthlyRevenue">
+              <select class="field mt-2" id="monthlyRevenue" name="monthlyRevenue">
                 <option value="" selected>Prefer not to say</option>
                 <option value="Pre-revenue">Pre-revenue</option>
                 <option value="£0–£10K">£0–£10K</option>
@@ -319,23 +444,23 @@
 
           <div>
             <label class="label" for="notes">Notes (Optional)</label>
-            <textarea class="field mt-2 focus-ring min-h-[120px]" id="notes" name="notes" placeholder="Anything we should know (platform quirks, product complexity, target market, etc.)"></textarea>
+            <textarea class="field mt-2 min-h-[120px]" id="notes" name="notes" placeholder="Anything we should know (platform quirks, product complexity, target market, etc.)"></textarea>
           </div>
 
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <button type="submit"
-              class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
+              class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-primary">
               Send My Snapshot Request
             </button>
 
             <a href="/index.html"
-              class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold glass hover:bg-white/10 transition focus-ring">
+              class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-secondary">
               Back to site
             </a>
           </div>
 
-          <div class="mt-4 text-xs text-zinc-300/70 break-words">
-            This is a free diagnostic. If you want the full breakdown + fix roadmap, upgrade below.
+          <div class="mt-4 text-xs text-sub break-words">
+            This is a free diagnostic. If you want a catalogue-level issue register + blueprint, upgrade to the £149 audit.
           </div>
         </form>
 
@@ -343,112 +468,226 @@
         <div class="mt-10 divider"></div>
 
         <div class="mt-8">
-          <h3 class="text-xl sm:text-2xl font-semibold tracking-tight">Want the full diagnostic + fix roadmap?</h3>
+          <h3 class="text-xl sm:text-2xl font-semibold tracking-tight text-ink">Want the full diagnostic + implementation blueprint?</h3>
 
-          <ul class="mt-4 space-y-2 text-sm text-zinc-200/85">
+          <ul class="mt-4 space-y-2 text-sm text-sub">
             <li>• Variant-level Offer modelling</li>
-            <li>• DietarySupplement schema migration</li>
-            <li>• Ingredient entity mapping</li>
-            <li>• FAQ structured data deployment</li>
-            <li>• Duplicate schema conflict resolution</li>
+            <li>• Catalogue issue register + fix order</li>
+            <li>• Conflict cleanup (duplicate schema from apps)</li>
+            <li>• Validator-ready example JSON-LD</li>
           </ul>
 
           <div class="mt-6">
-            <a href="REPLACE_WITH_YOUR_EXISTING_STRIPE_CHECKOUT_URL"
-               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white btn-primary transition focus-ring">
-              Get the £149 AI Discovery Audit
-            </a>
+            <button id="stripeBtnUpsell"
+               class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold btn-primary">
+              Get the £149 Audit
+            </button>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Footer (matches index.html) -->
+    <footer class="border-t border-border bg-white">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+          <div class="flex items-start gap-4 min-w-0">
+            <div class="h-12 w-12 rounded-xl border border-border bg-white flex items-center justify-center shrink-0 p-2">
+              <img src="./logo-icon.png" alt="My AI Discovery Lab logo" class="h-full w-full object-contain" />
+            </div>
+            <div class="text-sm min-w-0">
+              <div class="font-semibold text-ink break-words">My AI Discovery Lab</div>
+              <div class="mt-1 text-sub break-words">Machine-readable commerce infrastructure.</div>
+              <div class="mt-2 text-sub break-words">
+                <a class="underline text-accent" href="mailto:audit@myaidiscoverylab.com">audit@myaidiscoverylab.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:items-end gap-3">
+            <div class="flex flex-wrap items-center gap-4 text-sm text-sub">
+              <a href="/privacy.html" class="hover:text-ink transition">Privacy</a>
+              <a href="/terms.html" class="hover:text-ink transition">Terms</a>
+              <a href="/snapshot.html" class="hover:text-ink transition">Snapshot</a>
+              <a href="/insights.html" class="hover:text-ink transition">Insights</a>
+            </div>
+            <div class="text-xs text-sub">© <span id="year"></span> My AI Discovery Lab. All rights reserved.</div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
 
+  <!-- Image viewer modal (enlarge any image with data-img-modal) -->
+  <div id="imageModal" class="img-modal" role="dialog" aria-modal="true" aria-label="Image preview">
+    <div class="img-modal-inner">
+      <div class="img-modal-card">
+        <div class="flex items-start justify-between gap-4">
+          <div class="text-sm font-semibold text-ink">Preview</div>
+          <button id="imageModalClose"
+                  class="h-10 w-10 rounded-xl border border-border bg-white hover:bg-surface transition inline-flex items-center justify-center"
+                  aria-label="Close preview">
+            <svg class="h-5 w-5 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 6L6 18"></path><path d="M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="mt-4">
+          <img id="imageModalImg" src="" alt="" class="w-full h-auto rounded-xl border border-border bg-surface block" />
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Nav blur/darken on scroll
-    const nav = document.getElementById("siteNav");
-    const onScroll = () => {
-      if (window.scrollY > 12) nav.classList.add("nav-scrolled");
-      else nav.classList.remove("nav-scrolled");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    // ====== CONFIG ======
+    const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00";
 
-    // Starfield particles (same lightweight approach)
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d", { alpha: true });
+    // Current year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    let w, h, dpr, particles;
-    const PARTICLE_COUNT = 110;
-    const MAX_SPEED = 0.18;
+    // ===== Mobile menu toggle + close on link click =====
+    const toggle = document.getElementById("mobileMenuToggle");
+    const menu = document.getElementById("mobileMenu");
 
-    function resizeCanvas() {
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      w = canvas.clientWidth = window.innerWidth;
-      h = canvas.clientHeight = window.innerHeight;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      particles = Array.from({ length: PARTICLE_COUNT }, () => spawnParticle(true));
+    if (toggle && menu) {
+      toggle.addEventListener("click", () => menu.classList.toggle("hidden"));
     }
 
-    function spawnParticle(randomY = false) {
-      const x = Math.random() * w;
-      const y = randomY ? Math.random() * h : -10;
-      const r = 0.5 + Math.random() * 1.5;
-      const vx = (Math.random() - 0.5) * MAX_SPEED;
-      const vy = (0.03 + Math.random() * 0.14);
-      const a = 0.14 + Math.random() * 0.32;
-      return { x, y, r, vx, vy, a };
+    document.querySelectorAll('#mobileMenu a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu?.classList.add('hidden');
+      });
+    });
+
+    // ===== Stripe buttons (redirect) — DO NOT MODIFY =====
+    const stripeBtnNav = document.getElementById("stripeBtnNav");
+    if (stripeBtnNav) stripeBtnNav.addEventListener("click", () => window.location.href = STRIPE_CHECKOUT_URL);
+
+    const stripeBtnMobile = document.getElementById("stripeBtnMobile");
+    if (stripeBtnMobile) stripeBtnMobile.addEventListener("click", () => window.location.href = STRIPE_CHECKOUT_URL);
+
+    const stripeBtnHero = document.getElementById("stripeBtnHero");
+    if (stripeBtnHero) stripeBtnHero.addEventListener("click", () => window.location.href = STRIPE_CHECKOUT_URL);
+
+    const stripeBtnUpsell = document.getElementById("stripeBtnUpsell");
+    if (stripeBtnUpsell) stripeBtnUpsell.addEventListener("click", () => window.location.href = STRIPE_CHECKOUT_URL);
+
+    // ===== Image modal (sitewide pattern) =====
+    const imageModal = document.getElementById("imageModal");
+    const imageModalImg = document.getElementById("imageModalImg");
+    const imageModalClose = document.getElementById("imageModalClose");
+
+    function openImageModal(src, altText) {
+      imageModalImg.src = src;
+      imageModalImg.alt = altText || "Preview image";
+      imageModal.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      imageModalClose.focus();
+    }
+    function closeImageModal() {
+      imageModal.classList.remove("is-open");
+      document.body.style.overflow = "";
+      imageModalImg.src = "";
+      imageModalImg.alt = "";
     }
 
-    function drawStars() {
-      ctx.clearRect(0, 0, w, h);
+    // Any element with data-img-modal="./path.png" will open modal
+    document.querySelectorAll("[data-img-modal]").forEach(el => {
+      el.addEventListener("click", () => {
+        const src = el.getAttribute("data-img-modal");
+        const img = el.querySelector("img");
+        const altText = img ? img.alt : "Preview image";
+        if (src) openImageModal(src, altText);
+      });
+    });
 
-      const g = ctx.createRadialGradient(w * 0.55, h * 0.15, 0, w * 0.55, h * 0.15, Math.max(w, h));
-      g.addColorStop(0, "rgba(192,38,211,0.06)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
+    if (imageModalClose) imageModalClose.addEventListener("click", closeImageModal);
+    if (imageModal) {
+      imageModal.addEventListener("click", (e) => {
+        if (e.target === imageModal) closeImageModal();
+      });
+    }
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && imageModal.classList.contains("is-open")) closeImageModal();
+    });
+  </script>
 
-        if (p.y > h + 12) particles[i] = spawnParticle(false);
-        if (p.x < -12) p.x = w + 12;
-        if (p.x > w + 12) p.x = -12;
+  <!-- ===== Consent + Analytics Loader (GA4 + AdSense gated) ===== -->
+  <script>
+    (function () {
+      const CONSENT_KEY = "aidl_cookie_consent_v1";
+      const banner = document.getElementById("cookieBanner");
+      const acceptBtn = document.getElementById("cookieAccept");
+      const declineBtn = document.getElementById("cookieDecline");
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.a})`;
-        ctx.fill();
+      function hasConsent() {
+        return localStorage.getItem(CONSENT_KEY) === "accepted";
+      }
+      function setConsent(value) {
+        localStorage.setItem(CONSENT_KEY, value);
+      }
+      function loadScriptOnce(id, src) {
+        if (document.getElementById(id)) return;
+        const s = document.createElement("script");
+        s.id = id;
+        s.async = true;
+        s.src = src;
+        document.head.appendChild(s);
       }
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 110) {
-            const alpha = (1 - dist / 110) * 0.06;
-            ctx.strokeStyle = `rgba(138,43,226,${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
+      function enableGA4() {
+        const GA4_ID = (window.__AIDL__ && window.__AIDL__.GA4_ID) || "";
+        if (!GA4_ID) return;
+
+        loadScriptOnce("ga4-gtag", "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4_ID));
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ window.dataLayer.push(arguments); }
+        window.gtag = window.gtag || gtag;
+
+        gtag("js", new Date());
+        gtag("config", GA4_ID, { anonymize_ip: true });
       }
 
-      requestAnimationFrame(drawStars);
-    }
+      function enableAdSense() {
+        const client = (window.__AIDL__ && window.__AIDL__.ADSENSE_CLIENT) || "";
+        if (!client) return;
 
-    window.addEventListener("resize", resizeCanvas, { passive: true });
-    resizeCanvas();
-    drawStars();
+        loadScriptOnce(
+          "adsense-auto",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(client)
+        );
+      }
+
+      function enableTracking() {
+        enableGA4();
+        enableAdSense();
+      }
+
+      const prior = localStorage.getItem(CONSENT_KEY);
+      if (hasConsent()) {
+        enableTracking();
+      } else {
+        if (banner && !prior) banner.style.display = "block";
+      }
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          setConsent("accepted");
+          if (banner) banner.style.display = "none";
+          enableTracking();
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener("click", function () {
+          setConsent("declined");
+          if (banner) banner.style.display = "none";
+        });
+      }
+    })();
   </script>
 </body>
 </html>
