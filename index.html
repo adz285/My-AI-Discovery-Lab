@@ -137,6 +137,80 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
+
+    /* ===== Image enlarge (sitewide pattern) ===== */
+    .zoomable {
+      cursor: zoom-in;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .zoomable:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(37,99,235,.20);
+      border-radius: 12px;
+    }
+    .img-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9998;
+      background: rgba(11,18,32,.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity .18s ease;
+    }
+    .img-modal.is-open { display: block; opacity: 1; }
+    .img-modal-inner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(92vw, 1100px);
+      max-height: 86vh;
+      overflow: auto;
+    }
+    .img-modal-card {
+      background: #FFFFFF;
+      border: 1px solid #E5EAF0;
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 24px 70px rgba(11,18,32,.22);
+    }
+    .img-modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+    }
+    .img-modal-title {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+    .img-modal-close {
+      height: 40px;
+      width: 40px;
+      border-radius: 12px;
+      border: 1px solid #E5EAF0;
+      background: #F6F8FB;
+      color: #0A2540;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .img-modal-close:hover { background: #EEF2F7; }
+    .img-modal-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid #E5EAF0;
+      background: #FFFFFF;
+    }
   </style>
 
   <!-- Lightweight Organization JSON-LD -->
@@ -293,7 +367,7 @@
             <div class="text-sm font-semibold text-ink">Enterprise architecture diagram</div>
             <p class="mt-2 text-sm text-sub">Right-side visual for the hero section.</p>
             <div class="mt-4 rounded-xl border border-border bg-white p-3">
-              <img src="./hero-architecture-diagram.png" alt="Enterprise product data infrastructure diagram" class="w-full h-auto block" />
+              <img src="./hero-architecture-diagram.png" alt="Enterprise product data infrastructure diagram" class="w-full h-auto block zoomable" data-zoomable />
               <!-- TODO: replace image file when generated -->
             </div>
           </div>
@@ -424,7 +498,7 @@
         </div>
 
         <div class="mt-6 rounded-xl border border-border bg-white p-3">
-          <img src="./method-5-step-diagram.png" alt="Five-step method diagram: Extract, Specify, Implement, Validate, Monitor" class="w-full h-auto block" />
+          <img src="./method-5-step-diagram.png" alt="Five-step method diagram: Extract, Specify, Implement, Validate, Monitor" class="w-full h-auto block zoomable" data-zoomable />
           <!-- TODO: replace image file when generated -->
         </div>
       </div>
@@ -543,7 +617,7 @@
             <span class="rounded-full border border-border bg-white px-3 py-1 text-xs" style="color:#DC2626;">FAIL</span>
           </div>
           <div class="mt-4 rounded-xl border border-border bg-white p-3">
-            <img src="./validation-badges.png" alt="Validation badges: Pass, Warn, Fail" class="w-full h-auto block" />
+            <img src="./validation-badges.png" alt="Validation badges: Pass, Warn, Fail" class="w-full h-auto block zoomable" data-zoomable />
             <!-- TODO: replace image file when generated -->
           </div>
         </div>
@@ -580,7 +654,7 @@
           </div>
 
           <div class="mt-4 rounded-xl border border-border bg-white p-3">
-            <img src="./attribute-contract-table.png" alt="Attribute contract table visual" class="w-full h-auto block" />
+            <img src="./attribute-contract-table.png" alt="Attribute contract table visual" class="w-full h-auto block zoomable" data-zoomable />
             <!-- TODO: replace image file when generated -->
           </div>
         </div>
@@ -697,6 +771,23 @@
     </footer>
   </main>
 
+  <!-- ===== Image viewer modal (enlarge on tap/click) ===== -->
+  <div id="imageModal" class="img-modal" role="dialog" aria-modal="true" aria-label="Image preview">
+    <div class="img-modal-inner">
+      <div class="img-modal-card">
+        <div class="img-modal-top">
+          <div id="imageModalTitle" class="img-modal-title">Preview</div>
+          <button id="imageModalClose" class="img-modal-close" type="button" aria-label="Close preview">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 6L6 18"></path><path d="M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <img id="imageModalImg" src="" alt="" class="img-modal-img" />
+      </div>
+    </div>
+  </div>
+
   <script>
     // ====== CONFIG ======
     const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00";
@@ -723,6 +814,58 @@
       a.addEventListener('click', () => {
         menu?.classList.add('hidden');
       });
+    });
+
+    // ===== Image enlarge (click/tap to open modal) =====
+    const imageModal = document.getElementById("imageModal");
+    const imageModalImg = document.getElementById("imageModalImg");
+    const imageModalClose = document.getElementById("imageModalClose");
+    const imageModalTitle = document.getElementById("imageModalTitle");
+
+    function openImageModal(src, altText) {
+      imageModalImg.src = src;
+      imageModalImg.alt = altText || "Preview image";
+      imageModalTitle.textContent = altText || "Preview";
+      imageModal.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      imageModalClose.focus();
+    }
+
+    function closeImageModal() {
+      imageModal.classList.remove("is-open");
+      document.body.style.overflow = "";
+      imageModalImg.src = "";
+      imageModalImg.alt = "";
+      imageModalTitle.textContent = "Preview";
+    }
+
+    // Attach to anything with data-zoomable
+    document.querySelectorAll("[data-zoomable]").forEach(img => {
+      // Make keyboard accessible
+      if (!img.hasAttribute("tabindex")) img.setAttribute("tabindex", "0");
+      img.classList.add("zoomable");
+
+      const handler = () => openImageModal(img.getAttribute("src"), img.getAttribute("alt"));
+
+      img.addEventListener("click", handler);
+      img.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handler();
+        }
+      });
+    });
+
+    if (imageModalClose) imageModalClose.addEventListener("click", closeImageModal);
+
+    if (imageModal) {
+      imageModal.addEventListener("click", (e) => {
+        if (e.target === imageModal) closeImageModal();
+      });
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && imageModal.classList.contains("is-open")) closeImageModal();
     });
   </script>
 
