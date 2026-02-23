@@ -9,6 +9,9 @@
     (function () {
       const params = new URLSearchParams(window.location.search);
 
+      // Offer routing: default snapshot, audit requires paid
+      const offer = (params.get("offer") || "snapshot").toLowerCase();
+
       // Allow access for testing OR Stripe success param
       const allowPreview = params.get("preview") === "1";
       const allowPaidParam = params.get("paid") === "1";
@@ -17,6 +20,9 @@
       if (allowPaidParam) {
         try { localStorage.setItem("myaidl_paid_intake", "1"); } catch (e) {}
       }
+
+      // Snapshot uses same intake form (no paid gate)
+      if (offer !== "audit") return;
 
       // Owner preview mode OR paid param allows access immediately
       if (allowPreview || allowPaidParam) return;
@@ -395,7 +401,8 @@
             <input type="hidden" name="_subject" value="New AI Discovery Audit Intake" />
             <input type="hidden" name="submission_source" value="intake_form" />
             <input type="hidden" name="service_type" value="ai_discovery_audit" />
-            <input type="hidden" name="lead_stage" value="paid_intake" />
+            <input type="hidden" name="lead_stage" id="lead_stage" value="lead" />
+            <input type="hidden" name="offer_type" id="offer_type" value="snapshot" />
             <input type="hidden" name="source_page" value="/intake.html" />
             <input type="hidden" name="utm_source" value="" />
             <input type="hidden" name="utm_campaign" value="" />
@@ -557,6 +564,21 @@
     document.querySelectorAll('#mobileMenu a').forEach(a => {
       a.addEventListener('click', () => menu?.classList.add('hidden'));
     });
+  </script>
+
+  <!-- ===== Offer tagging (NEW) ===== -->
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const offer = (params.get("offer") || "snapshot").toLowerCase();
+      const offerType = (offer === "audit") ? "audit" : "snapshot";
+
+      const offerEl = document.getElementById("offer_type");
+      if (offerEl) offerEl.value = offerType;
+
+      const stageEl = document.getElementById("lead_stage");
+      if (stageEl) stageEl.value = (offerType === "audit") ? "paid_intake" : "lead";
+    })();
   </script>
 
   <!-- ===== Payment flag setter (KEEP) ===== -->
