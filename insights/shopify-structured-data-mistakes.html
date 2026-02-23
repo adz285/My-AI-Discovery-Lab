@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Shopify Structured Data Mistakes That Hurt Product Visibility</title>
+  <meta name="description" content="Common Shopify structured data mistakes limit product visibility. Learn how to fix schema markup properly for ecommerce stores." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://myaidiscoverylab.com/insights/shopify-structured-data-mistakes.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shopify Structured Data Mistakes That Hurt Product Visibility" />
+  <meta property="og:description" content="Common Shopify structured data mistakes limit product visibility. Learn how to fix schema markup properly for ecommerce stores." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://myaidiscoverylab.com/insights/shopify-structured-data-mistakes.html" />
+  <meta property="og:image" content="https://myaidiscoverylab.com/insights/shopify-structured-data-schema-hero.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shopify Structured Data Mistakes That Hurt Product Visibility" />
+  <meta name="twitter:description" content="Common Shopify structured data mistakes limit product visibility. Learn how to fix schema markup properly for ecommerce stores." />
+  <meta name="twitter:image" content="https://myaidiscoverylab.com/insights/shopify-structured-data-schema-hero.webp" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN (matches site) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    window.__AIDL__ = {
+      GA4_ID: "G-7QQ93HP5N6",
+      ADSENSE_CLIENT: "ca-pub-7230693944040551"
+    };
+  </script>
+
+  <style>
+    html, body { overflow-x: hidden; }
+    img { max-width: 100%; height: auto; }
+    body { min-height: 100vh; background:#FFFFFF; color:#0B1220; font-family: Inter, system-ui, sans-serif; }
+    .article h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; }
+    .article p { margin-top: 1rem; line-height: 1.75; color:#475569; }
+    .article ul { margin-top: 1rem; padding-left: 1.25rem; list-style: disc; color:#475569; }
+    .article pre { background:#F6F8FB; padding:1rem; border-radius:12px; overflow:auto; margin-top:1rem; }
+  </style>
+</head>
+
+<body class="font-sans">
+
+<!-- NAV (matches other pages exactly) -->
+<header class="sticky top-0 z-50 border-b border-gray-200 bg-white">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="/index.html" class="flex items-center gap-3">
+      <img src="/logo-icon.png" class="h-10 w-10 object-contain" alt="My AI Discovery Lab logo">
+      <span class="text-sm font-semibold text-[#0A2540]">My AI Discovery Lab</span>
+    </a>
+    <nav class="hidden md:flex gap-6 text-sm text-gray-600">
+      <a href="/snapshot.html" class="hover:text-black">Free Snapshot</a>
+      <a href="/index.html#offers" class="hover:text-black">Offers</a>
+      <a href="/insights.html" class="hover:text-black">Insights</a>
+    </nav>
+    <a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+       class="px-4 py-2 rounded-xl text-white bg-[#2563EB] font-semibold text-sm">
+       £149 Audit
+    </a>
+  </div>
+</header>
+
+<main class="mx-auto max-w-3xl px-4 sm:px-6 py-14 article">
+
+<h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#0A2540]">
+Shopify Structured Data Mistakes That Hurt Product Visibility
+</h1>
+
+<figure class="mt-8">
+  <img src="/insights/shopify-structured-data-schema-hero.webp"
+       alt="Structured data code overlay on ecommerce product page"
+       loading="eager">
+</figure>
+
+<p>
+Most Shopify stores have structured data.
+Almost none have it implemented correctly.
+</p>
+
+<p>
+If your schema markup is incomplete, duplicated, or mis-typed, search engines and AI systems don’t interpret your product properly.
+That limits visibility.
+</p>
+
+<h2>1. Using Generic Product Instead of the Correct Schema Type</h2>
+
+<figure>
+  <img src="/insights/schema-type-mistake.webp"
+       alt="Comparison of Product vs DietarySupplement schema types"
+       loading="lazy">
+</figure>
+
+<p>
+Many supplement stores use generic <code>Product</code> schema.
+This misses structured signals like active ingredient modelling and dosage representation.
+</p>
+
+<pre>{
+ "@type": "Product"
+}</pre>
+
+<p>
+Instead, supplement brands should use <code>DietarySupplement</code> where applicable.
+</p>
+
+<h2>2. Incorrect Variant Offer Structure</h2>
+
+<figure>
+  <img src="/insights/variant-offer-structure.webp"
+       alt="Improper Shopify variant offer structure example"
+       loading="lazy">
+</figure>
+
+<p>
+Shopify frequently outputs only one Offer even when multiple variants exist.
+This causes price and availability confusion.
+</p>
+
+<ul>
+<li>Each variant must have its own Offer object</li>
+<li>SKU must match variant SKU</li>
+<li>GTIN must match the correct variant</li>
+</ul>
+
+<h2>3. Duplicate Schema from Apps</h2>
+
+<p>
+Apps often inject additional Product JSON-LD.
+This results in:
+</p>
+
+<ul>
+<li>Multiple Product objects</li>
+<li>Conflicting price signals</li>
+<li>Validation inconsistencies</li>
+</ul>
+
+<p>
+AI systems ignore inconsistent data.
+</p>
+
+<h2>4. Missing additionalProperty Modelling</h2>
+
+<figure>
+  <img src="/insights/additional-property-example.webp"
+       alt="JSON-LD additionalProperty example structure"
+       loading="lazy">
+</figure>
+
+<p>
+Critical product attributes like:
+</p>
+
+<ul>
+<li>Capsule count</li>
+<li>Potency percentage</li>
+<li>Form factor</li>
+<li>Country of manufacture</li>
+</ul>
+
+<p>
+Are rarely structured properly.
+That reduces machine readability.
+</p>
+
+<h2>Checklist</h2>
+
+<ul>
+<li>Correct schema type</li>
+<li>Variant-level Offer array</li>
+<li>No duplicate Product objects</li>
+<li>Accurate SKU + GTIN mapping</li>
+<li>Structured additionalProperty fields</li>
+</ul>
+
+<p class="mt-8 font-semibold text-[#0A2540]">
+If you’d like a structured breakdown of how your Shopify structured data is currently configured,
+<a href="/snapshot.html" class="text-[#2563EB] underline">request a Free Snapshot</a>.
+</p>
+
+<p class="mt-4">
+For a full implementation blueprint, see the
+<a href="https://buy.stripe.com/bJe14hglS2UQ5BgfrReQM00"
+   class="text-[#2563EB] underline">£149 AI Discovery Audit</a>.
+</p>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-gray-200 bg-white mt-16">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10 text-sm text-gray-500">
+    © <span id="year"></span> My AI Discovery Lab.
+  </div>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
